@@ -24,6 +24,4 @@ public class Casillero {
 	public boolean estaVacio(){
 		return (objeto == vacio);
 	}
-	
-	
 }

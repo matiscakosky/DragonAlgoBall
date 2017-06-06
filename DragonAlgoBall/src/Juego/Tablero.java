@@ -49,4 +49,9 @@ public class Tablero {
 			}
 		}
 	}
+	public boolean vacioEnPosicion(Posicion posicion){
+		this.validarPosicion(posicion);
+		Casillero casillero = obtenerCasillero(posicion);
+		return casillero.estaVacio();
+	}
 }
