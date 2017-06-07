@@ -18,4 +18,8 @@ public class Goku extends Personaje {
 	public void evolucionarAFase1(){
 		this.estado.setearEstadoFase1Personaje(this.nombre);
 	}
+	
+	public void evolucionarAFase2(){
+		this.estado.setearEstadoFase2Personaje(this.nombre);
+	}
 }
