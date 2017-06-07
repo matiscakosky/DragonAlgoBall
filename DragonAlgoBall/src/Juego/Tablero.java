@@ -1,5 +1,6 @@
 package Juego;
 
+import java.util.*;
 import Excepciones.TamanioTableroInvalido;
 import Excepciones.PosicionInvalida;
 import Juego.Casillero;
@@ -8,13 +9,13 @@ import Juego.StatsJuego;
 
 public class Tablero {
 	
-	private Casillero casilleros[][];
+	private Hashtable<Posicion,Casillero> casilleros;
 	private int tamanioTablero;
 	
 	public Tablero(int tamanio) {
 		this.validarTamanio(tamanio);
 		this.tamanioTablero = tamanio;
-		this.casilleros = new Casillero [tamanio][tamanio];
+		this.casilleros = new Hashtable<Posicion,Casillero>();
 	}
 	
 	public int getTamanio(){
@@ -36,22 +37,33 @@ public class Tablero {
 	
 	public Casillero obtenerCasillero(Posicion posicion){
 		this.validarPosicion(posicion);
-		int coordenadax = posicion.getCoordenadaX();
-		int coordenaday = posicion.getCoordenadaY();
-		return casilleros[coordenadax][coordenaday];
+		if (casilleros.containsKey(posicion)){
+			return casilleros.get(posicion);
 		}
-
-	public void CargarTablero(Casillero casilleros[][], int tamanio){
-		for(int i=0 ; i<tamanio ; i++){
-			for(int j=0; j<tamanio ; j++){
-				Casillero unCasillero = new Casillero();
-				casilleros[i][j] = unCasillero;
-			}
-		}
+		return new Casillero();
 	}
+
 	public boolean vacioEnPosicion(Posicion posicion){
 		this.validarPosicion(posicion);
 		Casillero casillero = obtenerCasillero(posicion);
 		return casillero.estaVacio();
 	}
+	
+	public void colocarObjeto(ObjetoJuego objeto,Posicion posicion){
+		this.validarPosicion(posicion);
+		Casillero casillero = new Casillero();
+		casillero.agregarObjeto(objeto);
+		this.casilleros.put(posicion, casillero);
+	}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
 }

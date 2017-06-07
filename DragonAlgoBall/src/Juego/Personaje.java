@@ -5,8 +5,6 @@ import Excepciones.*;
 
 public abstract class Personaje extends ObjetoJuego{
 	
-	protected int puntosDeVida;
-	protected int ki;
 	protected Estado estado;
 	
 	public int getVelocidad(){

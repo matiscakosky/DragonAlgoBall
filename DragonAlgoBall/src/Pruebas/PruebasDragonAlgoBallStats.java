@@ -54,6 +54,4 @@ public class PruebasDragonAlgoBallStats {
 		assertEquals(goku.getPoderDePelea(), StatsJuego.poderPeleaGokuKaioKen);
 		
 	}
-	
-	
 }

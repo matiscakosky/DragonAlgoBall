@@ -5,8 +5,6 @@ import java.util.*;
 
 public class StatsJuego {
 
-
-	
 	public static final int tamanioTableroMaximo = 100;
 	public static final int velocidadGokuNormal = 2;
 	public static final int velocidadGokuKaioKen = 3;
@@ -103,31 +101,37 @@ public class StatsJuego {
 		inicGoku.put("poderDePelea", poderPeleaGokuNormal);
 		inicGoku.put("distanciaDeAtaque", distanciaAtaqueGokuNormal);
 		inicGoku.put("kiEvolucion", kiEvolucionEstado1Goku);
+		inicGoku.put("puntosDeVida",puntosVidaInicialGoku);
 		
 		inicGohan.put("velocidad", velocidadGohanNormal);
 		inicGohan.put("poderDePelea", poderPeleaGohanNormal);
 		inicGohan.put("distanciaDeAtaque", distanciaAtaqueGohanNormal);
 		inicGohan.put("kiEvolucion", kiEvolucionEstado1Gohan);
+		inicGohan.put("puntosDeVida",puntosVidaInicialGohan);
 		
 		inicPicolo.put("velocidad", velocidadPicoloNormal);
 		inicPicolo.put("poderDePelea", poderPeleaPicoloNormal);
 		inicPicolo.put("distanciaDeAtaque", distanciaAtaquePicoloNormal);
 		inicPicolo.put("kiEvolucion", kiEvolucionEstado1Picolo);
+		inicPicolo.put("puntosDeVida",puntosVidaInicialPicolo);
 		
 		inicFreezer.put("velocidad", velocidadFreezerNormal);
 		inicFreezer.put("poderDePelea", poderPeleaFreezerNormal);
 		inicFreezer.put("distanciaDeAtaque", distanciaAtaqueFreezerNormal);
 		inicFreezer.put("kiEvolucion", kiEvolucionEstado1Freezer);
+		inicFreezer.put("puntosDeVida",puntosVidaInicialFreezer);
 		
 		inicMajinBoo.put("velocidad", velocidadMajinBooNormal);
 		inicMajinBoo.put("poderDePelea", poderPeleaMajinBooNormal);
 		inicMajinBoo.put("distanciaDeAtaque", distanciaAtaqueMajinBooNormal);
 		inicMajinBoo.put("kiEvolucion", kiEvolucionEstado1MajinBoo);
+		inicMajinBoo.put("puntosDeVida",puntosVidaInicialMajinBoo);
 		
 		inicCell.put("velocidad", velocidadCellNormal);
 		inicCell.put("poderDePelea", poderPeleaCellNormal);
 		inicCell.put("distanciaDeAtaque", distanciaAtaqueCellNormal);
 		inicCell.put("kiEvolucion", kiEvolucionEstado1Cell);
+		inicCell.put("puntosDeVida",puntosVidaInicialCell);
 		
 		statsIniciales.put("Goku", inicGoku);
 		statsIniciales.put("Gohan", inicGohan);
