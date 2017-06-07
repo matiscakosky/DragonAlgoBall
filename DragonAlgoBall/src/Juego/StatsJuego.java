@@ -87,6 +87,7 @@ public class StatsJuego {
 	
 	public static final HashMap<String,HashMap<String,Integer>> statsIniciales = obtenerEstadosIniciales();
 	public static final HashMap<String,HashMap<String,Integer>> statsEstado1 = obtenerEstados1();
+	public static final HashMap<String,HashMap<String,Integer>> statsEstado2 = obtenerEstados2();
 	
 	
 	public static HashMap<String,HashMap<String, Integer>> obtenerEstadosIniciales(){
@@ -191,7 +192,53 @@ public class StatsJuego {
 		return e1Stats;
 	}
 
-	
+	public static HashMap<String,HashMap<String,Integer>> obtenerEstados2(){
+		HashMap<String,HashMap<String,Integer>> e2Stats = new HashMap<String,HashMap<String,Integer>>();	
+		HashMap<String,Integer> e2Gohan = new HashMap<String,Integer>();
+		HashMap<String,Integer> e2Goku = new HashMap<String,Integer>();
+		HashMap<String,Integer> e2Picolo = new HashMap<String,Integer>();
+		HashMap<String,Integer> e2Freezer = new HashMap<String,Integer>();
+		HashMap<String,Integer> e2MajinBoo = new HashMap<String,Integer>();
+		HashMap<String,Integer> e2Cell = new HashMap<String,Integer>();
+		e2Goku.put("velocidad", velocidadGokuSsj);
+		e2Goku.put("poderDePelea", poderPeleaGokuSsj);
+		e2Goku.put("distanciaDeAtaque", distanciaAtaqueGokuSsj);
+		e2Goku.put("kiEvolucion", 0);
+		
+		e2Gohan.put("velocidad", velocidadGohanSsj2);
+		e2Gohan.put("poderDePelea", poderPeleaGohanSsj2);
+		e2Gohan.put("distanciaDeAtaque", distanciaAtaqueGohanSsj2);
+		e2Gohan.put("kiEvolucion",0);
+		
+		e2Picolo.put("velocidad", velocidadPicoloProtector);
+		e2Picolo.put("poderDePelea", poderPeleaPicoloProtector);
+		e2Picolo.put("distanciaDeAtaque", distanciaAtaquePicoloProtector);
+		e2Picolo.put("kiEvolucion", 0);
+		
+		e2Freezer.put("velocidad", velocidadFreezerDefinitivo);
+		e2Freezer.put("poderDePelea", poderPeleaFreezerDefinitivo);
+		e2Freezer.put("distanciaDeAtaque", distanciaAtaqueFreezerDefinitivo);
+		e2Freezer.put("kiEvolucion",0);
+		
+		e2MajinBoo.put("velocidad", velocidadMajinBooOriginal);
+		e2MajinBoo.put("poderDePelea", poderPeleaMajinBooOriginal);
+		e2MajinBoo.put("distanciaDeAtaque", distanciaAtaqueMajinBooOriginal);
+		e2MajinBoo.put("kiEvolucion", 0);
+		
+		e2Cell.put("velocidad", velocidadCellPerfecto);
+		e2Cell.put("poderDePelea", poderPeleaCellPerfecto);
+		e2Cell.put("distanciaDeAtaque", distanciaAtaqueCellPerfecto);
+		e2Cell.put("kiEvolucion",0);
+		
+		e2Stats.put("Goku", e2Goku);
+		e2Stats.put("Gohan", e2Gohan);
+		e2Stats.put("Picolo", e2Picolo);
+		e2Stats.put("Freezer", e2Freezer);
+		e2Stats.put("MajinBoo", e2MajinBoo);
+		e2Stats.put("Cell", e2Cell);
+		
+		return e2Stats;
+	}	
 	
 	
 }

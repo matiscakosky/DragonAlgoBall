@@ -26,7 +26,20 @@ public class Estado {
 			this.velocidad = StatsJuego.statsEstado1.get(personaje).get("velocidad");
 			this.distanciaDeAtaque = StatsJuego.statsEstado1.get(personaje).get("distanciaDeAtaque");
 			this.kiEvolucion = StatsJuego.statsEstado1.get(personaje).get("kiEvolucion");
-			this.ki = this.ki - this.kiEvolucion;
+			this.ki -= this.kiEvolucion;
+		}
+		else{
+			throw new KiInsuficienteException();
+		}
+	}
+	
+	public void setearEstadoFase2Personaje(String personaje){
+		if (ki>=kiEvolucion){
+			this.poderDePelea = StatsJuego.statsEstado2.get(personaje).get("poderDePelea");
+			this.velocidad = StatsJuego.statsEstado2.get(personaje).get("velocidad");
+			this.distanciaDeAtaque = StatsJuego.statsEstado2.get(personaje).get("distanciaDeAtaque");
+			this.kiEvolucion = StatsJuego.statsEstado2.get(personaje).get("kiEvolucion");
+			this.ki -= this.kiEvolucion;
 		}
 		else{
 			throw new KiInsuficienteException();
