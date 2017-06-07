@@ -12,7 +12,7 @@ public class Goku extends Personaje {
 		this.nombre = "Goku";
 		this.tablero = tablero;
 		this.puntosDeVida = StatsJuego.puntosVidaInicialGoku;
-		this.ki = 50;
+		this.ki = 0;
 		this.estado = new Estado();
 		this.ubicacion = new Posicion(tablero.getTamanio()/2,tablero.getTamanio()-1);
 		estado.setearEstadoInicialPersonaje(this.nombre);
