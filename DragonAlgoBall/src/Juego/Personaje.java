@@ -4,7 +4,7 @@ import Juego.ObjetoJuego;
 import Excepciones.*;
 
 public abstract class Personaje extends ObjetoJuego{
-	
+	protected Movimiento movimiento; //no!!
 	protected Estado estado;
 	
 	public int getVelocidad(){
@@ -16,52 +16,52 @@ public abstract class Personaje extends ObjetoJuego{
 	
 	public abstract void evolucionarAFase1();
 	
-	public void Mover(Tablero tablero, int direccionX, int direccionY){
+	/*public void Mover(Tablero tablero, int direccionX, int direccionY){
 		int velocidad = this.estado.velocidad;
-		Posicion ubicacion =  this.ubicacion;
+		Posicion ubicacion =  this.posicion;
 		
 		for(int i=0 ; i< velocidad ; i++){
-			int coordenadaX = this.ubicacion.getCoordenadaX();
-			int coordenadaY = this.ubicacion.getCoordenadaY();
-			Posicion posicion = new Posicion(coordenadaX+direccionX,coordenadaY+direccionY);
+			int coordenadaX = this.posicion.getCoordenadaX();
+			int coordenadaY = this.posicion.getCoordenadaY();
+			//Posicion posicion = new Posicion(coordenadaX+direccionX,coordenadaY+direccionY);
 			if (!tablero.vacioEnPosicion(posicion)){
-				this.ubicacion = ubicacion;
+				this.posicion = ubicacion;
 				throw new MovimientoInvalido();
 			}
-			this.ubicacion = posicion;
+			this.posicion = posicion;
 		}
 		
 	}
 
-	public void MoverHaciaArriba(Tablero tablero){
-		this.Mover(tablero, 0, 1);
+	public void MoverPersonajeHaciaArriba(){
+		this.movimiento.MoverArriba(this.tablero);
 	}
 
-	public void MoverHaciaAbajo(Tablero tablero){
-		this.Mover(tablero, 0, -1);
+	public void MoverPersonajeHaciaAbajo(){
+		this.movimiento.MoverAbajo(this.tablero);
 	}
 
-	public void MoverHaciaDerecha(Tablero tablero){
-		this.Mover(tablero, 1, 0);
+	public void MoverPersonajeHaciaDerecha(){
+		this.movimiento.MoverDerecha(this.tablero);
 	}
 
-	public void MoverHaciaIzquierda(Tablero tablero){
-		this.Mover(tablero, -1, 0);
+	public void MoverPersonajeHaciaIzquierda(){
+		this.movimiento.MoverIzquierda(this.tablero);
 	}
 
-	public void MoverHaciaDiagonalSuperiorDerecha(Tablero tablero){
-		this.Mover(tablero, 1, 1);
+	public void MoverPersonajeHaciaArribaDerecha(){
+		this.Momovimiento.MoverArribaDerecha(this.tablero);
 	}
 
-	public void MoverHaciaDiagonalSuperiorIzquierda(Tablero tablero){
-		this.Mover(tablero, -1, 1);
+	public void MoverPersonajeHaciaArribaIzquierda(){
+		this.movimiento.ArribaIzquierda(this.tablero);
 	}
 
-	public void MoverHaciaDiagonalInferiorDerecha(Tablero tablero){
-		this.Mover(tablero, 1, -1);
+	public void MoverPersonajeHaciaAbajoDerecha(){
+		this.movimiento.AbajoDerecha(this.tablero);
 	}
 
-	public void MoverHaciaDiagonalInferiorIzquierda(Tablero tablero){
-		this.Mover(tablero, -1, -1);
-	}
+	public void MoverPersonajeHaciaAbajoIzquierda(){
+		this.movimiento.AbajoIzquierda(this.tablero);
+	}*/
 }

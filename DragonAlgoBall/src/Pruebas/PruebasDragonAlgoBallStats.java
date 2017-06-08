@@ -46,12 +46,28 @@ public class PruebasDragonAlgoBallStats {
 	}
 	
 	@Test
-	public void test05CrearJuegoConPersonajeYEvolucionarlo(){
+	public void test05CrearJuegoConPersonajeYEvolucionarloNoDeberiaPoder(){
 		Tablero tablero = new Tablero(TAMANIO);
 		Goku goku = new Goku(tablero);
 		goku.evolucionarAFase1();
-		assertEquals(goku.getVelocidad(), StatsJuego.velocidadGokuKaioKen);
-		assertEquals(goku.getPoderDePelea(), StatsJuego.poderPeleaGokuKaioKen);
 		
 	}
+	
+	@Test
+	public void test01CompararDosPosiciones(){
+		Posicion pos = new Posicion(1,2);
+		assertEquals(pos.getCoordenadaX(),1);
+		assertEquals(pos.getCoordenadaY(),2);
+	}
+	
+	@Test
+	public void test06CrearUnPersonajeYUbicarloInicialmente(){
+		Tablero tablero = new Tablero(TAMANIO);
+		Goku goku = new Goku(tablero);
+		Posicion pos = new Posicion(1,1);
+		tablero.colocarObjetoInicialmente(goku);
+		assertEquals(tablero.obtenerCasillero(pos),goku);
+	}
+	
+	
 }

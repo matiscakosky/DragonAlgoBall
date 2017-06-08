@@ -1,5 +1,5 @@
 package Juego;
 
-public class Consumible {
+public class Consumible extends ObjetoJuego{
 
 }

@@ -1,13 +1,13 @@
- 	package Juego;
+package Juego;
 
 public class Posicion {
 	private int coordenadaX;
 	private int coordenadaY;
 	
-	public Posicion(int X, int Y){
-		this.coordenadaX = X;
-		this.coordenadaY = Y;
-	}
+	public Posicion(int cordX, int cordY){
+		this.coordenadaX = cordX;
+		this.coordenadaY = cordY;
+}
 	public int getCoordenadaX() {
 		return coordenadaX;
 	}

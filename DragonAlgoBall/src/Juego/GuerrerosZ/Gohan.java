@@ -11,7 +11,7 @@ public class Gohan extends Personaje {
 			this.nombre = "Gohan";
 			this.tablero = tablero;
 			this.estado = new Estado();
-			this.ubicacion = new Posicion(1,2);
+			this.posicion = new Posicion(1,2);
 			estado.setearEstadoInicialPersonaje(this.nombre);
 	}
 

@@ -11,7 +11,7 @@ public class Goku extends Personaje {
 		this.nombre = "Goku";
 		this.tablero = tablero;
 		this.estado = new Estado();
-		this.ubicacion = new Posicion(1,1);
+		this.posicion = new Posicion(1,1);
 		estado.setearEstadoInicialPersonaje(this.nombre);
 	}
 
