@@ -40,6 +40,7 @@ public class Tablero {
 	}
 	
 	public ObjetoJuego obtenerCasillero(Posicion posicion){
+		/*Recibe una posicion y devuelve el objetoJuego que este en el casillero del tablero*/
 		this.validarPosicion(posicion);
 		for (Posicion pos : this.casilleros.keySet()) {
 			if (compararPosicion(pos, posicion)){
@@ -50,10 +51,12 @@ public class Tablero {
 	}
 
 	public boolean compararPosicion(Posicion posicionObtenida, Posicion posicionEsperada){
+		/*Funcion que permite comparar instancias de la clase posicion segun sus coordenadas*/
 		return (posicionObtenida.getCoordenadaX() == posicionEsperada.getCoordenadaX() && posicionObtenida.getCoordenadaY() == posicionEsperada.getCoordenadaY());
 	}
 	
 	public void colocarObjetoInicialmente(ObjetoJuego objeto){
+		/*Coloca inicailmente a los objetos de juego segun su posicion inicial*/
 		Casillero casillero = new Casillero();
 		casillero.agregarObjeto(objeto);
 		this.casilleros.put(objeto.posicion, casillero);
@@ -78,15 +81,22 @@ public class Tablero {
 		}
 		
 	}
-	public void colocarObjetoEnPosicion(ObjetoJuego objetoJuego, Posicion posicion){
-		/*Recibe un objeto y la posicion a insertar el objeto si el casillero esta vacio coloca al objeto en la posicion deseada*/
+	
+	public void moverPersonajeA(Posicion posicionVieja, Posicion posicionNueva){
+		Personaje personaje = (Personaje) obtenerCasillero(posicionVieja); //El casteo es debido a que esta funcion solo mueve personajes
+		colocarObjetoEnPosicionYBorrarAnterior(personaje, posicionNueva);
+		personaje.posicion= posicionNueva;
+		
+	}
+	public void colocarObjetoEnPosicionYBorrarAnterior(ObjetoJuego objetoJuego, Posicion posicion){
+		/*Recibe un objeto y la posicion a insertar el objeto si el casillero es valido (Esta vacio o tiene un consumible) coloca al objeto en la posicion deseada*/
 		this.validarPosicion(posicion);
 		if (casilleroValido(posicion)){
 			borrarCasilleroAnterior(objetoJuego);
 			Casillero casillero = new Casillero();
 			casillero.agregarObjeto(objetoJuego);
 			this.casilleros.put(posicion, casillero);
-			//hay que ver como devolver lo que el consumible aporta en caso de caer en uno de ellos
+			return;
 		}
 		throw new MovimientoInvalido();
 		

@@ -1,53 +1,46 @@
 package Juego;
 
-import Excepciones.MovimientoInvalido;
 
 public class Movimiento {
-	private Personaje personaje;
 	
-	public Movimiento(Personaje personaje){
-		this.personaje = personaje;
+	public void MoverArriba(Tablero tablero, Posicion posicionActual){
+		Posicion posicionAMoverme = new Posicion(posicionActual.getCoordenadaX()+1,posicionActual.getCoordenadaY());
+		tablero.moverPersonajeA(posicionActual, posicionAMoverme);
 	}
 
-	
-	public void MoverArriba(){
-		Posicion posicionAMoverme = new Posicion(this.personaje.posicion.getCoordenadaX()+1,this.personaje.posicion.getCoordenadaY());
-		this.personaje.tablero.colocarObjetoEnPosicion(this.personaje, posicionAMoverme);
+	public void MoverAbajo(Tablero tablero, Posicion posicionActual){
+		Posicion posicionAMoverme = new Posicion(posicionActual.getCoordenadaX()-1,posicionActual.getCoordenadaY());
+		tablero.moverPersonajeA(posicionActual, posicionAMoverme);
 	}
 
-	public void MoverAbajo(){
-		Posicion posicionAMoverme = new Posicion(this.personaje.posicion.getCoordenadaX()-1,this.personaje.posicion.getCoordenadaY());
-		this.personaje.tablero.colocarObjetoEnPosicion(this.personaje, posicionAMoverme);;
+	public void MoverDerecha(Tablero tablero, Posicion posicionActual){
+		Posicion posicionAMoverme = new Posicion(posicionActual.getCoordenadaX(),posicionActual.getCoordenadaY()+1);
+		tablero.moverPersonajeA(posicionActual, posicionAMoverme);
 	}
 
-	public void MoverDerecha(){
-		Posicion posicionAMoverme = new Posicion(this.personaje.posicion.getCoordenadaX(),this.personaje.posicion.getCoordenadaY()+1);
-		this.personaje.tablero.colocarObjetoEnPosicion(this.personaje, posicionAMoverme);
+	public void MoverIzquierda(Tablero tablero, Posicion posicionActual){
+		Posicion posicionAMoverme = new Posicion(posicionActual.getCoordenadaX(),posicionActual.getCoordenadaY()+1);
+		tablero.moverPersonajeA(posicionActual, posicionAMoverme);
 	}
 
-	public void MoverIzquierda(){
-		Posicion posicionAMoverme = new Posicion(this.personaje.posicion.getCoordenadaX(),this.personaje.posicion.getCoordenadaY()-1);
-		this.personaje.tablero.colocarObjetoEnPosicion(this.personaje, posicionAMoverme);;
+	public void MoverArribaDerecha(Tablero tablero, Posicion posicionActual){
+		Posicion posicionAMoverme = new Posicion(posicionActual.getCoordenadaX()+1,posicionActual.getCoordenadaY()+1);
+		tablero.moverPersonajeA(posicionActual, posicionAMoverme);
 	}
 
-	public void MoverArribaDerecha(){
-		Posicion posicionAMoverme = new Posicion(this.personaje.posicion.getCoordenadaX()+1,this.personaje.posicion.getCoordenadaY()+1);
-		this.personaje.tablero.colocarObjetoEnPosicion(this.personaje, posicionAMoverme);
+	public void MoverArribaIzquierda(Tablero tablero, Posicion posicionActual){
+		Posicion posicionAMoverme = new Posicion(posicionActual.getCoordenadaX()+1,posicionActual.getCoordenadaY()-1);
+		tablero.moverPersonajeA(posicionActual, posicionAMoverme);
 	}
 
-	public void MoverArribaIzquierda(){
-		Posicion posicionAMoverme = new Posicion(this.personaje.posicion.getCoordenadaX()+1,this.personaje.posicion.getCoordenadaY()-1);
-		this.personaje.tablero.colocarObjetoEnPosicion(this.personaje, posicionAMoverme);
+	public void MoverAbajoDerecha(Tablero tablero, Posicion posicionActual){
+		Posicion posicionAMoverme = new Posicion(posicionActual.getCoordenadaX()-1,posicionActual.getCoordenadaY()+1);
+		tablero.moverPersonajeA(posicionActual, posicionAMoverme);
 	}
 
-	public void MoverAbajoDerecha(){
-		Posicion posicionAMoverme = new Posicion(this.personaje.posicion.getCoordenadaX()-1,this.personaje.posicion.getCoordenadaY()+1);
-		this.personaje.tablero.colocarObjetoEnPosicion(this.personaje, posicionAMoverme);
-	}
-
-	public void MoverAbajoIzquierda(){
-		Posicion posicionAMoverme = new Posicion(this.personaje.posicion.getCoordenadaX()-1,this.personaje.posicion.getCoordenadaY()-1);
-		this.personaje.tablero.colocarObjetoEnPosicion(this.personaje, posicionAMoverme);
+	public void MoverAbajoIzquierda(Tablero tablero, Posicion posicionActual){
+		Posicion posicionAMoverme = new Posicion(posicionActual.getCoordenadaX()-1,posicionActual.getCoordenadaY()-1);
+		tablero.moverPersonajeA(posicionActual, posicionAMoverme);
 	}
 	
 }

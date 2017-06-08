@@ -4,12 +4,13 @@ import Juego.Estado;
 import Juego.Posicion;
 import Juego.Tablero;
 import Juego.Personaje;
-
+import Juego.Movimiento;
 public class Freezer extends Personaje {
 
 	public Freezer(Tablero tablero) {
 		this.nombre = "Freezer";
 		this.tablero = tablero;
+		this.movimiento = new Movimiento();
 		this.estado = new Estado();
 		this.posicion = new Posicion(this.tablero.getTamanio(),this.tablero.getTamanio()-1);
 		estado.setearEstadoInicialPersonaje(this.nombre);

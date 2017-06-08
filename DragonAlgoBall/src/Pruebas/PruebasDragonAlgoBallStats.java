@@ -2,6 +2,8 @@ package Pruebas;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import Excepciones.KiInsuficienteException;
 import Juego.GuerrerosZ.*;
 import Juego.*;
 import Juego.Enemigos.*;
@@ -45,7 +47,7 @@ public class PruebasDragonAlgoBallStats {
 		assertEquals(boo.getVelocidad(), StatsJuego.velocidadMajinBooNormal);		
 	}
 	
-	@Test
+	@Test(expected=KiInsuficienteException.class)
 	public void test05CrearJuegoConPersonajeYEvolucionarloNoDeberiaPoder(){
 		Tablero tablero = new Tablero(TAMANIO);
 		Goku goku = new Goku(tablero);
@@ -53,21 +55,7 @@ public class PruebasDragonAlgoBallStats {
 		
 	}
 	
-	@Test
-	public void test01CompararDosPosiciones(){
-		Posicion pos = new Posicion(1,2);
-		assertEquals(pos.getCoordenadaX(),1);
-		assertEquals(pos.getCoordenadaY(),2);
-	}
-	
-	@Test
-	public void test06CrearUnPersonajeYUbicarloInicialmente(){
-		Tablero tablero = new Tablero(TAMANIO);
-		Goku goku = new Goku(tablero);
-		Posicion pos = new Posicion(1,1);
-		tablero.colocarObjetoInicialmente(goku);
-		assertEquals(tablero.obtenerCasillero(pos),goku);
-	}
+
 	
 	
 }

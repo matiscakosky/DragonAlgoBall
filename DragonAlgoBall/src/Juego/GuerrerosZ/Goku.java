@@ -4,6 +4,7 @@ import Juego.Estado;
 import Juego.Personaje;
 import Juego.Tablero;
 import Juego.Posicion;
+import Juego.*;
 
 public class Goku extends Personaje {
 	
@@ -11,6 +12,7 @@ public class Goku extends Personaje {
 		this.nombre = "Goku";
 		this.tablero = tablero;
 		this.estado = new Estado();
+		this.movimiento = new Movimiento();
 		this.posicion = new Posicion(1,1);
 		estado.setearEstadoInicialPersonaje(this.nombre);
 	}
