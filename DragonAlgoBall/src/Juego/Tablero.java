@@ -39,7 +39,23 @@ public class Tablero {
 		}
 	}
 	
-	public ObjetoJuego obtenerCasillero(Posicion posicion){
+	public Personaje obtenerPersonaje(Posicion posicion){
+		ObjetoJuego objeto = this.obtenerObjeto(posicion);
+		if(!objeto.esPersonaje()){
+			throw new PosicionInvalida();
+		}
+		return (Personaje)objeto;
+	}
+	
+	public Consumible obtenerConsumible(Posicion posicion){
+		ObjetoJuego objeto = this.obtenerObjeto(posicion);
+		if(!objeto.esConsumible()){
+			throw new PosicionInvalida();
+		}
+		return (Consumible)objeto;
+	}
+	
+	public ObjetoJuego obtenerObjeto(Posicion posicion){
 		/*Recibe una posicion y devuelve el objetoJuego que este en el casillero del tablero*/
 		this.validarPosicion(posicion);
 		for (Posicion pos : this.casilleros.keySet()) {
@@ -49,6 +65,8 @@ public class Tablero {
 		}
 		throw new CasilleroVacio();
 	}
+	
+	
 
 	public boolean compararPosicion(Posicion posicionObtenida, Posicion posicionEsperada){
 		/*Funcion que permite comparar instancias de la clase posicion segun sus coordenadas*/
@@ -83,7 +101,7 @@ public class Tablero {
 	}
 	
 	public void moverPersonajeA(Posicion posicionVieja, Posicion posicionNueva){
-		Personaje personaje = (Personaje) obtenerCasillero(posicionVieja); //El casteo es debido a que esta funcion solo mueve personajes
+		Personaje personaje = (Personaje) obtenerObjeto(posicionVieja); //El casteo es debido a que esta funcion solo mueve personajes
 		colocarObjetoEnPosicionYBorrarAnterior(personaje, posicionNueva);
 		personaje.posicion= posicionNueva;
 		

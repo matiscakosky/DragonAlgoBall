@@ -13,21 +13,13 @@ public class Jugable {
 	}
 	
 	public void nuevoTurnoGuerrerosZ(){
-		Personaje atacante = setAtacante();
-		Personaje movil = setMovil();
-		TurnoGuerrerosZ turnoGuerreros = new TurnoGuerrerosZ(movil, atacante);
-		turnoGuerreros.terminarTurno();
+	
 	}
 	
 	public void nuevoTurnoEnemigos(){} 
 	
 	public void generarConsumible(){}
 	
-	public Personaje setAtacante(){
-		return this.goku;
-	}
-	public Personaje setMovil(){
-		return this.goku;
-	}
+	
 	
 }

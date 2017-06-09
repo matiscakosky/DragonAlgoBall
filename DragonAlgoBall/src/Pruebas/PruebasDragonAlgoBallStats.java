@@ -3,7 +3,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import Excepciones.KiInsuficienteException;
+import Excepciones.KiInsuficiente;
 import Juego.GuerrerosZ.*;
 import Juego.*;
 import Juego.Enemigos.*;
@@ -47,7 +47,7 @@ public class PruebasDragonAlgoBallStats {
 		assertEquals(boo.getVelocidad(), StatsJuego.velocidadMajinBooNormal);		
 	}
 	
-	@Test(expected=KiInsuficienteException.class)
+	@Test(expected=KiInsuficiente.class)
 	public void test05CrearJuegoConPersonajeYEvolucionarloNoDeberiaPoder(){
 		Tablero tablero = new Tablero(TAMANIO);
 		Goku goku = new Goku(tablero);

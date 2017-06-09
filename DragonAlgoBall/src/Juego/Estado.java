@@ -1,7 +1,7 @@
 package Juego;
 
 import Juego.StatsJuego;
-import Excepciones.KiInsuficienteException;
+import Excepciones.KiInsuficiente;
 
 public class Estado {
 	protected int poderDePelea;
@@ -29,7 +29,7 @@ public class Estado {
 			this.ki -= this.kiEvolucion;
 		}
 		else{
-			throw new KiInsuficienteException();
+			throw new KiInsuficiente();
 		}
 	}
 	
@@ -42,7 +42,11 @@ public class Estado {
 			this.ki -= this.kiEvolucion;
 		}
 		else{
-			throw new KiInsuficienteException();
+			throw new KiInsuficiente();
 		}
+	}
+
+	public void aumentarKi(int kiAumentar) {
+		this.ki += kiAumentar;
 	}
 }

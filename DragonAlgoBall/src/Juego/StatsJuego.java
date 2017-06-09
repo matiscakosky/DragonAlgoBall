@@ -85,6 +85,8 @@ public class StatsJuego {
 	public static final int kiEvolucionEstado2MajinBoo = 50;
 	public static final int kiEvolucionEstado1Cell = 0;
 	public static final int kiEvolucionEstado2Cell = 0;
+	public static final int kiAumentoPorTurno = 5;
+	
 	
 	public static final HashMap<String,HashMap<String,Integer>> statsIniciales = obtenerEstadosIniciales();
 	public static final HashMap<String,HashMap<String,Integer>> statsEstado1 = obtenerEstados1();

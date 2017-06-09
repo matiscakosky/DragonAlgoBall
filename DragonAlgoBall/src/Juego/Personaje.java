@@ -8,6 +8,8 @@ public abstract class Personaje extends ObjetoJuego{
 	protected Movimiento movimiento;
 	protected Estado estado;
 	
+	public abstract void evolucionarAFase1();
+	
 	public int getVelocidad(){
 		return this.estado.velocidad;
 	}
@@ -15,8 +17,10 @@ public abstract class Personaje extends ObjetoJuego{
 		return this.estado.poderDePelea;
 	}
 	
-	public abstract void evolucionarAFase1();
-
+	public void aumentarKi(int ki) {
+		this.estado.aumentarKi(ki);
+		
+	}
 
 	public void MoverPersonajeHaciaArriba(){
 		this.movimiento.MoverArriba(this.tablero,this.posicion);
@@ -49,4 +53,5 @@ public abstract class Personaje extends ObjetoJuego{
 	public void MoverPersonajeHaciaAbajoIzquierda(){
 		this.movimiento.MoverAbajoIzquierda(this.tablero,this.posicion);
 	}
+	
 }

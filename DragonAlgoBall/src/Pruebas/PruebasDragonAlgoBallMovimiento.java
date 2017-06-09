@@ -25,7 +25,7 @@ public class PruebasDragonAlgoBallMovimiento {
 		Goku goku = new Goku(tablero);
 		Posicion pos = new Posicion(1,1);
 		tablero.colocarObjetoInicialmente(goku);
-		assertEquals(tablero.obtenerCasillero(pos),goku);
+		assertEquals(tablero.obtenerObjeto(pos),goku);
 	}
 	
 	@Test
@@ -35,7 +35,7 @@ public class PruebasDragonAlgoBallMovimiento {
 		Posicion pos = new Posicion(2,1);
 		tablero.colocarObjetoInicialmente(goku);
 		goku.MoverPersonajeHaciaArriba();
-		assertEquals(tablero.obtenerCasillero(pos),goku);
+		assertEquals(tablero.obtenerObjeto(pos),goku);
 	}
 	
 	@Test
@@ -46,7 +46,7 @@ public class PruebasDragonAlgoBallMovimiento {
 		tablero.colocarObjetoInicialmente(goku);
 		goku.MoverPersonajeHaciaArriba();
 		goku.MoverPersonajeHaciaArriba();
-		assertEquals(tablero.obtenerCasillero(pos),goku);
+		assertEquals(tablero.obtenerObjeto(pos),goku);
 	}
 	
 	@Test (expected=CasilleroVacio.class)
@@ -56,7 +56,7 @@ public class PruebasDragonAlgoBallMovimiento {
 		Posicion pos = new Posicion(1,1);
 		tablero.colocarObjetoInicialmente(goku);
 		goku.MoverPersonajeHaciaArriba();
-		assertEquals(tablero.obtenerCasillero(pos),goku);
+		assertEquals(tablero.obtenerObjeto(pos),goku);
 	}
 	
 	@Test (expected=MovimientoInvalido.class)
