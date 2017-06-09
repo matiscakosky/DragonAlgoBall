@@ -12,7 +12,7 @@ import modelo.personajes.MajinBoo;
 
 
 
-public class PruebasDragonAlgoBallStats {
+public class TestStatsJuego {
 	int TAMANIO = 6;
 	@Test
 	public void test01CrearTableroInicialYVerificarSuTamanio() {

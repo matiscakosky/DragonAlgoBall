@@ -12,5 +12,9 @@ public abstract class Equipo {
 	public Collection<Personaje> getMiembros(){
 		return miembros.values();
 	}
+	
+	protected void agregarMiembro(Personaje personaje){
+		this.miembros.put(personaje.getNombre(),personaje);
+	}
 
 }

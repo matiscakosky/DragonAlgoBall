@@ -11,7 +11,7 @@ import modelo.excepciones.MovimientoInvalido;
 import modelo.personajes.Gohan;
 import modelo.personajes.Goku;
 
-public class PruebasDragonAlgoBallMovimiento {
+public class TestMovimiento {
 	int TAMANIO = 10;
 	@Test
 	public void test01CompararDosPosiciones(){
