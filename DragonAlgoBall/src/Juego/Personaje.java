@@ -9,6 +9,7 @@ public abstract class Personaje extends ObjetoJuego{
 	protected Estado estado;
 	
 	public abstract void evolucionarAFase1();
+	public abstract void evolucionarAFase2();
 	
 	public int getVelocidad(){
 		return this.estado.velocidad;

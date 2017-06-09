@@ -16,5 +16,11 @@ public class Freezer extends Personaje {
 		estado.setearEstadoInicialPersonaje(this.nombre);
 	}
 
-	public void evolucionarAFase1(){}
+	public void evolucionarAFase1(){
+		this.estado.setearEstadoFase1Personaje(this.nombre);
+	}
+	
+	public void evolucionarAFase2(){
+		this.estado.setearEstadoFase2Personaje(this.nombre);
+	}
 }

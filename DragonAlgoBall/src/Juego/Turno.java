@@ -19,12 +19,21 @@ public abstract class Turno {
 		return (cantidadMovimientosRestantes>0);
 	}
 	
-	protected void elegirPersonajeAtacante(Posicion posicion){
+	protected Personaje validarPersonaje(Posicion posicion){
 		Personaje atacante = this.tablero.obtenerPersonaje(posicion);
-		if(this.equipo.contiene(atacante)){
-			this.personajeQueAtaca = (Personaje)atacante;
+		if(!this.equipo.contiene(atacante)){
+			throw new PosicionInvalida();
 		}
-		throw new PosicionInvalida();
+		return atacante;
+	}
+		
+	protected void elegirPersonajeAtacante(Posicion posicion){
+		this.personajeQueAtaca = (Personaje) this.validarPersonaje(posicion);
+		 
+	}
+	
+	protected void elegirPersonajeMovil(Posicion posicion){
+		this.personajeQueSeMueve = (Personaje) this.validarPersonaje(posicion); 
 	}
 
 	protected void AumentarKiInicioDeTurno(){
@@ -33,5 +42,12 @@ public abstract class Turno {
 		}
 	}
 	
+	public void evolucionarPersonajeAFase1(Personaje personaje){
+		personaje.evolucionarAFase1();
+	}
+	
+	public void evolucionarPersonajeAFase2(Personaje personaje){
+		personaje.evolucionarAFase2();
+	}
 
 }

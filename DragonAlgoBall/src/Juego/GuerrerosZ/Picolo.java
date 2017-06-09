@@ -17,5 +17,11 @@ public class Picolo extends Personaje {
 
 	}
 	
-	public void evolucionarAFase1(){}
+	public void evolucionarAFase1(){
+		this.estado.setearEstadoFase1Personaje(this.nombre);
+	}
+	
+	public void evolucionarAFase2(){
+		this.estado.setearEstadoFase2Personaje(this.nombre);
+	}
 }
