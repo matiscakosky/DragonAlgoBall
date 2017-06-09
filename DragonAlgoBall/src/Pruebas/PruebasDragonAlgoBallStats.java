@@ -3,10 +3,13 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import Excepciones.KiInsuficiente;
-import Juego.GuerrerosZ.*;
-import Juego.*;
-import Juego.Enemigos.*;
+import modelo.*;
+import modelo.excepciones.KiInsuficiente;
+import modelo.personajes.Cell;
+import modelo.personajes.Gohan;
+import modelo.personajes.Goku;
+import modelo.personajes.MajinBoo;
+
 
 
 public class PruebasDragonAlgoBallStats {

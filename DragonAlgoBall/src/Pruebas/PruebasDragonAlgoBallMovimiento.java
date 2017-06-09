@@ -4,11 +4,12 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import Excepciones.CasilleroVacio;
-import Excepciones.MovimientoInvalido;
-import Juego.Posicion;
-import Juego.Tablero;
-import Juego.GuerrerosZ.*;
+import modelo.Posicion;
+import modelo.Tablero;
+import modelo.excepciones.CasilleroVacio;
+import modelo.excepciones.MovimientoInvalido;
+import modelo.personajes.Gohan;
+import modelo.personajes.Goku;
 
 public class PruebasDragonAlgoBallMovimiento {
 	int TAMANIO = 10;
