@@ -21,6 +21,10 @@ public class Estado {
 	public void aumentarKi(int kiAumentar) {
 		this.ki += kiAumentar;
 	}
+	
+	public int getKi(){
+		return this.ki;
+	}
 
 	public int getPoderDePelea() {
 		return this.poderDePelea;
@@ -40,7 +44,7 @@ public class Estado {
 			this.poderDePelea = StatsJuego.statsEstado1.get(personaje).get("poderDePelea");
 			this.velocidad = StatsJuego.statsEstado1.get(personaje).get("velocidad");
 			this.distanciaDeAtaque = StatsJuego.statsEstado1.get(personaje).get("distanciaDeAtaque");
-			this.kiEvolucion = StatsJuego.statsEstado1.get(personaje).get("kiEvolucion");
+			this.kiEvolucion = StatsJuego.statsIniciales.get(personaje).get("kiEvolucion");
 			this.ki -= this.kiEvolucion;
 		}
 		else{
@@ -53,7 +57,7 @@ public class Estado {
 			this.poderDePelea = StatsJuego.statsEstado2.get(personaje).get("poderDePelea");
 			this.velocidad = StatsJuego.statsEstado2.get(personaje).get("velocidad");
 			this.distanciaDeAtaque = StatsJuego.statsEstado2.get(personaje).get("distanciaDeAtaque");
-			this.kiEvolucion = StatsJuego.statsEstado2.get(personaje).get("kiEvolucion");
+			this.kiEvolucion = StatsJuego.statsEstado1.get(personaje).get("kiEvolucion");
 			this.ki -= this.kiEvolucion;
 		}
 		else{

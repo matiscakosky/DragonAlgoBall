@@ -17,6 +17,10 @@ public abstract class Personaje extends ObjetoJuego{
 		return this.estado.getPoderDePelea();
 	}
 	
+	public int getKi(){
+		return this.estado.getKi();
+	}
+	
 	public void aumentarKi(int ki) {
 		this.estado.aumentarKi(ki);
 		
