@@ -78,7 +78,7 @@ public class Tablero {
 		/*La funcion verifica que el casillero este vacio o en su defecto que haya un consumible*/
 		for (Posicion pos : this.casilleros.keySet()) {
 			if (compararPosicion(pos, posicion)){
-				return (this.casilleros.get(pos).obtenerObjeto().esConsumible());
+				return (this.casilleros.get(pos).obtenerObjeto() instanceof Consumible);
 			}
 		}
 		return true;
@@ -90,20 +90,22 @@ public class Tablero {
 		for (Posicion pos : casilleros) {
 			if(this.casilleros.get(pos).obtenerObjeto() == objetoJuego){
 				this.casilleros.remove(pos);
+				return;
 			}
 		}
 		
 	}
 	
 	public void moverPersonajeA(Posicion posicionVieja, Posicion posicionNueva){
-		Personaje personaje = obtenerPersonaje(posicionVieja); //El casteo es debido a que esta funcion solo mueve personajes
+		Personaje personaje = obtenerPersonaje(posicionVieja); 
 		colocarObjetoEnPosicionYBorrarAnterior(personaje, posicionNueva);
+
 		
 	}
 	public void colocarObjetoEnPosicionYBorrarAnterior(ObjetoJuego objetoJuego, Posicion posicion){
 		/*Recibe un objeto y la posicion a insertar el objeto si el casillero es valido (Esta vacio o tiene un consumible) coloca al objeto en la posicion deseada*/
 		this.validarPosicionLimitesTablero(posicion);
-		if (casilleroValidoParaMoverse(posicion)){
+		if (this.casilleroValidoParaMoverse(posicion)){
 			borrarCasilleroAnterior(objetoJuego);
 			Casillero casillero = new Casillero();
 			casillero.agregarObjeto(objetoJuego);

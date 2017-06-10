@@ -42,6 +42,7 @@ public class Movimiento {
 		return posicionAMoverme;
 	}
 
+
 	public Posicion MoverArribaDerecha(Tablero tablero, Posicion posicionActual){
 		if(this.cantidadPasosMoverse == 0) throw new PasosInsuficientes();
 		Posicion posicionAMoverme = new Posicion(posicionActual.getCoordenadaX()+1,posicionActual.getCoordenadaY()+1);
@@ -49,6 +50,7 @@ public class Movimiento {
 		this.cantidadPasosMoverse -= 1;
 		return posicionAMoverme;
 	}
+
 
 	public Posicion MoverArribaIzquierda(Tablero tablero, Posicion posicionActual){
 		if(this.cantidadPasosMoverse == 0) throw new PasosInsuficientes();

@@ -33,61 +33,27 @@ public class Turno {
 		this.personajeQueSeAtaca = (Personaje) this.validarPersonaje(posicion);
 	}
 	
-	public void elegirPersonajeMovil(Posicion posicion){
+	private void elegirPersonajeMovil(Posicion posicion){
 		this.personajeQueSeMueve = (Personaje) this.validarPersonaje(posicion); 
 	}
 	
 	public void elegirPersonajeEvolucionar(Posicion posicion){
 		this.personajeEvoluciona = (Personaje) this.validarPersonaje(posicion);
 	}
-
+	
+	public void Mover(Posicion posicion){
+		this.elegirPersonajeMovil(posicion);
+	}
+	
+	public Personaje getPersonajeMovil(){
+		return this.personajeQueSeMueve;
+	}
+	
 	public void AumentarKiInicioDeTurno(){
 		for(Personaje personaje : equipo.getMiembros()){
 			personaje.aumentarKi(StatsJuego.kiAumentoPorTurno);
 		}
 	}
-	
-	public void evolucionarPersonajeAFase1(Personaje personaje){
-		personaje.evolucionarAFase1();
-	}
-	
-	public void evolucionarPersonajeAFase2(Personaje personaje){
-		personaje.evolucionarAFase2();
-	}
-	
-	//para la prueba de integracion//
-	
-	public void moverPersonaje1(){
-		//harcodeado para probar integracion//
-		Posicion pos = new Posicion(1,1);
-		elegirPersonajeMovil(pos);
-		this.personajeQueSeMueve.MoverPersonajeHaciaArribaDerecha();
-		this.personajeQueSeMueve.MoverPersonajeHaciaArribaDerecha();
-	}
-	public void moverPersonaje2(){
-		//harcodeado para probar integracion//
-		Posicion pos = new Posicion(10,10);
-		elegirPersonajeMovil(pos);
-		this.personajeQueSeMueve.MoverPersonajeHaciaAbajoIzquierda();
-		this.personajeQueSeMueve.MoverPersonajeHaciaAbajoIzquierda();
-		this.personajeEvoluciona.evolucionarAFase1();
-	}
-	public void moverPersonaje3(){
-		//harcodeado para probar integracion//
-		Posicion pos = new Posicion(3,3);
-		elegirPersonajeMovil(pos);
-		this.personajeQueSeMueve.MoverPersonajeHaciaArribaDerecha();
-		this.personajeQueSeMueve.MoverPersonajeHaciaArribaDerecha();
-	}
-	public void moverPersonaje4(){
-		//harcodeado para probar integracion//
-		Posicion pos = new Posicion(8,8);
-		elegirPersonajeMovil(pos);
-		this.personajeQueSeMueve.MoverPersonajeHaciaAbajoIzquierda();
-		this.personajeQueSeMueve.MoverPersonajeHaciaAbajoIzquierda();
-	}
-	
 	public void atacar(){
-	
 	}
 }
