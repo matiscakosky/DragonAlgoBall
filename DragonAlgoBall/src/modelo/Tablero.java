@@ -86,7 +86,8 @@ public class Tablero {
 	
 	public void borrarCasilleroAnterior(ObjetoJuego objetoJuego){
 		/*La funcion recibe un objetoJuego si el objeto se encuentra en el tablero, lo elimina de lo contrario la funcion no hace nada*/
-		for (Posicion pos : this.casilleros.keySet()) {
+		Set<Posicion> casilleros = this.casilleros.keySet();
+		for (Posicion pos : casilleros) {
 			if(this.casilleros.get(pos).obtenerObjeto() == objetoJuego){
 				this.casilleros.remove(pos);
 			}

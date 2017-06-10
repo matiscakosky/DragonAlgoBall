@@ -56,6 +56,7 @@ public class Turno {
 	}
 	
 	//para la prueba de integracion//
+	
 	public void moverPersonaje1(){
 		//harcodeado para probar integracion//
 		Posicion pos = new Posicion(1,1);
@@ -73,12 +74,17 @@ public class Turno {
 	}
 	public void moverPersonaje3(){
 		//harcodeado para probar integracion//
-		Posicion pos = new Posicion(10,10);
+		Posicion pos = new Posicion(3,3);
 		elegirPersonajeMovil(pos);
-		this.personajeQueSeMueve.MoverPersonajeHaciaArribaIzquierda();
-		this.personajeQueSeMueve.MoverPersonajeHaciaArribaIzquierda();
-		this.personajeQueSeMueve.MoverPersonajeHaciaArriba();
-		this.personajeEvoluciona.evolucionarAFase2();
+		this.personajeQueSeMueve.MoverPersonajeHaciaArribaDerecha();
+		this.personajeQueSeMueve.MoverPersonajeHaciaArribaDerecha();
+	}
+	public void moverPersonaje4(){
+		//harcodeado para probar integracion//
+		Posicion pos = new Posicion(8,8);
+		elegirPersonajeMovil(pos);
+		this.personajeQueSeMueve.MoverPersonajeHaciaAbajoIzquierda();
+		this.personajeQueSeMueve.MoverPersonajeHaciaAbajoIzquierda();
 	}
 	
 	public void atacar(){
