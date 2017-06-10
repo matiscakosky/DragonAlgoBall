@@ -12,9 +12,9 @@ public class Gohan extends Personaje {
 			this.nombre = "Gohan";
 			this.tablero = tablero;
 			this.estado = new Estado();
-			this.movimiento = new Movimiento(estado.getDistanciaDeAtaque());
-			this.posicion = new Posicion(1,2);
 			estado.setearEstadoInicialPersonaje(this.nombre);
+			this.movimiento = new Movimiento(estado.getVelocidad());
+			this.posicion = new Posicion(1,2);
 	}
 
 	public void evolucionarAFase1(){

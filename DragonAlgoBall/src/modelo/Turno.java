@@ -33,30 +33,31 @@ public class Turno {
 		this.personajeQueSeAtaca = (Personaje) this.validarPersonaje(posicion);
 	}
 	
-	public void elegirPersonajeMovil(Posicion posicion){
+	private void elegirPersonajeMovil(Posicion posicion){
 		this.personajeQueSeMueve = (Personaje) this.validarPersonaje(posicion); 
 	}
 	
 	public void elegirPersonajeEvolucionar(Posicion posicion){
 		this.personajeEvoluciona = (Personaje) this.validarPersonaje(posicion);
 	}
-
+	
+	public void Mover(Posicion posicion){
+		this.elegirPersonajeMovil(posicion);
+	}
+	
+	public Personaje getPersonajeMovil(){
+		return this.personajeQueSeMueve;
+	}
+	
 	public void AumentarKiInicioDeTurno(){
 		for(Personaje personaje : equipo.getMiembros()){
 			personaje.aumentarKi(StatsJuego.kiAumentoPorTurno);
 		}
 	}
 	
-	public void evolucionarPersonajeAFase1(Personaje personaje){
-		personaje.evolucionarAFase1();
-	}
-	
-	public void evolucionarPersonajeAFase2(Personaje personaje){
-		personaje.evolucionarAFase2();
-	}
 	
 	//para la prueba de integracion//
-	public void moverPersonaje1(){
+	/*public void moverPersonaje1(){
 		//harcodeado para probar integracion//
 		Posicion pos = new Posicion(1,1);
 		elegirPersonajeMovil(pos);
@@ -80,7 +81,7 @@ public class Turno {
 		this.personajeQueSeMueve.MoverPersonajeHaciaArriba();
 		this.personajeEvoluciona.evolucionarAFase2();
 	}
-	
+	*/
 	public void atacar(){
 	
 	}

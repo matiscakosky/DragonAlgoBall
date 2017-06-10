@@ -12,9 +12,9 @@ public class Picolo extends Personaje {
 		this.nombre = "Picolo";
 		this.tablero = tablero;
 		this.estado = new Estado();
-		this.movimiento = new Movimiento(estado.getDistanciaDeAtaque());
-		this.posicion = new Posicion(2,1);
 		estado.setearEstadoInicialPersonaje(this.nombre);
+		this.movimiento = new Movimiento(estado.getVelocidad());
+		this.posicion = new Posicion(2,1);
 
 	}
 	

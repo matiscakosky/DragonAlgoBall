@@ -9,7 +9,7 @@ public abstract class ObjetoJuego {
 		return this.nombre;
 	}
 	public boolean esPersonaje(){
-		return (this instanceof Personaje); 
+		return (this instanceof Personaje)/*ATENCION!!!*/; 
 	}
 	public boolean esConsumible(){
 		return (this instanceof Consumible); 

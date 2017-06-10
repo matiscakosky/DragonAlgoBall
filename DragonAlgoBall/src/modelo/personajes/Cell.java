@@ -12,10 +12,9 @@ public class Cell extends Personaje {
 		this.nombre = "Cell";
 		this.tablero = tablero;
 		this.estado = new Estado();
-		this.movimiento = new Movimiento(estado.getDistanciaDeAtaque());
-		this.posicion = new Posicion(this.tablero.getTamanio(),this.tablero.getTamanio());
-		
 		estado.setearEstadoInicialPersonaje(this.nombre);
+		this.movimiento = new Movimiento(estado.getVelocidad());
+		this.posicion = new Posicion(this.tablero.getTamanio(),this.tablero.getTamanio());
 	}
 	public void evolucionarAFase1(){
 		this.estado.setearEstadoFase1Personaje(this.nombre);
