@@ -4,16 +4,8 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import modelo.EnemigosDeLaTierra;
-import modelo.Equipo;
-import modelo.GuerrerosZ;
-import modelo.Posicion;
 import modelo.StatsJuego;
 import modelo.Tablero;
-import modelo.Turno;
-import modelo.excepciones.CasilleroVacio;
-import modelo.excepciones.MovimientoInvalido;
-import modelo.personajes.Gohan;
 import modelo.personajes.Goku;
 
 

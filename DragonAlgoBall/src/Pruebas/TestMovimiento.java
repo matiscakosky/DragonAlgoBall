@@ -33,7 +33,7 @@ public class TestMovimiento {
 	public void test03CrearUnPersonajeUbicarloYMoverloHaciaArriba(){
 		Tablero tablero = new Tablero(TAMANIO);
 		Goku goku = new Goku(tablero);
-		Posicion pos = new Posicion(2,1);
+		Posicion pos = new Posicion(1,2);
 		tablero.colocarObjetoInicialmente(goku);
 		goku.MoverPersonajeHaciaArriba();
 		assertEquals(tablero.obtenerObjeto(pos),goku);
@@ -43,7 +43,7 @@ public class TestMovimiento {
 	public void test04CrearUnPersonajeUbicarloYMoverloHaciaArribaDosVeces(){
 		Tablero tablero = new Tablero(TAMANIO);
 		Goku goku = new Goku(tablero);
-		Posicion pos = new Posicion(3,1);
+		Posicion pos = new Posicion(1,3);
 		tablero.colocarObjetoInicialmente(goku);
 		goku.MoverPersonajeHaciaArriba();
 		goku.MoverPersonajeHaciaArriba();
@@ -67,7 +67,7 @@ public class TestMovimiento {
 		Gohan gohan = new Gohan(tablero);
 		tablero.colocarObjetoInicialmente(goku);
 		tablero.colocarObjetoInicialmente(gohan);
-		goku.MoverPersonajeHaciaDerecha();
+		goku.MoverPersonajeHaciaArriba();
 	}
 
 	

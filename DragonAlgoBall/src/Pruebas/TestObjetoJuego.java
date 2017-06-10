@@ -1,7 +1,5 @@
 package Pruebas;
 
-import static org.junit.Assert.assertEquals;
-
 import org.junit.Test;
 
 import modelo.ObjetoJuego;
@@ -9,7 +7,7 @@ import modelo.Personaje;
 import modelo.Tablero;
 import modelo.personajes.Gohan;
 import modelo.personajes.Goku;
-import modelo.Consumible;
+
 
 public class TestObjetoJuego {
 	

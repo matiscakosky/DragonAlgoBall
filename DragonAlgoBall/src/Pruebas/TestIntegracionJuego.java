@@ -2,7 +2,6 @@ package Pruebas;
 
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
-import modelo.personajes.Goku;
 import modelo.*;
 
 
