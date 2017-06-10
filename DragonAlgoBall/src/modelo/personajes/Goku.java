@@ -8,9 +8,9 @@ public class Goku extends Personaje {
 		this.nombre = "Goku";
 		this.tablero = tablero;
 		this.estado = new Estado();
-		this.movimiento = new Movimiento(estado.getDistanciaDeAtaque());
-		this.posicion = new Posicion(1,1);
 		estado.setearEstadoInicialPersonaje(this.nombre);
+		this.movimiento = new Movimiento(estado.getVelocidad());
+		this.posicion = new Posicion(1,1);
 	}
 
 	public void evolucionarAFase1(){
