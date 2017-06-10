@@ -29,7 +29,7 @@ public class Tablero {
 	}
 
 	
-	public void validarPosicion(Posicion posicion){
+	public void validarPosicionLimitesTablero(Posicion posicion){
 		if(posicion.getCoordenadaX() <= 0 || posicion.getCoordenadaX() > StatsJuego.tamanioTableroMaximo ||	posicion.getCoordenadaY() <= 0 || posicion.getCoordenadaY() > StatsJuego.tamanioTableroMaximo){
 			throw new PosicionInvalida();
 		}
@@ -53,10 +53,10 @@ public class Tablero {
 	
 	public ObjetoJuego obtenerObjeto(Posicion posicion){
 		/*Recibe una posicion y devuelve el objetoJuego que este en el casillero del tablero*/
-		this.validarPosicion(posicion);
+		this.validarPosicionLimitesTablero(posicion);
 		for (Posicion pos : this.casilleros.keySet()) {
 			if (compararPosicion(pos, posicion)){
-				return this.casilleros.get(pos).getObjeto();
+				return this.casilleros.get(pos).obtenerObjeto();
 			}
 		}
 		throw new CasilleroVacio();
@@ -71,14 +71,14 @@ public class Tablero {
 		/*Coloca inicailmente a los objetos de juego segun su posicion inicial*/
 		Casillero casillero = new Casillero();
 		casillero.agregarObjeto(objeto);
-		this.casilleros.put(objeto.posicion, casillero);
+		this.casilleros.put(objeto.getPosicion(), casillero);
 	}
 	
-	public boolean casilleroValido(Posicion posicion){
+	public boolean casilleroValidoParaMoverse(Posicion posicion){
 		/*La funcion verifica que el casillero este vacio o en su defecto que haya un consumible*/
 		for (Posicion pos : this.casilleros.keySet()) {
 			if (compararPosicion(pos, posicion)){
-				return (this.casilleros.get(pos).getObjeto() instanceof Consumible);
+				return (this.casilleros.get(pos).obtenerObjeto().esConsumible());
 			}
 		}
 		return true;
@@ -87,7 +87,7 @@ public class Tablero {
 	public void borrarCasilleroAnterior(ObjetoJuego objetoJuego){
 		/*La funcion recibe un objetoJuego si el objeto se encuentra en el tablero, lo elimina de lo contrario la funcion no hace nada*/
 		for (Posicion pos : this.casilleros.keySet()) {
-			if(this.casilleros.get(pos).getObjeto() == objetoJuego){
+			if(this.casilleros.get(pos).obtenerObjeto() == objetoJuego){
 				this.casilleros.remove(pos);
 			}
 		}
@@ -102,8 +102,8 @@ public class Tablero {
 	}
 	public void colocarObjetoEnPosicionYBorrarAnterior(ObjetoJuego objetoJuego, Posicion posicion){
 		/*Recibe un objeto y la posicion a insertar el objeto si el casillero es valido (Esta vacio o tiene un consumible) coloca al objeto en la posicion deseada*/
-		this.validarPosicion(posicion);
-		if (casilleroValido(posicion)){
+		this.validarPosicionLimitesTablero(posicion);
+		if (casilleroValidoParaMoverse(posicion)){
 			borrarCasilleroAnterior(objetoJuego);
 			Casillero casillero = new Casillero();
 			casillero.agregarObjeto(objetoJuego);

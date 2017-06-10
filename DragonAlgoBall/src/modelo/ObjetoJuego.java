@@ -14,4 +14,7 @@ public abstract class ObjetoJuego {
 	public boolean esConsumible(){
 		return (this instanceof Consumible); 
 	}
+	public Posicion getPosicion() {
+		return this.posicion;
+	}
 }

@@ -17,7 +17,7 @@ public class Casillero {
 		return unObjeto;
 	}
 	
-	public ObjetoJuego getObjeto() {
+	public ObjetoJuego obtenerObjeto() {
 		return this.objeto;
 	}
 	
