@@ -9,6 +9,7 @@ public class EnemigosDeLaTierra extends Equipo {
 		this.agregarMiembro(new MajinBoo(tablero));
 		this.agregarMiembro(new Cell(tablero));
 		this.agregarMiembro(new Freezer (tablero));
+		this.cantidadEsferasCapturadas = 0;
 	}
 
 }

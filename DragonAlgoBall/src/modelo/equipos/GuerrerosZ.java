@@ -10,6 +10,7 @@ public class GuerrerosZ extends Equipo {
 		this.agregarMiembro(new Picolo (tablero));
 		this.agregarMiembro(new Gohan(tablero));
 		this.agregarMiembro(new Goku(tablero));
+		this.cantidadEsferasCapturadas = 0;
 	}
 
 }

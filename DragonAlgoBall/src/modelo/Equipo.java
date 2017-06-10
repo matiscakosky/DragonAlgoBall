@@ -3,7 +3,8 @@ package modelo;
 import java.util.*;
 
 public abstract class Equipo {
-	private Hashtable<String,Personaje> miembros;
+	protected Hashtable<String,Personaje> miembros;
+	protected int cantidadEsferasCapturadas;
 	
 	public boolean contiene(Personaje personaje){
 		return this.miembros.containsKey(personaje.getNombre());

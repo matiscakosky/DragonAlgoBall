@@ -11,10 +11,10 @@ public abstract class Personaje extends ObjetoJuego{
 	public abstract void evolucionarAFase2();
 	
 	public int getVelocidad(){
-		return this.estado.velocidad;
+		return this.estado.getVelocidad();
 	}
 	public int getPoderDePelea(){
-		return this.estado.poderDePelea;
+		return this.estado.getPoderDePelea();
 	}
 	
 	public void aumentarKi(int ki) {

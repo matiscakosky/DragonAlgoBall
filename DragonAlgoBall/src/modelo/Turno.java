@@ -16,11 +16,11 @@ public class Turno {
 	}
 	
 	public Personaje validarPersonaje(Posicion posicion){
-		Personaje atacante = this.tablero.obtenerPersonaje(posicion);
-		if(!this.equipo.contiene(atacante)){
+		Personaje personaje = this.tablero.obtenerPersonaje(posicion);
+		if(!this.equipo.contiene(personaje)){
 			throw new PosicionInvalida();
 		}
-		return atacante;
+		return personaje;
 	}
 		
 	public void elegirPersonajeAtacante(Posicion posicion){
@@ -50,5 +50,11 @@ public class Turno {
 	public void evolucionarPersonajeAFase2(Personaje personaje){
 		personaje.evolucionarAFase2();
 	}
-
+	public void moverPersonaje(){
+		
+	}
+	
+	public void atacar(){
+	
+	}
 }

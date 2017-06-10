@@ -11,7 +11,7 @@ public class Freezer extends Personaje {
 	public Freezer(Tablero tablero) {
 		this.nombre = "Freezer";
 		this.tablero = tablero;
-		this.movimiento = new Movimiento();
+		this.movimiento = new Movimiento(estado.getDistanciaDeAtaque());
 		this.estado = new Estado();
 		this.posicion = new Posicion(this.tablero.getTamanio(),this.tablero.getTamanio()-1);
 		estado.setearEstadoInicialPersonaje(this.nombre);

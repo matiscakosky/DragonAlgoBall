@@ -10,6 +10,22 @@ public class Estado {
 	protected int puntosDeVida;
 	protected int ki;
 	
+	public int getVelocidad(){
+		return this.velocidad;
+	}
+	
+	public int getDistanciaDeAtaque(){
+		return this.distanciaDeAtaque;
+	}
+	
+	public void aumentarKi(int kiAumentar) {
+		this.ki += kiAumentar;
+	}
+
+	public int getPoderDePelea() {
+		return this.poderDePelea;
+	}
+	
 	public void setearEstadoInicialPersonaje(String personaje){
 		this.poderDePelea = StatsJuego.statsIniciales.get(personaje).get("poderDePelea");
 		this.velocidad = StatsJuego.statsIniciales.get(personaje).get("velocidad");
@@ -43,9 +59,5 @@ public class Estado {
 		else{
 			throw new KiInsuficiente();
 		}
-	}
-
-	public void aumentarKi(int kiAumentar) {
-		this.ki += kiAumentar;
 	}
 }
