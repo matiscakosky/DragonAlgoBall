@@ -8,9 +8,16 @@ import modelo.Personaje;
 public class EnemigosDeLaTierra extends Equipo {
 	
 	public EnemigosDeLaTierra(Tablero tablero){
-		this.agregarMiembro((Personaje)new MajinBoo(tablero));
-		this.agregarMiembro((Personaje)new Cell(tablero));
-		this.agregarMiembro((Personaje)new Freezer (tablero));
+		super();
+		Personaje freezer = new Freezer (tablero);
+		Personaje majinboo = new MajinBoo(tablero);
+		Personaje cell = new Cell(tablero);
+		tablero.colocarObjetoInicialmente(freezer);
+		tablero.colocarObjetoInicialmente(majinboo);
+		tablero.colocarObjetoInicialmente(cell);
+		this.agregarMiembro(freezer);
+		this.agregarMiembro(majinboo);
+		this.agregarMiembro(cell);
 		this.cantidadEsferasCapturadas = 0;
 	}
 

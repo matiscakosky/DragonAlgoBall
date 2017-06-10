@@ -8,9 +8,16 @@ import modelo.personajes.*;
 public class GuerrerosZ extends Equipo {
 	
 	public GuerrerosZ(Tablero tablero){
-		this.agregarMiembro((Personaje)new Gohan(tablero));
-		this.agregarMiembro((Personaje)new Picolo(tablero));
-		this.agregarMiembro((Personaje)new Goku(tablero));
+		super();
+		Personaje gohan = new Gohan(tablero);
+		Personaje picolo = new Picolo(tablero);
+		Personaje goku = new Goku(tablero);
+		tablero.colocarObjetoInicialmente(goku);
+		tablero.colocarObjetoInicialmente(gohan);
+		tablero.colocarObjetoInicialmente(picolo);
+		this.agregarMiembro(gohan);
+		this.agregarMiembro(goku);
+		this.agregarMiembro(picolo);
 		this.cantidadEsferasCapturadas = 0;
 	}
 

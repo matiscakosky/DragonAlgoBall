@@ -23,35 +23,35 @@ public abstract class Personaje extends ObjetoJuego{
 	}
 
 	public void MoverPersonajeHaciaArriba(){
-		this.movimiento.MoverArriba(this.tablero,this.posicion);
+		this.posicion = this.movimiento.MoverArriba(this.tablero,this.posicion);
 	}
 
 	public void MoverPersonajeHaciaAbajo(){
-		this.movimiento.MoverAbajo(this.tablero,this.posicion);
+		this.posicion = this.movimiento.MoverAbajo(this.tablero,this.posicion);
 	}
 
 	public void MoverPersonajeHaciaDerecha(){
-		this.movimiento.MoverDerecha(this.tablero,this.posicion);
+		this.posicion = this.movimiento.MoverDerecha(this.tablero,this.posicion);
 	}
 
 	public void MoverPersonajeHaciaIzquierda(){
-		this.movimiento.MoverIzquierda(this.tablero,this.posicion);
+		this.posicion = this.movimiento.MoverIzquierda(this.tablero,this.posicion);
 	}
 
 	public void MoverPersonajeHaciaArribaDerecha(){
-		this.movimiento.MoverArribaDerecha(this.tablero,this.posicion);
+		this.posicion = this.movimiento.MoverArribaDerecha(this.tablero,this.posicion);
 	}
 
 	public void MoverPersonajeHaciaArribaIzquierda(){
-		this.movimiento.MoverArribaIzquierda(this.tablero,this.posicion);
+		this.posicion = this.movimiento.MoverArribaIzquierda(this.tablero,this.posicion);
 	}
 
 	public void MoverPersonajeHaciaAbajoDerecha(){
-		this.movimiento.MoverAbajoDerecha(this.tablero,this.posicion);
+		this.posicion = this.movimiento.MoverAbajoDerecha(this.tablero,this.posicion);
 	}
 
 	public void MoverPersonajeHaciaAbajoIzquierda(){
-		this.movimiento.MoverAbajoIzquierda(this.tablero,this.posicion);
+		this.posicion = this.movimiento.MoverAbajoIzquierda(this.tablero,this.posicion);
 	}
 	
 }

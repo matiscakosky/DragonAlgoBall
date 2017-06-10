@@ -12,7 +12,7 @@ public class MajinBoo extends Personaje {
 		this.nombre = "MajinBoo";
 		this.tablero = tablero;
 		this.estado = new Estado();
-		this.movimiento = new Movimiento(estado.getDistanciaDeAtaque());
+		this.movimiento = new Movimiento(estado.getVelocidad());
 		this.posicion = new Posicion(this.tablero.getTamanio()-1,this.tablero.getTamanio());
 		estado.setearEstadoInicialPersonaje(this.nombre);
 	}

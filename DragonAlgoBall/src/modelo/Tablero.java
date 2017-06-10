@@ -95,9 +95,8 @@ public class Tablero {
 	}
 	
 	public void moverPersonajeA(Posicion posicionVieja, Posicion posicionNueva){
-		Personaje personaje = (Personaje) obtenerObjeto(posicionVieja); //El casteo es debido a que esta funcion solo mueve personajes
+		Personaje personaje = obtenerPersonaje(posicionVieja); //El casteo es debido a que esta funcion solo mueve personajes
 		colocarObjetoEnPosicionYBorrarAnterior(personaje, posicionNueva);
-		personaje.posicion = posicionNueva;
 		
 	}
 	public void colocarObjetoEnPosicionYBorrarAnterior(ObjetoJuego objetoJuego, Posicion posicion){

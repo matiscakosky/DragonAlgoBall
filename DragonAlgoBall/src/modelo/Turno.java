@@ -60,15 +60,15 @@ public class Turno {
 		//harcodeado para probar integracion//
 		Posicion pos = new Posicion(1,1);
 		elegirPersonajeMovil(pos);
-		this.personajeQueSeMueve.MoverPersonajeHaciaAbajoDerecha();
-		this.personajeQueSeMueve.MoverPersonajeHaciaAbajoDerecha();
+		this.personajeQueSeMueve.MoverPersonajeHaciaArribaDerecha();
+		this.personajeQueSeMueve.MoverPersonajeHaciaArribaDerecha();
 	}
 	public void moverPersonaje2(){
 		//harcodeado para probar integracion//
 		Posicion pos = new Posicion(10,10);
 		elegirPersonajeMovil(pos);
-		this.personajeQueSeMueve.MoverPersonajeHaciaArribaIzquierda();
-		this.personajeQueSeMueve.MoverPersonajeHaciaArribaIzquierda();
+		this.personajeQueSeMueve.MoverPersonajeHaciaAbajoIzquierda();
+		this.personajeQueSeMueve.MoverPersonajeHaciaAbajoIzquierda();
 		this.personajeEvoluciona.evolucionarAFase1();
 	}
 	public void moverPersonaje3(){
