@@ -31,7 +31,7 @@ public class Tablero {
 	
 	public void validarPosicionLimitesTablero(Posicion posicion){
 		if(posicion.getCoordenadaX() <= 0 || posicion.getCoordenadaX() > StatsJuego.tamanioTableroMaximo ||	posicion.getCoordenadaY() <= 0 || posicion.getCoordenadaY() > StatsJuego.tamanioTableroMaximo){
-			throw new PosicionInvalida();
+			throw new MovimientoInvalido();
 		}
 	}
 	
