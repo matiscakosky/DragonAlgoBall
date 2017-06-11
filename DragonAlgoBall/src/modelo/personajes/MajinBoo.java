@@ -13,8 +13,8 @@ public class MajinBoo extends Personaje {
 		this.tablero = tablero;
 		this.estado = new Estado();
 		estado.setearEstadoInicialPersonaje(this.nombre);
-		this.movimiento = new Movimiento(estado.getVelocidad());
-		this.posicion = new Posicion(this.tablero.getTamanio()-1,this.tablero.getTamanio());
+		Posicion pos = new Posicion(this.tablero.getTamanio()-1,this.tablero.getTamanio());
+		this.movimiento = new Movimiento(estado.getVelocidad(),pos);
 	}
 
 	public void evolucionarAFase1(){

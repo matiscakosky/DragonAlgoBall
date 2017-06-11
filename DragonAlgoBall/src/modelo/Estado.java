@@ -64,4 +64,5 @@ public class Estado {
 			throw new KiInsuficiente();
 		}
 	}
+
 }

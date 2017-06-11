@@ -18,9 +18,9 @@ public class EnemigosDeLaTierra extends Equipo {
 		this.agregarMiembro((Personaje)cell);
 		this.agregarMiembro((Personaje)boo);
 		this.agregarMiembro((Personaje)freezer);
-		tablero.colocarObjetoInicialmente(freezer);
-		tablero.colocarObjetoInicialmente(boo);
-		tablero.colocarObjetoInicialmente(cell);
+		tablero.colocarObjeto(freezer,freezer.getPosicion());
+		tablero.colocarObjeto(boo,boo.getPosicion());
+		tablero.colocarObjeto(cell,cell.getPosicion());
 		this.cantidadEsferasCapturadas = 0;
 	}
 

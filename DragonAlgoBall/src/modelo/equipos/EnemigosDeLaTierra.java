@@ -12,9 +12,9 @@ public class EnemigosDeLaTierra extends Equipo {
 		Personaje freezer = new Freezer (tablero);
 		Personaje majinboo = new MajinBoo(tablero);
 		Personaje cell = new Cell(tablero);
-		tablero.colocarObjetoInicialmente(freezer);
-		tablero.colocarObjetoInicialmente(majinboo);
-		tablero.colocarObjetoInicialmente(cell);
+		tablero.colocarObjeto(freezer,freezer.getPosicion());
+		tablero.colocarObjeto(majinboo,majinboo.getPosicion());
+		tablero.colocarObjeto(cell,cell.getPosicion());
 		this.agregarMiembro(freezer);
 		this.agregarMiembro(majinboo);
 		this.agregarMiembro(cell);

@@ -18,9 +18,9 @@ public class GuerrerosZ extends Equipo {
 		this.agregarMiembro((Personaje)gohan);
 		this.agregarMiembro((Personaje)picolo);
 		this.agregarMiembro((Personaje)goku);
-		tablero.colocarObjetoInicialmente(picolo);
-		tablero.colocarObjetoInicialmente(goku);
-		tablero.colocarObjetoInicialmente(gohan);
+		tablero.colocarObjeto(picolo,picolo.getPosicion());
+		tablero.colocarObjeto(goku,goku.getPosicion());
+		tablero.colocarObjeto(gohan,gohan.getPosicion());
 		this.cantidadEsferasCapturadas = 0;
 	}
 

@@ -4,76 +4,83 @@ import modelo.excepciones.PasosInsuficientes;
 
 public class Movimiento {
 	private int cantidadPasosMoverse;
+	private Posicion posicionActual;
 	
-	public Movimiento(int velocidad){
+	public Movimiento(int velocidad,Posicion pos){
 		this.cantidadPasosMoverse = velocidad;
+		this.posicionActual = pos;
 	}
 	
-	public Posicion MoverArriba(Tablero tablero, Posicion posicionActual){
+	public Posicion getPosicion() {
+		return this.posicionActual;
+	}
+	
+	public void MoverArriba(Tablero tablero){
 		if(this.cantidadPasosMoverse == 0) throw new PasosInsuficientes(); 
-		Posicion posicionAMoverme = new Posicion(posicionActual.getCoordenadaX(),posicionActual.getCoordenadaY()+1);
-		tablero.moverPersonajeA(posicionActual, posicionAMoverme);
+		Posicion posicionAMoverme = new Posicion(this.posicionActual.getCoordenadaX(),this.posicionActual.getCoordenadaY()+1);
+		tablero.moverPersonaje(this.posicionActual, posicionAMoverme);
 		this.cantidadPasosMoverse -= 1;
-		return posicionAMoverme;
+		this.posicionActual = posicionAMoverme;
 		
 	}
 
-	public Posicion MoverAbajo(Tablero tablero, Posicion posicionActual){
+	public void MoverAbajo(Tablero tablero){
 		if(this.cantidadPasosMoverse == 0) throw new PasosInsuficientes();
-		Posicion posicionAMoverme = new Posicion(posicionActual.getCoordenadaX(),posicionActual.getCoordenadaY()-1);
-		tablero.moverPersonajeA(posicionActual, posicionAMoverme);
+		Posicion posicionAMoverme = new Posicion(this.posicionActual.getCoordenadaX(),this.posicionActual.getCoordenadaY()-1);
+		tablero.moverPersonaje(posicionActual, posicionAMoverme);
 		this.cantidadPasosMoverse -= 1;
-		return posicionAMoverme;
+		this.posicionActual = posicionAMoverme;
+		
 	}
 
-	public Posicion MoverDerecha(Tablero tablero, Posicion posicionActual){
+	public void MoverDerecha(Tablero tablero){
 		if(this.cantidadPasosMoverse == 0) throw new PasosInsuficientes();
-		Posicion posicionAMoverme = new Posicion(posicionActual.getCoordenadaX()+1,posicionActual.getCoordenadaY());
-		tablero.moverPersonajeA(posicionActual, posicionAMoverme);
+		Posicion posicionAMoverme = new Posicion(this.posicionActual.getCoordenadaX()+1,this.posicionActual.getCoordenadaY());
+		tablero.moverPersonaje(posicionActual, posicionAMoverme);
 		this.cantidadPasosMoverse -= 1;
-		return posicionAMoverme;
+		this.posicionActual = posicionAMoverme;
 	}
 
-	public Posicion MoverIzquierda(Tablero tablero, Posicion posicionActual){
+	public void MoverIzquierda(Tablero tablero){
 		if(this.cantidadPasosMoverse == 0) throw new PasosInsuficientes();
-		Posicion posicionAMoverme = new Posicion(posicionActual.getCoordenadaX()-1,posicionActual.getCoordenadaY());
-		tablero.moverPersonajeA(posicionActual, posicionAMoverme);
+		Posicion posicionAMoverme = new Posicion(this.posicionActual.getCoordenadaX()-1,this.posicionActual.getCoordenadaY());
+		tablero.moverPersonaje(posicionActual, posicionAMoverme);
 		this.cantidadPasosMoverse -= 1;
-		return posicionAMoverme;
-	}
-
-
-	public Posicion MoverArribaDerecha(Tablero tablero, Posicion posicionActual){
-		if(this.cantidadPasosMoverse == 0) throw new PasosInsuficientes();
-		Posicion posicionAMoverme = new Posicion(posicionActual.getCoordenadaX()+1,posicionActual.getCoordenadaY()+1);
-		tablero.moverPersonajeA(posicionActual, posicionAMoverme);
-		this.cantidadPasosMoverse -= 1;
-		return posicionAMoverme;
+		this.posicionActual = posicionAMoverme;
 	}
 
 
-	public Posicion MoverArribaIzquierda(Tablero tablero, Posicion posicionActual){
+	public void MoverArribaDerecha(Tablero tablero){
 		if(this.cantidadPasosMoverse == 0) throw new PasosInsuficientes();
-		Posicion posicionAMoverme = new Posicion(posicionActual.getCoordenadaX()-1,posicionActual.getCoordenadaY()+1);
-		tablero.moverPersonajeA(posicionActual, posicionAMoverme);
+		Posicion posicionAMoverme = new Posicion(this.posicionActual.getCoordenadaX()+1,this.posicionActual.getCoordenadaY()+1);
+		tablero.moverPersonaje(posicionActual, posicionAMoverme);
 		this.cantidadPasosMoverse -= 1;
-		return posicionAMoverme;
+		this.posicionActual = posicionAMoverme;
 	}
 
-	public Posicion MoverAbajoDerecha(Tablero tablero, Posicion posicionActual){
+
+	public void MoverArribaIzquierda(Tablero tablero){
 		if(this.cantidadPasosMoverse == 0) throw new PasosInsuficientes();
-		Posicion posicionAMoverme = new Posicion(posicionActual.getCoordenadaX()+1,posicionActual.getCoordenadaY()-1);
-		tablero.moverPersonajeA(posicionActual, posicionAMoverme);
+		Posicion posicionAMoverme = new Posicion(this.posicionActual.getCoordenadaX()-1,this.posicionActual.getCoordenadaY()+1);
+		tablero.moverPersonaje(posicionActual, posicionAMoverme);
 		this.cantidadPasosMoverse -= 1;
-		return posicionAMoverme;
+		this.posicionActual = posicionAMoverme;
 	}
 
-	public Posicion MoverAbajoIzquierda(Tablero tablero, Posicion posicionActual){
+	public void MoverAbajoDerecha(Tablero tablero){
 		if(this.cantidadPasosMoverse == 0) throw new PasosInsuficientes();
-		Posicion posicionAMoverme = new Posicion(posicionActual.getCoordenadaX()-1,posicionActual.getCoordenadaY()-1);
-		tablero.moverPersonajeA(posicionActual, posicionAMoverme);
+		Posicion posicionAMoverme = new Posicion(this.posicionActual.getCoordenadaX()+1,this.posicionActual.getCoordenadaY()-1);
+		tablero.moverPersonaje(posicionActual, posicionAMoverme);
 		this.cantidadPasosMoverse -= 1;
-		return posicionAMoverme;
+		this.posicionActual = posicionAMoverme;
+	}
+
+	public void MoverAbajoIzquierda(Tablero tablero){
+		if(this.cantidadPasosMoverse == 0) throw new PasosInsuficientes();
+		Posicion posicionAMoverme = new Posicion(this.posicionActual.getCoordenadaX()-1,this.posicionActual.getCoordenadaY()-1);
+		tablero.moverPersonaje(posicionActual, posicionAMoverme);
+		this.cantidadPasosMoverse -= 1;
+		this.posicionActual = posicionAMoverme;
 	}
 	
 }

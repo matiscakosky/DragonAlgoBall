@@ -67,14 +67,13 @@ public class Tablero {
 		return (posicionObtenida.getCoordenadaX() == posicionEsperada.getCoordenadaX() && posicionObtenida.getCoordenadaY() == posicionEsperada.getCoordenadaY());
 	}
 	
-	public void colocarObjetoInicialmente(ObjetoJuego objeto){
-		/*Coloca inicailmente a los objetos de juego segun su posicion inicial*/
+	public void colocarObjeto(ObjetoJuego objeto,Posicion posicion){
 		Casillero casillero = new Casillero();
 		casillero.agregarObjeto(objeto);
-		this.casilleros.put(objeto.getPosicion(), casillero);
+		this.casilleros.put(posicion,casillero);
 	}
 	
-	public boolean casilleroValidoParaMoverse(Posicion posicion){
+	public boolean posicionValidaParaMoverse(Posicion posicion){
 		/*La funcion verifica que el casillero este vacio o en su defecto que haya un consumible*/
 		for (Posicion pos : this.casilleros.keySet()) {
 			if (compararPosicion(pos, posicion)){
@@ -84,37 +83,29 @@ public class Tablero {
 		return true;
 	}
 	
-	public void borrarCasilleroAnterior(ObjetoJuego objetoJuego){
-		/*La funcion recibe un objetoJuego si el objeto se encuentra en el tablero, lo elimina de lo contrario la funcion no hace nada*/
+	public void borrarCasillero(Posicion posicion){
+		Posicion posicionBorrar = null;
 		Set<Posicion> casilleros = this.casilleros.keySet();
 		for (Posicion pos : casilleros) {
-			if(this.casilleros.get(pos).obtenerObjeto() == objetoJuego){
-				this.casilleros.remove(pos);
-				return;
+			if(this.compararPosicion(pos,posicion)){
+				posicionBorrar = pos;
+				break;
 			}
 		}
-		
+		this.casilleros.remove(posicionBorrar);
 	}
 	
-	public void moverPersonajeA(Posicion posicionVieja, Posicion posicionNueva){
-		Personaje personaje = obtenerPersonaje(posicionVieja); 
-		colocarObjetoEnPosicionYBorrarAnterior(personaje, posicionNueva);
+	public void moverPersonaje(Posicion posicionVieja, Posicion posicionNueva){
+		this.validarPosicionLimitesTablero(posicionNueva);
+		if(!this.posicionValidaParaMoverse(posicionNueva))throw new MovimientoInvalido();
+		Personaje personaje = this.obtenerPersonaje(posicionVieja); 
+		this.borrarCasillero(posicionVieja);
+		Casillero casillero = new Casillero();
+		casillero.agregarObjeto(personaje);
+		this.casilleros.put(posicionNueva, casillero);
+		return;
+	}
 
-		
-	}
-	public void colocarObjetoEnPosicionYBorrarAnterior(ObjetoJuego objetoJuego, Posicion posicion){
-		/*Recibe un objeto y la posicion a insertar el objeto si el casillero es valido (Esta vacio o tiene un consumible) coloca al objeto en la posicion deseada*/
-		this.validarPosicionLimitesTablero(posicion);
-		if (this.casilleroValidoParaMoverse(posicion)){
-			borrarCasilleroAnterior(objetoJuego);
-			Casillero casillero = new Casillero();
-			casillero.agregarObjeto(objetoJuego);
-			this.casilleros.put(posicion, casillero);
-			return;
-		}
-		throw new MovimientoInvalido();
-		
-	}
 		
 		
 		

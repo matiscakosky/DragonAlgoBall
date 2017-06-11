@@ -12,9 +12,9 @@ public class GuerrerosZ extends Equipo {
 		Personaje gohan = new Gohan(tablero);
 		Personaje picolo = new Picolo(tablero);
 		Personaje goku = new Goku(tablero);
-		tablero.colocarObjetoInicialmente(goku);
-		tablero.colocarObjetoInicialmente(gohan);
-		tablero.colocarObjetoInicialmente(picolo);
+		tablero.colocarObjeto(goku,goku.getPosicion());
+		tablero.colocarObjeto(gohan,gohan.getPosicion());
+		tablero.colocarObjeto(picolo,picolo.getPosicion());
 		this.agregarMiembro(gohan);
 		this.agregarMiembro(goku);
 		this.agregarMiembro(picolo);
