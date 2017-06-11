@@ -3,7 +3,6 @@ package Pruebas;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import modelo.Tablero;
-import modelo.excepciones.CasilleroOcupado;
 import modelo.personajes.Goku;
 import modelo.personajes.MajinBoo;
 import modelo.personajes.Picolo;
