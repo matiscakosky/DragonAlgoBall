@@ -1,6 +1,7 @@
 package modelo;
 
 import modelo.Movimiento;
+import modelo.excepciones.AtaqueInvalido;
 
 
 public abstract class Personaje extends ObjetoJuego{
@@ -26,8 +27,16 @@ public abstract class Personaje extends ObjetoJuego{
 		
 	}
 	
+	public Estado getEstado(){
+		return this.estado;
+	}
+	
 	public Posicion getPosicion(){
 		return this.movimiento.getPosicion();
+	}
+	
+	public int getPuntosDeVida(){
+		return this.estado.getPuntosDeVida();
 	}
 
 	public void MoverPersonajeHaciaArriba(){
@@ -60,6 +69,13 @@ public abstract class Personaje extends ObjetoJuego{
 
 	public void MoverPersonajeHaciaAbajoIzquierda(){
 		this.movimiento.MoverAbajoIzquierda(this.tablero);
+	}
+	
+	public void atacar(Personaje personaje){
+		if(Math.abs(this.movimiento.getPosicion().getCoordenadaX()-personaje.getPosicion().getCoordenadaX())>this.estado.distanciaDeAtaque && Math.abs(this.movimiento.getPosicion().getCoordenadaY()-personaje.getPosicion().getCoordenadaY())>this.estado.getDistanciaDeAtaque()){
+			throw new AtaqueInvalido();
+		} 
+		personaje.getEstado().recibirAtaque(this.getPoderDePelea());
 	}
 	
 }

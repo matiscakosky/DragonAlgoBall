@@ -30,6 +30,14 @@ public class Estado {
 		return this.poderDePelea;
 	}
 	
+	public void recibirAtaque(int ataque){
+		this.puntosDeVida-=ataque;
+	}
+	
+	public int getPuntosDeVida() {
+		return this.puntosDeVida;
+	}
+	
 	public void setearEstadoInicialPersonaje(String personaje){
 		this.poderDePelea = StatsJuego.statsIniciales.get(personaje).get("poderDePelea");
 		this.velocidad = StatsJuego.statsIniciales.get(personaje).get("velocidad");
