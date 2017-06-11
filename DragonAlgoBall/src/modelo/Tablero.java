@@ -52,7 +52,6 @@ public class Tablero {
 	}
 	
 	public ObjetoJuego obtenerObjeto(Posicion posicion){
-		/*Recibe una posicion y devuelve el objetoJuego que este en el casillero del tablero*/
 		this.validarPosicionLimitesTablero(posicion);
 		for (Posicion pos : this.casilleros.keySet()) {
 			if (compararPosicion(pos, posicion)){
@@ -63,7 +62,6 @@ public class Tablero {
 	}
 	
 	public boolean compararPosicion(Posicion posicionObtenida, Posicion posicionEsperada){
-		/*Funcion que permite comparar instancias de la clase posicion segun sus coordenadas*/
 		return (posicionObtenida.getCoordenadaX() == posicionEsperada.getCoordenadaX() && posicionObtenida.getCoordenadaY() == posicionEsperada.getCoordenadaY());
 	}
 	
@@ -74,7 +72,6 @@ public class Tablero {
 	}
 	
 	public boolean posicionValidaParaMoverse(Posicion posicion){
-		/*La funcion verifica que el casillero este vacio o en su defecto que haya un consumible*/
 		for (Posicion pos : this.casilleros.keySet()) {
 			if (compararPosicion(pos, posicion)){
 				return (this.casilleros.get(pos).obtenerObjeto() instanceof Consumible);

@@ -17,7 +17,7 @@ public class Turno {
 		this.AumentarKiInicioDeTurno();
 	}
 	
-	public Personaje validarPersonaje(Posicion posicion){
+	public Personaje seleccionarPersonaje(Posicion posicion){
 		Personaje personaje = this.tablero.obtenerPersonaje(posicion);
 		if(!this.equipo.contiene(personaje)){
 			throw new PosicionInvalida();
@@ -26,19 +26,19 @@ public class Turno {
 	}
 		
 	public void elegirPersonajeAtacante(Posicion posicion){
-		this.personajeQueAtaca = (Personaje) this.validarPersonaje(posicion);
+		this.personajeQueAtaca = this.seleccionarPersonaje(posicion);
 	}
 	
 	public void elegirPersonajeAtacable(Posicion posicion){
-		this.personajeQueSeAtaca = (Personaje) this.validarPersonaje(posicion);
+		this.personajeQueSeAtaca = this.seleccionarPersonaje(posicion);
 	}
 	
 	private void elegirPersonajeMovil(Posicion posicion){
-		this.personajeQueSeMueve = (Personaje) this.validarPersonaje(posicion); 
+		this.personajeQueSeMueve = this.seleccionarPersonaje(posicion); 
 	}
 	
 	public void elegirPersonajeEvolucionar(Posicion posicion){
-		this.personajeEvoluciona = (Personaje) this.validarPersonaje(posicion);
+		this.personajeEvoluciona = this.seleccionarPersonaje(posicion);
 	}
 	
 	public void Mover(Posicion posicion){
@@ -47,6 +47,18 @@ public class Turno {
 	
 	public Personaje getPersonajeMovil(){
 		return this.personajeQueSeMueve;
+	}
+	
+	public Personaje getPersonajeatacante(){
+		return this.personajeQueAtaca;
+	}
+	
+	public Personaje getPersonajeatacado(){
+		return this.personajeQueSeAtaca;
+	}
+	
+	public Personaje getPersonajeAEvolucionar(){
+		return this.personajeEvoluciona;
 	}
 	
 	public void AumentarKiInicioDeTurno(){
