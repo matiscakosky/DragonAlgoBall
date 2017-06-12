@@ -30,8 +30,12 @@ public class Estado {
 		return this.poderDePelea;
 	}
 	
-	public void recibirAtaque(int ataque){
-		this.puntosDeVida-=ataque;
+	public void restarVida(int vida){
+		this.puntosDeVida-=vida;
+	}
+	
+	public void restarKi(int ki){
+		this.ki -= ki;
 	}
 	
 	public int getPuntosDeVida() {

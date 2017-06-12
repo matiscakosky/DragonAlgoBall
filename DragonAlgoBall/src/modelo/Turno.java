@@ -1,22 +1,17 @@
 package modelo;
 
 import modelo.excepciones.PosicionInvalida;
+import Juego.JugadaEquipo;
 
 public class Turno {
 
-	private Tablero tablero;
-	private Personaje personajeQueSeMueve;
-	private Personaje personajeQueAtaca;
-	private Personaje personajeQueSeAtaca;
-	private Personaje personajeEvoluciona;
-	private Equipo equipo;
-	
-	public Turno(Tablero tablero, Equipo equipo){
-		this.equipo = equipo;
-		this.tablero = tablero;
-		this.AumentarKiInicioDeTurno();
-	}
-	
+	protected Tablero tablero;
+	protected Personaje personajeQueSeMueve;
+	protected Personaje personajeQueAtaca;
+	protected Personaje personajeQueSeAtaca;
+	protected Personaje personajeEvoluciona;
+	protected JugadaEquipo equipo;
+		
 	public Personaje seleccionarPersonaje(Posicion posicion){
 		Personaje personaje = this.tablero.obtenerPersonaje(posicion);
 		if(!this.equipo.contiene(personaje)){
@@ -24,25 +19,13 @@ public class Turno {
 		}
 		return personaje;
 	}
-		
-	public void elegirPersonajeAtacante(Posicion posicion){
-		this.personajeQueAtaca = this.seleccionarPersonaje(posicion);
-	}
-	
-	public void elegirPersonajeAtacable(Posicion posicion){
-		this.personajeQueSeAtaca = this.seleccionarPersonaje(posicion);
-	}
-	
-	private void elegirPersonajeMovil(Posicion posicion){
-		this.personajeQueSeMueve = this.seleccionarPersonaje(posicion); 
-	}
-	
+
 	public void elegirPersonajeEvolucionar(Posicion posicion){
 		this.personajeEvoluciona = this.seleccionarPersonaje(posicion);
 	}
 	
 	public void Mover(Posicion posicion){
-		this.elegirPersonajeMovil(posicion);
+		this.personajeQueSeMueve = this.seleccionarPersonaje(posicion); 
 	}
 	
 	public Personaje getPersonajeMovil(){
@@ -66,6 +49,8 @@ public class Turno {
 			personaje.aumentarKi(StatsJuego.kiAumentoPorTurno);
 		}
 	}
-	public void atacar(){
+	
+	public void atacar(Posicion posicion){
+		this.personajeQueAtaca = this.seleccionarPersonaje(posicion);
 	}
 }
