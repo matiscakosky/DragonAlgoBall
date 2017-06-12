@@ -36,7 +36,7 @@ public class TestEvolucionar {
 		goku.aumentarKi(KIEVOLUCION1GOKU);
 		assertEquals(goku.getKi(),KIEVOLUCION1GOKU);
 		
-		goku.evolucionarAFase1();
+		goku.evolucionar();
 		assertEquals(goku.getKi(),0);
 		assertEquals(goku.getPoderDePelea(),StatsJuego.poderPeleaGokuKaioKen);
 		assertEquals(goku.getVelocidad(),StatsJuego.velocidadGokuKaioKen);
@@ -55,7 +55,7 @@ public class TestEvolucionar {
 		goku.aumentarKi(KIEVOLUCION1GOKU);
 		assertEquals(goku.getKi(),KIEVOLUCION1GOKU);
 		
-		goku.evolucionarAFase1();
+		goku.evolucionar();
 		assertEquals(goku.getKi(),0);
 		assertEquals(goku.getPoderDePelea(),StatsJuego.poderPeleaGokuKaioKen);
 		assertEquals(goku.getVelocidad(),StatsJuego.velocidadGokuKaioKen);
@@ -63,7 +63,7 @@ public class TestEvolucionar {
 		goku.aumentarKi(KIEVOLUCION2GOKU);
 		assertEquals(goku.getKi(),KIEVOLUCION2GOKU);
 		
-		goku.evolucionarAFase2();
+		goku.evolucionar();
 		assertEquals(goku.getKi(),0);
 		assertEquals(goku.getPoderDePelea(),StatsJuego.poderPeleaGokuSsj);
 		assertEquals(goku.getVelocidad(),StatsJuego.velocidadGokuSsj);

@@ -8,9 +8,10 @@ public abstract class Personaje extends ObjetoJuego{
 	protected Movimiento movimiento;
 	protected Estado estado;
 	
-	public abstract void evolucionarAFase1();
-	public abstract void evolucionarAFase2();
-	
+	public void evolucionar(){
+		this.estado.evolucionar(this.nombre);
+	}
+		
 	public int getVelocidad(){
 		return this.estado.getVelocidad();
 	}
@@ -72,7 +73,7 @@ public abstract class Personaje extends ObjetoJuego{
 	}
 	
 	public void atacar(Personaje personaje){
-		if(Math.abs(this.movimiento.getPosicion().getCoordenadaX()-personaje.getPosicion().getCoordenadaX())>this.estado.distanciaDeAtaque && Math.abs(this.movimiento.getPosicion().getCoordenadaY()-personaje.getPosicion().getCoordenadaY())>this.estado.getDistanciaDeAtaque()){
+		if(Math.abs(this.movimiento.getPosicion().getCoordenadaX()-personaje.getPosicion().getCoordenadaX())>this.estado.getDistanciaDeAtaque() && Math.abs(this.movimiento.getPosicion().getCoordenadaY()-personaje.getPosicion().getCoordenadaY())>this.estado.getDistanciaDeAtaque()){
 			throw new AtaqueInvalido();
 		} 
 		personaje.getEstado().recibirAtaque(this.getPoderDePelea());

@@ -1,14 +1,25 @@
 package modelo;
 
+import java.util.HashMap;
+import modelo.StatsJuego;
+
+
 import modelo.excepciones.KiInsuficiente;
 
 public class Estado {
-	protected int poderDePelea;
-	protected int distanciaDeAtaque;
-	protected int velocidad;
-	protected int kiEvolucion;
-	protected int puntosDeVida;
-	protected int ki;
+	private int poderDePelea;
+	private int distanciaDeAtaque;
+	private int velocidad;
+	private int kiEvolucion;
+	private int puntosDeVida;
+	private int ki;
+	private Fase fase;
+	
+	public Estado(String nombre){
+		this.fase = new FaseInicial();
+		this.setearEstado(nombre);
+		this.puntosDeVida = StatsJuego.statsIniciales.get(nombre).get("puntosDeVida");
+	}
 	
 	public int getVelocidad(){
 		return this.velocidad;
@@ -38,39 +49,24 @@ public class Estado {
 		return this.puntosDeVida;
 	}
 	
-	public void setearEstadoInicialPersonaje(String personaje){
-		this.poderDePelea = StatsJuego.statsIniciales.get(personaje).get("poderDePelea");
-		this.velocidad = StatsJuego.statsIniciales.get(personaje).get("velocidad");
-		this.distanciaDeAtaque = StatsJuego.statsIniciales.get(personaje).get("distanciaDeAtaque");
-		this.kiEvolucion = StatsJuego.statsIniciales.get(personaje).get("kiEvolucion");
-		this.puntosDeVida = StatsJuego.statsIniciales.get(personaje).get("puntosDeVida");
-		this.ki = 0;
-	}
-	
-	public void setearEstadoFase1Personaje(String personaje){
-		if (ki>=kiEvolucion){
-			this.poderDePelea = StatsJuego.statsEstado1.get(personaje).get("poderDePelea");
-			this.velocidad = StatsJuego.statsEstado1.get(personaje).get("velocidad");
-			this.distanciaDeAtaque = StatsJuego.statsEstado1.get(personaje).get("distanciaDeAtaque");
-			this.kiEvolucion = StatsJuego.statsIniciales.get(personaje).get("kiEvolucion");
-			this.ki -= this.kiEvolucion;
-		}
+	public void evolucionar(String personaje){
+		if (this.ki>=this.kiEvolucion){
+			int kiGastado = this.kiEvolucion;
+			this.fase = this.fase.evolucionar();
+			this.setearEstado(personaje);
+			this.ki -= kiGastado;
+			}
 		else{
 			throw new KiInsuficiente();
 		}
 	}
 	
-	public void setearEstadoFase2Personaje(String personaje){
-		if (ki>=kiEvolucion){
-			this.poderDePelea = StatsJuego.statsEstado2.get(personaje).get("poderDePelea");
-			this.velocidad = StatsJuego.statsEstado2.get(personaje).get("velocidad");
-			this.distanciaDeAtaque = StatsJuego.statsEstado2.get(personaje).get("distanciaDeAtaque");
-			this.kiEvolucion = StatsJuego.statsEstado1.get(personaje).get("kiEvolucion");
-			this.ki -= this.kiEvolucion;
-		}
-		else{
-			throw new KiInsuficiente();
-		}
+	public void setearEstado(String personaje){
+		HashMap<String,HashMap<String,Integer>> stats = this.fase.obtenerStats(); 
+		this.poderDePelea = stats.get(personaje).get("poderDePelea");
+		this.velocidad = stats.get(personaje).get("velocidad");
+		this.distanciaDeAtaque = stats.get(personaje).get("distanciaDeAtaque");
+		this.kiEvolucion = stats.get(personaje).get("kiEvolucion");
 	}
 
 }

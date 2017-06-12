@@ -54,7 +54,7 @@ public class TestStatsJuego {
 	public void test05CrearJuegoConPersonajeYEvolucionarloNoDeberiaPoder(){
 		Tablero tablero = new Tablero(TAMANIO);
 		Goku goku = new Goku(tablero);
-		goku.evolucionarAFase1();
+		goku.evolucionar();
 		
 	}
 	

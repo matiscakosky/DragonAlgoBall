@@ -11,17 +11,8 @@ public class Picolo extends Personaje {
 	public Picolo(Tablero tablero){
 		this.nombre = "Picolo";
 		this.tablero = tablero;
-		this.estado = new Estado();
-		estado.setearEstadoInicialPersonaje(this.nombre);
+		this.estado = new Estado(this.nombre);
 		Posicion pos = new Posicion(2,1);
 		this.movimiento = new Movimiento(estado.getVelocidad(),pos);
-	}
-	
-	public void evolucionarAFase1(){
-		this.estado.setearEstadoFase1Personaje(this.nombre);
-	}
-	
-	public void evolucionarAFase2(){
-		this.estado.setearEstadoFase2Personaje(this.nombre);
 	}
 }

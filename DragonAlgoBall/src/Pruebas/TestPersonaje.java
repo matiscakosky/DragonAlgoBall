@@ -69,7 +69,7 @@ public class TestPersonaje {
 		Tablero tablero = new Tablero(5);
 		Goku goku = new Goku(tablero);
 		goku.aumentarKi(50);
-		goku.evolucionarAFase1();
+		goku.evolucionar();
 		assertEquals(goku.getVelocidad(),StatsJuego.velocidadGokuKaioKen);
 	}
 	
@@ -78,7 +78,7 @@ public class TestPersonaje {
 		Tablero tablero = new Tablero(5);
 		Goku goku = new Goku(tablero);
 		goku.aumentarKi(50);
-		goku.evolucionarAFase1();
+		goku.evolucionar();
 		assertEquals(goku.getKi(),30);
 	}
 	
@@ -94,7 +94,7 @@ public class TestPersonaje {
 		Tablero tablero = new Tablero(5);
 		Goku goku = new Goku(tablero);
 		goku.aumentarKi(50);
-		goku.evolucionarAFase1();
+		goku.evolucionar();
 		assertEquals(goku.getPoderDePelea(),StatsJuego.poderPeleaGokuKaioKen);
 	}
 	
