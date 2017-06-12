@@ -2,23 +2,27 @@ package modelo;
 
 import modelo.Movimiento;
 import modelo.excepciones.AtaqueInvalido;
+import modelo.excepciones.KiInsuficiente;
 
 
 public abstract class Personaje extends ObjetoJuego{
 	protected Movimiento movimiento;
 	protected Estado estado;
+	protected Ataque ataque;
+	protected abstract boolean esGuerreroZ();
+	protected abstract boolean esEnemigoDeLaTierra();
+	public abstract void ataqueEspecial(Personaje enemigo);
 	
 	public void evolucionar(){
 		this.estado.evolucionar(this.nombre);
 	}
-		
+	
 	public int getVelocidad(){
 		return this.estado.getVelocidad();
 	}
 	public int getPoderDePelea(){
 		return this.estado.getPoderDePelea();
 	}
-	
 	public int getKi(){
 		return this.estado.getKi();
 	}
@@ -26,10 +30,6 @@ public abstract class Personaje extends ObjetoJuego{
 	public void aumentarKi(int ki) {
 		this.estado.aumentarKi(ki);
 		
-	}
-	
-	public Estado getEstado(){
-		return this.estado;
 	}
 	
 	public Posicion getPosicion(){
@@ -71,12 +71,30 @@ public abstract class Personaje extends ObjetoJuego{
 	public void MoverPersonajeHaciaAbajoIzquierda(){
 		this.movimiento.MoverAbajoIzquierda(this.tablero);
 	}
-	
-	public void atacar(Personaje personaje){
-		if(Math.abs(this.movimiento.getPosicion().getCoordenadaX()-personaje.getPosicion().getCoordenadaX())>this.estado.getDistanciaDeAtaque() && Math.abs(this.movimiento.getPosicion().getCoordenadaY()-personaje.getPosicion().getCoordenadaY())>this.estado.getDistanciaDeAtaque()){
+
+	public void corrobarDistancias(Personaje otroPersonaje){
+		if(Math.abs(this.getPosicion().getCoordenadaX()-otroPersonaje.getPosicion().getCoordenadaX())>this.estado.getDistanciaDeAtaque() && Math.abs(this.getPosicion().getCoordenadaY()-otroPersonaje.getPosicion().getCoordenadaY())>this.estado.getDistanciaDeAtaque()){
 			throw new AtaqueInvalido();
-		} 
-		personaje.getEstado().recibirAtaque(this.getPoderDePelea());
+		} 			
 	}
 	
+	
+	public void corrobarKiAtaqueEspecial(int kiNecesario){
+		if(this.getKi() < kiNecesario){
+			throw new KiInsuficiente();
+		} 			
+	}
+	public void esAtacable(Personaje enemigo){
+		if(this.esGuerreroZ()==enemigo.esGuerreroZ() || this.esEnemigoDeLaTierra() == enemigo.esEnemigoDeLaTierra()){
+			throw new AtaqueInvalido();
+		}
+	}
+	
+	public void ataqueBasico(Personaje enemigo){
+		this.corrobarDistancias(enemigo);
+		this.esAtacable(enemigo);
+		ataque.ataqueBasico(enemigo, this.estado.getPoderDePelea());
+	}
+
+		
 }

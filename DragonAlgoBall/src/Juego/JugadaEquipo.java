@@ -1,12 +1,15 @@
-package modelo;
+package Juego;
 
+import modelo.*;
 import java.util.*;
 
-public abstract class Equipo {
+
+
+public abstract class JugadaEquipo {
 	protected Hashtable<String,Personaje> miembros;
 	protected int cantidadEsferasCapturadas;
 	
-	public Equipo (){
+	public JugadaEquipo(){
 		this.miembros = new Hashtable<String,Personaje>();
 	}
 	
