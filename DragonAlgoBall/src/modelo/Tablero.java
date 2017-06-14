@@ -2,6 +2,7 @@ package modelo;
 
 import java.util.*;
 
+import modelo.excepciones.CasilleroOcupado;
 import modelo.excepciones.CasilleroVacio;
 import modelo.excepciones.MovimientoInvalido;
 import modelo.excepciones.PosicionInvalida;
@@ -66,6 +67,7 @@ public class Tablero {
 	}
 	
 	public void colocarObjeto(ObjetoJuego objeto,Posicion posicion){
+		if(casilleros.get(posicion)!=null)throw new CasilleroOcupado();
 		Casillero casillero = new Casillero();
 		casillero.agregarObjeto(objeto);
 		this.casilleros.put(posicion,casillero);
