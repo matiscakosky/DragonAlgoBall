@@ -53,8 +53,12 @@ public class Estado {
 		return this.puntosDeVida;
 	}
 	
+	public boolean puedeEvolucionar(){
+		return this.ki>=this.kiEvolucion;
+	}
+	
 	public void evolucionar(String personaje){
-		if (this.ki>=this.kiEvolucion){
+		if (this.puedeEvolucionar()){
 			int kiGastado = this.kiEvolucion;
 			this.fase = this.fase.evolucionar();
 			this.setearEstado(personaje);

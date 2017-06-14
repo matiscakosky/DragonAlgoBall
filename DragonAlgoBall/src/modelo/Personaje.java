@@ -40,6 +40,10 @@ public abstract class Personaje extends ObjetoJuego{
 	public int getPuntosDeVida(){
 		return this.estado.getPuntosDeVida();
 	}
+	
+	public boolean puedeEvolucionar(){
+		return this.estado.puedeEvolucionar();
+	}
 
 	public void MoverPersonajeHaciaArriba(){
 		this.movimiento.MoverArriba(this.tablero);
