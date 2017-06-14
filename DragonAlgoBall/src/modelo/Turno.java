@@ -50,6 +50,12 @@ public class Turno {
 		}
 	}
 	
+	public void actualizarEstadoPersonajeAumentadoPorEsferas(){
+		for(Personaje personaje: equipo.getMiembros()){
+			personaje.actualizarEstadoPersonajeAumentadoPorEsferas();
+		}
+	}
+	
 	public void atacar(Posicion posicion){
 		this.personajeQueAtaca = this.seleccionarPersonaje(posicion);
 	}

@@ -12,6 +12,7 @@ public abstract class Personaje extends ObjetoJuego{
 	protected abstract boolean esGuerreroZ();
 	protected abstract boolean esEnemigoDeLaTierra();
 	public abstract void ataqueEspecial(Personaje enemigo);
+	private int turnosRestantesEsferaDelDragon = 0;
 	
 	public void evolucionar(){
 		this.estado.evolucionar(this.nombre);
@@ -94,6 +95,21 @@ public abstract class Personaje extends ObjetoJuego{
 		this.corrobarDistancias(enemigo);
 		this.esAtacable(enemigo);
 		ataque.ataqueBasico(enemigo, this.estado.getPoderDePelea());
+	}
+	
+	public void consumirEsferaDelDragon(){
+		turnosRestantesEsferaDelDragon = 2;
+		this.estado.aumentarAtaquePorEsferaDelDragon();
+	}
+	
+	public void actualizarEstadoPersonajeAumentadoPorEsferas(){
+		if (this.turnosRestantesEsferaDelDragon == 0){
+			this.estado.volverAtaqueANormalidad(this.nombre);
+			return;
+		}
+		turnosRestantesEsferaDelDragon -= 1;
+		
+		
 	}
 
 		

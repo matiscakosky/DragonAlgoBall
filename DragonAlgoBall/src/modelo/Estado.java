@@ -65,6 +65,15 @@ public class Estado {
 		}
 	}
 	
+	public void aumentarAtaquePorEsferaDelDragon(){
+		this.poderDePelea *= StatsJuego.factorAumentoEsferaDelDragon;
+	}
+	
+	public void volverAtaqueANormalidad(String personaje){
+		HashMap<String,HashMap<String,Integer>> stats = this.fase.obtenerStats(); 
+		this.poderDePelea = stats.get(personaje).get("poderDePelea");
+	}
+	
 	public void setearEstado(String personaje){
 		HashMap<String,HashMap<String,Integer>> stats = this.fase.obtenerStats(); 
 		this.poderDePelea = stats.get(personaje).get("poderDePelea");

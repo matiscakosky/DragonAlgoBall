@@ -92,7 +92,7 @@ public class StatsJuego {
 	public static final double factorAumentoMasenko = 1.25;
 	public static final double factorAumentoMakankosappo = 1.25;
 	public static final double factorAumentoRayoMortal = 1.5;
-	
+	public static final double factorAumentoEsferaDelDragon = 1.25;
 	
 	public static final HashMap<String,HashMap<String,Integer>> statsIniciales = obtenerEstadosIniciales();
 	public static final HashMap<String,HashMap<String,Integer>> statsEstado1 = obtenerEstados1();

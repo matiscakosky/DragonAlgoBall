@@ -9,6 +9,7 @@ public class TurnoEquipoZ extends Turno {
 		this.equipo = guerrerosZ;
 		this.tablero = tablero;
 		this.AumentarKiInicioDeTurno();
+		this.actualizarEstadoPersonajeAumentadoPorEsferas();
 		this.actualizarInmoviles();
 	}
 	
