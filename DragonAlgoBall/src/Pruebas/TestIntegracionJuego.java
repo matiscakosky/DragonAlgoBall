@@ -45,7 +45,7 @@ public class TestIntegracionJuego {
 
 		
 	@Test
-	public void test02imitacionJuegoConAtaques(){
+	public void test02ImitacionDelJuegoConElAtaqueDeMajinBooDeberiaInmovilizarPorTresTurnos(){
 		Tablero tablero = new Tablero(TAMANIO2);
 		JugadaGuerrerosZ equipoGuerrerosZ = new JugadaGuerrerosZ(tablero);
 		JugadaEnemigosDeLaTierra equipoEnemigos = new JugadaEnemigosDeLaTierra(tablero);

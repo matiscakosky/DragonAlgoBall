@@ -7,6 +7,7 @@ import modelo.StatsJuego;
 import modelo.excepciones.KiInsuficiente;
 
 public class Estado {
+	private boolean vivo = true;
 	private int poderDePelea;
 	private int distanciaDeAtaque;
 	private int velocidad;
@@ -36,9 +37,16 @@ public class Estado {
 	public int getKi(){
 		return this.ki;
 	}
+	
+	public boolean sigueVivo(){
+		return this.puntosDeVida > 0;
+	}
 
 	public int getPoderDePelea() {
 		return this.poderDePelea;
+	}
+	public boolean getVivo(){
+		return this.vivo;
 	}
 	
 	public void restarVida(int vida){
@@ -73,10 +81,24 @@ public class Estado {
 		this.poderDePelea *= StatsJuego.factorAumentoEsferaDelDragon;
 	}
 	
+	public void aumentarVelocidadPorNubeVoladora(){
+		this.poderDePelea *= StatsJuego.factorAumentoNubeVoladora;
+	}
+	
+	public void aumentarPuntosDeVidaPorSemillaDelErmintanio(){
+		this.puntosDeVida += StatsJuego.aumentoDeVidaSemillaErmitanio;
+	}
+	
 	public void volverAtaqueANormalidad(String personaje){
 		HashMap<String,HashMap<String,Integer>> stats = this.fase.obtenerStats(); 
 		this.poderDePelea = stats.get(personaje).get("poderDePelea");
 	}
+	
+	public void volverVelocidadANormalidad(String personaje){
+		HashMap<String,HashMap<String,Integer>> stats = this.fase.obtenerStats(); 
+		this.poderDePelea = stats.get(personaje).get("velocidad");
+	}
+	
 	
 	public void setearEstado(String personaje){
 		HashMap<String,HashMap<String,Integer>> stats = this.fase.obtenerStats(); 
@@ -84,6 +106,14 @@ public class Estado {
 		this.velocidad = stats.get(personaje).get("velocidad");
 		this.distanciaDeAtaque = stats.get(personaje).get("distanciaDeAtaque");
 		this.kiEvolucion = stats.get(personaje).get("kiEvolucion");
+	}
+	
+	public void setearAMuerto(){
+		this.vivo = false;
+		this.poderDePelea = 0;
+		this.velocidad = 0;
+		this.distanciaDeAtaque = 0;
+		this.ki = 0;
 	}
 
 }

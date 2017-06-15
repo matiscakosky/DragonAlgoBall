@@ -4,6 +4,9 @@ public class Ataque {
 	
 	public void ataqueBasico(Personaje personajeAtacado, int poderAtaque){
 		personajeAtacado.estado.restarVida(poderAtaque);
+		if (!personajeAtacado.estado.sigueVivo()){
+			personajeAtacado.morir();			
+		}
 	}
 	
 	public void kamehameha(Personaje personajeAtacado, int poderAtaque){

@@ -17,7 +17,7 @@ public class TestAtacar {
 		tablero.colocarObjeto(goku,goku.getPosicion());
 		Cell cell = new Cell(tablero);
 		tablero.colocarObjeto(cell,cell.getPosicion());
-		goku.ataqueBasico(cell);
+		goku.atacarConBasico(cell);
 
 		//Corroboro las nuevas vidas
 		assertEquals(cell.getPuntosDeVida(),480);
@@ -30,7 +30,7 @@ public class TestAtacar {
 		tablero.colocarObjeto(goku,goku.getPosicion());
 		Cell cell = new Cell(tablero);
 		tablero.colocarObjeto(cell,cell.getPosicion());
-		goku.ataqueBasico(cell);
+		goku.atacarConBasico(cell);
 	}
 	
 	@Test(expected= AtaqueInvalido.class)
@@ -40,7 +40,7 @@ public class TestAtacar {
 		tablero.colocarObjeto(goku,goku.getPosicion());
 		Gohan gohan = new Gohan(tablero);
 		tablero.colocarObjeto(gohan,gohan.getPosicion());
-		goku.ataqueBasico(gohan);
+		goku.atacarConBasico(gohan);
 	}
 	
 	@Test
@@ -55,7 +55,7 @@ public class TestAtacar {
 		goku.MoverPersonajeHaciaArriba();
 		cell.MoverPersonajeHaciaAbajoIzquierda();
 		
-		goku.ataqueBasico(cell);
+		goku.atacarConBasico(cell);
 
 		//Corroboro las nuevas vidas
 		assertEquals(cell.getPuntosDeVida(),480);
@@ -71,8 +71,8 @@ public class TestAtacar {
 		goku.MoverPersonajeHaciaArribaDerecha();
 		goku.MoverPersonajeHaciaArriba();
 		cell.MoverPersonajeHaciaAbajoIzquierda();
-		goku.ataqueBasico(cell);
-		cell.ataqueBasico(goku);
+		goku.atacarConBasico(cell);
+		cell.atacarConBasico(goku);
 
 		//Corroboro las nuevas vidas
 		assertEquals(cell.getPuntosDeVida(),480);
@@ -87,7 +87,7 @@ public class TestAtacar {
 		Cell cell = new Cell(tablero);
 		tablero.colocarObjeto(cell,cell.getPosicion());
 		goku.ataqueEspecial(cell);
-		cell.ataqueBasico(goku);
+		cell.atacarConBasico(goku);
 
 		//Corroboro las nuevas vidas
 		assertEquals(cell.getPuntosDeVida(),480);
@@ -103,7 +103,7 @@ public class TestAtacar {
 		tablero.colocarObjeto(cell,cell.getPosicion());
 		goku.aumentarKi(100);
 		goku.ataqueEspecial(cell);
-		cell.ataqueBasico(goku);
+		cell.atacarConBasico(goku);
 
 		//Corroboro las nuevas vidas
 		assertEquals(cell.getPuntosDeVida(),470);
@@ -119,7 +119,7 @@ public class TestAtacar {
 		tablero.colocarObjeto(cell,cell.getPosicion());
 		cell.aumentarKi(100);
 		cell.ataqueEspecial(goku);
-		cell.ataqueBasico(goku);
+		cell.atacarConBasico(goku);
 
 		//Corroboro las nuevas vidas
 		assertEquals(cell.getPuntosDeVida(),520);
@@ -141,7 +141,7 @@ public class TestAtacar {
 		cell.aumentarKi(100);
 		freezer.aumentarKi(100);
 		cell.ataqueEspecial(goku);
-		cell.ataqueBasico(goku);
+		cell.atacarConBasico(goku);
 		freezer.ataqueEspecial(cell);
 
 		//Corroboro las nuevas vidas
@@ -166,7 +166,7 @@ public class TestAtacar {
 		cell.aumentarKi(100);
 		freezer.aumentarKi(100);
 		cell.ataqueEspecial(goku);
-		cell.ataqueBasico(goku);
+		cell.atacarConBasico(goku);
 		freezer.ataqueEspecial(goku);
 		
 		//Corroboro las nuevas vidas

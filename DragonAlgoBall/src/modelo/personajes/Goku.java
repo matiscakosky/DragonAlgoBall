@@ -23,7 +23,7 @@ public class Goku extends GuerrerosZ {
 	
 	
 	
-	public void ataqueBasico(Personaje enemigo){
+	public void atacarConBasico(Personaje enemigo){
 		if (this.inmovilizado){throw new PersonajeInmovilizado();}
 		this.corrobarDistancias(enemigo);
 		this.esAtacable(enemigo);

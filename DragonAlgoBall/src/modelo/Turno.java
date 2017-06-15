@@ -3,14 +3,14 @@ package modelo;
 import modelo.excepciones.PosicionInvalida;
 import Juego.JugadaEquipo;
 
-public class Turno {
+public abstract class Turno {
 
 	protected Tablero tablero;
 	protected Personaje personajeQueSeMueve;
 	protected Personaje personajeQueAtaca;
-	protected Personaje personajeQueSeAtaca;
 	protected Personaje personajeEvoluciona;
 	protected JugadaEquipo equipo;
+	
 		
 	public Personaje seleccionarPersonaje(Posicion posicion){
 		Personaje personaje = this.tablero.obtenerPersonaje(posicion);
@@ -25,7 +25,7 @@ public class Turno {
 	}
 	
 	public void Mover(Posicion posicion){
-		this.personajeQueSeMueve = this.seleccionarPersonaje(posicion); 
+		this.personajeQueSeMueve = this.seleccionarPersonaje(posicion);
 	}
 	
 	public Personaje getPersonajeMovil(){
@@ -36,10 +36,7 @@ public class Turno {
 		return this.personajeQueAtaca;
 	}
 	
-	public Personaje getPersonajeatacado(){
-		return this.personajeQueSeAtaca;
-	}
-	
+
 	public Personaje getPersonajeAEvolucionar(){
 		return this.personajeEvoluciona;
 	}
@@ -50,13 +47,14 @@ public class Turno {
 		}
 	}
 	
-	public void actualizarEstadoPersonajeAumentadoPorEsferas(){
+	public void actualizarTurnoNubeVoladora(){
 		for(Personaje personaje: equipo.getMiembros()){
-			personaje.actualizarEstadoPersonajeAumentadoPorEsferas();
+			personaje.actualizarEstadoPersonajeAumentadoPorNubeVoladora();
 		}
 	}
 	
 	public void atacar(Posicion posicion){
 		this.personajeQueAtaca = this.seleccionarPersonaje(posicion);
+		personajeQueAtaca.actualizarEstadoPersonajeAumentadoPorEsferas();
 	}
 }

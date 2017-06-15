@@ -12,7 +12,8 @@ public abstract class Personaje extends ObjetoJuego{
 	protected abstract boolean esGuerreroZ();
 	protected abstract boolean esEnemigoDeLaTierra();
 	public abstract void ataqueEspecial(Personaje enemigo);
-	private int turnosRestantesEsferaDelDragon = 0;
+	private int ataquesRestantesEsferaDelDragon = 0;
+	private int turnosRestantesNubeVoladora = 0;
 	
 	public void evolucionar(){
 		this.estado.evolucionar(this.nombre);
@@ -95,25 +96,44 @@ public abstract class Personaje extends ObjetoJuego{
 		}
 	}
 	
-	public void ataqueBasico(Personaje enemigo){
+	public void atacarConBasico(Personaje enemigo){
 		this.corrobarDistancias(enemigo);
 		this.esAtacable(enemigo);
 		ataque.ataqueBasico(enemigo, this.estado.getPoderDePelea());
 	}
 	
 	public void consumirEsferaDelDragon(){
-		turnosRestantesEsferaDelDragon = 2;
+		ataquesRestantesEsferaDelDragon = 2;
 		this.estado.aumentarAtaquePorEsferaDelDragon();
 	}
 	
+	public void consumirNubeVoladora(){
+		turnosRestantesNubeVoladora = 2;
+		this.estado.aumentarVelocidadPorNubeVoladora();
+	}
+	
+	public void consumirSemillaDelErmitanio(){
+		this.estado.aumentarPuntosDeVidaPorSemillaDelErmintanio();
+	}
+		
 	public void actualizarEstadoPersonajeAumentadoPorEsferas(){
-		if (this.turnosRestantesEsferaDelDragon == 0){
+		if (this.ataquesRestantesEsferaDelDragon == 0){
 			this.estado.volverAtaqueANormalidad(this.nombre);
 			return;
 		}
-		turnosRestantesEsferaDelDragon -= 1;
-		
-		
+		ataquesRestantesEsferaDelDragon -= 1;
+	}
+	public void actualizarEstadoPersonajeAumentadoPorNubeVoladora(){
+		if (this.turnosRestantesNubeVoladora == 0){
+			this.estado.volverVelocidadANormalidad(this.nombre);
+			return;
+		}
+		turnosRestantesNubeVoladora -= 1;
+	}
+	
+	public void morir(){
+		this.estado.setearAMuerto();
+		this.tablero.borrarCasillero(this.movimiento.getPosicion());
 	}
 
 		

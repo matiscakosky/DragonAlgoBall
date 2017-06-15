@@ -93,11 +93,13 @@ public class StatsJuego {
 	public static final double factorAumentoMakankosappo = 1.25;
 	public static final double factorAumentoRayoMortal = 1.5;
 	public static final double factorAumentoEsferaDelDragon = 1.25;
+	public static final int factorAumentoNubeVoladora = 2;
+	public static final int aumentoDeVidaSemillaErmitanio = 100;
+	
 	
 	public static final HashMap<String,HashMap<String,Integer>> statsIniciales = obtenerEstadosIniciales();
 	public static final HashMap<String,HashMap<String,Integer>> statsEstado1 = obtenerEstados1();
 	public static final HashMap<String,HashMap<String,Integer>> statsEstado2 = obtenerEstados2();
-	
 	
 	public static HashMap<String,HashMap<String, Integer>> obtenerEstadosIniciales(){
 		HashMap<String,HashMap<String,Integer>> statsIniciales = new HashMap<String,HashMap<String,Integer>>();	
@@ -249,5 +251,5 @@ public class StatsJuego {
 		return e2Stats;
 	}	
 	
-	
+		
 }

@@ -97,7 +97,7 @@ public class TestIntegracionPrimeraEntrega {
 		
 		tablero.colocarObjeto(goku, goku.getPosicion());
 		tablero.colocarObjeto(cell, cell.getPosicion());
-		goku.ataqueBasico(cell);
+		goku.atacarConBasico(cell);
 	}
 	
 	@Test
@@ -115,7 +115,7 @@ public class TestIntegracionPrimeraEntrega {
 		
 		goku.MoverPersonajeHaciaArribaDerecha();
 		goku.MoverPersonajeHaciaArribaDerecha();
-		cell.ataqueBasico(goku);
+		cell.atacarConBasico(goku);
 		
 		assertEquals(goku.getPuntosDeVida(), puntosVidaGokuInicial - ataqueNormalCell);
 	}
