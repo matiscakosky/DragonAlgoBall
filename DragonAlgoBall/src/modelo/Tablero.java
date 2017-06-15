@@ -104,6 +104,16 @@ public class Tablero {
 		this.casilleros.put(posicionNueva, casillero);
 		return;
 	}
+	
+	public boolean quedanJugadoresDelOtroEquipo(Collection<Personaje> miembrosMiEquipo){
+		for (Posicion pos : this.casilleros.keySet()) {
+			ObjetoJuego objeto = obtenerObjeto(pos);
+			if(objeto.esPersonaje() && !miembrosMiEquipo.contains(objeto)){
+				return true;
+			}
+		}
+		return false;
+	}
 
 		
 		

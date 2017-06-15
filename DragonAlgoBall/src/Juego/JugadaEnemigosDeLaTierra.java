@@ -15,7 +15,6 @@ public class JugadaEnemigosDeLaTierra extends JugadaEquipo {
 		tablero.colocarObjeto(freezer,freezer.getPosicion());
 		tablero.colocarObjeto(boo,boo.getPosicion());
 		tablero.colocarObjeto(cell,cell.getPosicion());
-		this.cantidadEsferasCapturadas = 0;
 		
 	}
 }

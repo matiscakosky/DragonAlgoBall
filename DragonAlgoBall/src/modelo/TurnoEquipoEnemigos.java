@@ -2,6 +2,7 @@ package modelo;
 
 import Juego.JugadaEnemigosDeLaTierra;
 
+
 public class TurnoEquipoEnemigos extends Turno {
 	
 	public TurnoEquipoEnemigos(Tablero tablero, JugadaEnemigosDeLaTierra enemigos){
@@ -11,5 +12,4 @@ public class TurnoEquipoEnemigos extends Turno {
 		actualizarTurnoNubeVoladora();
 	}
 	
-
 }

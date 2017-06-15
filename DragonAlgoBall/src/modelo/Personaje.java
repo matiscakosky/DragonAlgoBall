@@ -13,6 +13,7 @@ public abstract class Personaje extends ObjetoJuego{
 	protected abstract boolean esEnemigoDeLaTierra();
 	public abstract void ataqueEspecial(Personaje enemigo);
 	private int ataquesRestantesEsferaDelDragon = 0;
+	private int cantidadEsferasConsumidas = 0;
 	private int turnosRestantesNubeVoladora = 0;
 	
 	public void evolucionar(){
@@ -28,6 +29,10 @@ public abstract class Personaje extends ObjetoJuego{
 	public int getKi(){
 		return this.estado.getKi();
 	}
+	public int getCantidadEsferasConsumidas(){
+		return this.cantidadEsferasConsumidas;
+	}
+	
 	
 	public void aumentarKi(int ki) {
 		this.estado.aumentarKi(ki);
@@ -104,6 +109,7 @@ public abstract class Personaje extends ObjetoJuego{
 	
 	public void consumirEsferaDelDragon(){
 		ataquesRestantesEsferaDelDragon = 2;
+		cantidadEsferasConsumidas ++;
 		this.estado.aumentarAtaquePorEsferaDelDragon();
 	}
 	

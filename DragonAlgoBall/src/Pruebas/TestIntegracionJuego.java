@@ -6,6 +6,7 @@ import org.junit.Test;
 import Juego.JugadaEnemigosDeLaTierra;
 import Juego.JugadaGuerrerosZ;
 import modelo.*;
+import modelo.consumibles.EsferaDelDragon;
 import modelo.excepciones.PersonajeInmovilizado;
 
 
@@ -110,6 +111,22 @@ public class TestIntegracionJuego {
 		assertEquals(tablero.obtenerObjeto(new Posicion(1,1)).getNombre(), "Picolo");
 		
 
+	}
+	
+	@Test
+	public void test03JuegoSeTerminaGananGuerrerosZConsiguieronLas7Esferas(){
+		/* generar 7 esferas del dragon tomarlas con un equipo y cuando termine el turno luego de agarrar la septima
+		 * al terminar el turno deberia levantar la excepcion de juego terminado
+		 * ATENCION! Poner al lado del @Test (excpected = JuegoTerminado.class) para que reconozca que espera eso
+		 */
+		
+	}
+	
+	
+	@Test
+	public void test04JuegoSeTerminaGananEnemigosDestruyeronAlOtroEquipo(){
+		/*idem anterior pero que se maten todos los de un equipo*/
+		
 	}
 	
 	

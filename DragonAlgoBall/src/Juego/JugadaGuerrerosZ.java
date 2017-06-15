@@ -16,7 +16,6 @@ public class JugadaGuerrerosZ extends JugadaEquipo {
 		tablero.colocarObjeto(picolo,picolo.getPosicion());
 		tablero.colocarObjeto(goku,goku.getPosicion());
 		tablero.colocarObjeto(gohan,gohan.getPosicion());
-		this.cantidadEsferasCapturadas = 0;
 	}
 
 }

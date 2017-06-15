@@ -7,7 +7,7 @@ import java.util.*;
 
 public abstract class JugadaEquipo {
 	protected Hashtable<String,Personaje> miembros;
-	protected int cantidadEsferasCapturadas;
+
 	
 	public JugadaEquipo(){
 		this.miembros = new Hashtable<String,Personaje>();
@@ -21,9 +21,18 @@ public abstract class JugadaEquipo {
 		return miembros.values();
 	}
 	
+	public int getCantidadDeEsferasCapturadas(){
+		int total = 0;
+		for (Personaje personaje : miembros.values()) {
+			total+=personaje.getCantidadEsferasConsumidas();
+		}
+		return total;
+	}
+	
 	protected void agregarMiembro(Personaje personaje){
 		String nombre = personaje.getNombre();
 		this.miembros.put(nombre,personaje);
 	}
+	
 
 }
