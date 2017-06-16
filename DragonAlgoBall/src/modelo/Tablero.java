@@ -24,14 +24,14 @@ public class Tablero {
 	}
 	
 	public void validarTamanio(int tamanio){
-		if(StatsJuego.tamanioTableroMaximo<tamanio || StatsJuego.tamanioTableroMinimo>tamanio){
+		if(StatsJuego.tamanioTablero<tamanio || StatsJuego.tamanioTableroMinimo>tamanio){
 			throw new TamanioTableroInvalido();
 		}
 	}
 
 	
 	public void validarPosicionLimitesTablero(Posicion posicion){
-		if(posicion.getCoordenadaX() <= 0 || posicion.getCoordenadaX() > StatsJuego.tamanioTableroMaximo ||	posicion.getCoordenadaY() <= 0 || posicion.getCoordenadaY() > StatsJuego.tamanioTableroMaximo){
+		if(posicion.getCoordenadaX() <= 0 || posicion.getCoordenadaX() > StatsJuego.tamanioTablero ||	posicion.getCoordenadaY() <= 0 || posicion.getCoordenadaY() > StatsJuego.tamanioTablero){
 			throw new MovimientoInvalido();
 		}
 	}

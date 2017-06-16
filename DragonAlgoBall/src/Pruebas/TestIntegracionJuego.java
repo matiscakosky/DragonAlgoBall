@@ -6,7 +6,6 @@ import org.junit.Test;
 import Juego.JugadaEnemigosDeLaTierra;
 import Juego.JugadaGuerrerosZ;
 import modelo.*;
-import modelo.consumibles.EsferaDelDragon;
 import modelo.excepciones.PersonajeInmovilizado;
 
 

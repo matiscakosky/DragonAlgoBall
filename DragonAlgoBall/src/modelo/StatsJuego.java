@@ -5,7 +5,7 @@ import java.util.*;
 
 public class StatsJuego {
 
-	public static final int tamanioTableroMaximo = 100;
+	public static final int tamanioTablero = 15;
 	public static final int tamanioTableroMinimo = 3;
 	public static final int velocidadGokuNormal = 2;
 	public static final int velocidadGokuKaioKen = 3;

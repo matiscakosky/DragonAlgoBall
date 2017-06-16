@@ -141,6 +141,9 @@ public abstract class Personaje extends ObjetoJuego{
 		this.estado.setearAMuerto();
 		this.tablero.borrarCasillero(this.movimiento.getPosicion());
 	}
+	public void actualizarCantidadPasos() {
+		this.movimiento.actualizarCantidadPasos(this.estado.getVelocidad());
+	}
 
 		
 }

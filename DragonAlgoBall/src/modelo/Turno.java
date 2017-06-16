@@ -34,6 +34,7 @@ public abstract class Turno {
 	
 	public void Mover(Posicion posicion){
 		this.personajeQueSeMueve = this.seleccionarPersonaje(posicion);
+		this.personajeQueSeMueve.actualizarCantidadPasos();
 	}
 	
 	public Personaje getPersonajeMovil(){

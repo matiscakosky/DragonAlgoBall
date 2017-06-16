@@ -211,7 +211,7 @@ public class TestPersonaje {
 	
 	@Test(expected = MovimientoInvalido.class)
 	public void test22MoverPersonajeHaciaArribaMovimientoInvalidoLimitesTablero(){
-		Tablero tablero = new Tablero(StatsJuego.tamanioTableroMaximo);
+		Tablero tablero = new Tablero(StatsJuego.tamanioTablero);
 		MajinBoo boo = new MajinBoo(tablero);
 		tablero.colocarObjeto(boo,boo.getPosicion());
 		boo.MoverPersonajeHaciaArriba();
@@ -219,7 +219,7 @@ public class TestPersonaje {
 	
 	@Test(expected = MovimientoInvalido.class)
 	public void test23MoverPersonajeHaciaDerechaMovimientoInvalidoLimitesTablero(){
-		Tablero tablero = new Tablero(StatsJuego.tamanioTableroMaximo);
+		Tablero tablero = new Tablero(StatsJuego.tamanioTablero);
 		Cell cell = new Cell(tablero);
 		tablero.colocarObjeto(cell,cell.getPosicion());
 		cell.MoverPersonajeHaciaDerecha();
@@ -227,7 +227,7 @@ public class TestPersonaje {
 	
 	@Test(expected = MovimientoInvalido.class)
 	public void test24MoverPersonajeHaciaDerechaMovimientoInvalidoPorPersonajeAdyacente(){
-		Tablero tablero = new Tablero(StatsJuego.tamanioTableroMaximo);
+		Tablero tablero = new Tablero(StatsJuego.tamanioTablero);
 		MajinBoo boo = new MajinBoo(tablero);
 		tablero.colocarObjeto(boo,boo.getPosicion());
 		Cell cell = new Cell(tablero);
@@ -237,7 +237,7 @@ public class TestPersonaje {
 	
 	@Test(expected = MovimientoInvalido.class)
 	public void test25MoverPersonajeHaciaIzquierdaMovimientoInvalidoLimitesTablero(){
-		Tablero tablero = new Tablero(StatsJuego.tamanioTableroMaximo);
+		Tablero tablero = new Tablero(StatsJuego.tamanioTablero);
 		Goku goku = new Goku(tablero);
 		tablero.colocarObjeto(goku,goku.getPosicion());
 		goku.MoverPersonajeHaciaIzquierda();
@@ -245,7 +245,7 @@ public class TestPersonaje {
 	
 	@Test(expected = MovimientoInvalido.class)
 	public void test26MoverPersonajeHaciaIzquierdaMovimientoInvalidoPorPersonajeAdyacente(){
-		Tablero tablero = new Tablero(StatsJuego.tamanioTableroMaximo);
+		Tablero tablero = new Tablero(StatsJuego.tamanioTablero);
 		Picolo picolo = new Picolo(tablero);
 		tablero.colocarObjeto(picolo,picolo.getPosicion());
 		Goku goku = new Goku(tablero);

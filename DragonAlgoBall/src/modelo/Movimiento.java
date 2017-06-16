@@ -7,7 +7,7 @@ public class Movimiento {
 	private Posicion posicionActual;
 	
 	public Movimiento(int velocidad,Posicion pos){
-		this.cantidadPasosMoverse = velocidad; //Ojo con esto, no esta bien se deberia resetear al inicio de cada turno
+		this.cantidadPasosMoverse = velocidad;
 		this.posicionActual = pos;
 	}
 	
@@ -81,6 +81,10 @@ public class Movimiento {
 		tablero.moverPersonaje(posicionActual, posicionAMoverme);
 		this.cantidadPasosMoverse -= 1;
 		this.posicionActual = posicionAMoverme;
+	}
+
+	public void actualizarCantidadPasos(int velocidad) {
+		this.cantidadPasosMoverse = velocidad;
 	}
 	
 }
