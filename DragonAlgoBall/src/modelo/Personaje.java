@@ -9,26 +9,31 @@ public abstract class Personaje extends ObjetoJuego{
 	protected Movimiento movimiento;
 	protected Estado estado;
 	protected Ataque ataque;
-	protected abstract boolean esGuerreroZ();
-	protected abstract boolean esEnemigoDeLaTierra();
-	public abstract void ataqueEspecial(Personaje enemigo);
+	protected Fase fase;
 	private int ataquesRestantesEsferaDelDragon = 0;
 	private int cantidadEsferasConsumidas = 0;
 	private int turnosRestantesNubeVoladora = 0;
+	protected abstract boolean esGuerreroZ();
+	protected abstract boolean esEnemigoDeLaTierra();
+	public abstract void ataqueEspecial(Personaje enemigo);
+	
 	
 	public void evolucionar(){
-		this.estado.evolucionar(this.nombre);
+		this.fase = this.estado.evolucionar(this.nombre, this.fase);
 	}
 	
 	public int getVelocidad(){
 		return this.estado.getVelocidad();
 	}
+	
 	public int getPoderDePelea(){
 		return this.estado.getPoderDePelea();
 	}
+	
 	public int getKi(){
 		return this.estado.getKi();
 	}
+	
 	public int getCantidadEsferasConsumidas(){
 		return this.cantidadEsferasConsumidas;
 	}
@@ -45,10 +50,6 @@ public abstract class Personaje extends ObjetoJuego{
 	
 	public int getPuntosDeVida(){
 		return this.estado.getPuntosDeVida();
-	}
-	
-	public boolean puedeEvolucionar(){
-		return this.estado.puedeEvolucionar();
 	}
 
 	public void MoverPersonajeHaciaArriba(){
@@ -124,14 +125,14 @@ public abstract class Personaje extends ObjetoJuego{
 		
 	public void actualizarEstadoPersonajeAumentadoPorEsferas(){
 		if (this.ataquesRestantesEsferaDelDragon == 0){
-			this.estado.volverAtaqueANormalidad(this.nombre);
+			this.estado.volverAtaqueANormalidad(this.fase);
 			return;
 		}
 		ataquesRestantesEsferaDelDragon -= 1;
 	}
 	public void actualizarEstadoPersonajeAumentadoPorNubeVoladora(){
 		if (this.turnosRestantesNubeVoladora == 0){
-			this.estado.volverVelocidadANormalidad(this.nombre);
+			this.estado.volverVelocidadANormalidad(this.fase);
 			return;
 		}
 		turnosRestantesNubeVoladora -= 1;
@@ -141,6 +142,7 @@ public abstract class Personaje extends ObjetoJuego{
 		this.estado.setearAMuerto();
 		this.tablero.borrarCasillero(this.movimiento.getPosicion());
 	}
+	
 	public void actualizarCantidadPasos() {
 		this.movimiento.actualizarCantidadPasos(this.estado.getVelocidad());
 	}

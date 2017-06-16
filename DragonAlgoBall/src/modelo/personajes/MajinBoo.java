@@ -1,13 +1,15 @@
 package modelo.personajes;
 
 import modelo.*;
+import modelo.fases.FaseInicialMajinBoo;
 
 public class MajinBoo extends EnemigosDeLaTierra {
 	
 	public MajinBoo(Tablero tablero) {
 		this.nombre = "MajinBoo";
 		this.tablero = tablero;
-		this.estado = new Estado(this.nombre);
+		this.fase = new FaseInicialMajinBoo();
+		this.estado = new Estado(this.nombre,this.fase);
 		this.ataque = new Ataque();
 		Posicion pos = new Posicion(this.tablero.getTamanio()-1,this.tablero.getTamanio());
 		this.movimiento = new Movimiento(estado.getVelocidad(),pos);

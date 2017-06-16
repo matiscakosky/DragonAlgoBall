@@ -25,7 +25,7 @@ public class TestAtacar {
 	
 	@Test(expected= AtaqueInvalido.class)
 	public void test02ColocarDosPersonajesQueNoSeLleganAAtacar(){
-		Tablero tablero = new Tablero(50);
+		Tablero tablero = new Tablero(15);
 		Goku goku = new Goku(tablero);
 		tablero.colocarObjeto(goku,goku.getPosicion());
 		Cell cell = new Cell(tablero);

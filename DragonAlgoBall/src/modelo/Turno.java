@@ -27,7 +27,6 @@ public abstract class Turno {
 	}
 	
 
-
 	public void elegirPersonajeEvolucionar(Posicion posicion){
 		this.personajeEvoluciona = this.seleccionarPersonaje(posicion);
 	}

@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import modelo.*;
-import modelo.excepciones.KiInsuficiente;
+import modelo.excepciones.EvolucionInvalida;
 import modelo.personajes.Cell;
 import modelo.personajes.Gohan;
 import modelo.personajes.Goku;
@@ -50,7 +50,7 @@ public class TestStatsJuego {
 		assertEquals(boo.getVelocidad(), StatsJuego.velocidadMajinBooNormal);		
 	}
 	
-	@Test(expected=KiInsuficiente.class)
+	@Test(expected=EvolucionInvalida.class)
 	public void test05CrearJuegoConPersonajeYEvolucionarloNoDeberiaPoder(){
 		Tablero tablero = new Tablero(TAMANIO);
 		Goku goku = new Goku(tablero);

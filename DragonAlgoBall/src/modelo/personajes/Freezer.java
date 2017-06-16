@@ -8,13 +8,15 @@ import modelo.Personaje;
 import modelo.Posicion;
 import modelo.StatsJuego;
 import modelo.Tablero;
+import modelo.fases.FaseInicialFreezer;
 
 public class Freezer extends EnemigosDeLaTierra {
 
 	public Freezer(Tablero tablero) {
 		this.nombre = "Freezer";
 		this.tablero = tablero;
-		this.estado = new Estado(this.nombre);
+		this.fase = new FaseInicialFreezer();
+		this.estado = new Estado(this.nombre,this.fase);
 		this.ataque = new Ataque();
 		Posicion pos = new Posicion(this.tablero.getTamanio(),this.tablero.getTamanio()-1);
 		this.movimiento = new Movimiento(estado.getVelocidad(),pos);

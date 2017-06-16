@@ -2,9 +2,7 @@ package modelo;
 
 import java.util.HashMap;
 import modelo.StatsJuego;
-
-
-import modelo.excepciones.KiInsuficiente;
+import modelo.excepciones.EvolucionInvalida;
 
 public class Estado {
 	private boolean vivo = true;
@@ -14,11 +12,10 @@ public class Estado {
 	private int kiEvolucion;
 	private int puntosDeVida;
 	private int ki;
-	private Fase fase;
 	
-	public Estado(String nombre){
-		this.fase = new FaseInicial();
-		this.setearEstado(nombre);
+	
+	public Estado(String nombre,Fase fase){
+		this.setearEstado(nombre,fase);
 		this.puntosDeVida = StatsJuego.statsIniciales.get(nombre).get("puntosDeVida");
 	}
 	
@@ -65,15 +62,16 @@ public class Estado {
 		return this.ki>=this.kiEvolucion;
 	}
 	
-	public void evolucionar(String personaje){
+	public Fase evolucionar(String nombre,Fase fase){
 		if (this.puedeEvolucionar()){
+			Fase nuevaFase = fase.evolucionar();
 			int kiGastado = this.kiEvolucion;
-			this.fase = this.fase.evolucionar();
-			this.setearEstado(personaje);
+			this.setearEstado(nombre,nuevaFase);
 			this.ki -= kiGastado;
+			return nuevaFase;
 			}
 		else{
-			throw new KiInsuficiente();
+			throw new EvolucionInvalida();
 		}
 	}
 	
@@ -89,23 +87,23 @@ public class Estado {
 		this.puntosDeVida += StatsJuego.aumentoDeVidaSemillaErmitanio;
 	}
 	
-	public void volverAtaqueANormalidad(String personaje){
-		HashMap<String,HashMap<String,Integer>> stats = this.fase.obtenerStats(); 
-		this.poderDePelea = stats.get(personaje).get("poderDePelea");
+	public void volverAtaqueANormalidad(Fase fase){
+		HashMap<String,Integer> stats = fase.obtenerStats(); 
+		this.poderDePelea = stats.get("poderDePelea");
 	}
 	
-	public void volverVelocidadANormalidad(String personaje){
-		HashMap<String,HashMap<String,Integer>> stats = this.fase.obtenerStats(); 
-		this.poderDePelea = stats.get(personaje).get("velocidad");
+	public void volverVelocidadANormalidad(Fase fase){
+		HashMap<String,Integer> stats = fase.obtenerStats(); 
+		this.poderDePelea = stats.get("velocidad");
 	}
 	
 	
-	public void setearEstado(String personaje){
-		HashMap<String,HashMap<String,Integer>> stats = this.fase.obtenerStats(); 
-		this.poderDePelea = stats.get(personaje).get("poderDePelea");
-		this.velocidad = stats.get(personaje).get("velocidad");
-		this.distanciaDeAtaque = stats.get(personaje).get("distanciaDeAtaque");
-		this.kiEvolucion = stats.get(personaje).get("kiEvolucion");
+	public void setearEstado(String personaje,Fase fase){
+		HashMap<String,Integer> stats = fase.obtenerStats(); 
+		this.poderDePelea = stats.get("poderDePelea");
+		this.velocidad = stats.get("velocidad");
+		this.distanciaDeAtaque = stats.get("distanciaDeAtaque");
+		this.kiEvolucion = stats.get("kiEvolucion");
 	}
 	
 	public void setearAMuerto(){

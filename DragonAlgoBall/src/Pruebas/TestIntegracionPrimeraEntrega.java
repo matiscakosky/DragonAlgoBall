@@ -49,7 +49,7 @@ public class TestIntegracionPrimeraEntrega {
 		majinBoo.MoverPersonajeHaciaAbajoDerecha();	
 	}
 	
-	@Test (expected = KiInsuficiente.class)
+	@Test (expected = EvolucionInvalida.class)
 	public void test04FallaAlEvolucionar(){
 		
 		Tablero tablero = new Tablero(TAMANIO);
@@ -57,22 +57,6 @@ public class TestIntegracionPrimeraEntrega {
 		gohan.evolucionar();
 	}
 	
-	@Test
-	public void test05EvolucionarGoku(){
-		
-		int KIEVOLUCION1GOKU = 20;		
-		
-		Tablero tablero = new Tablero(TAMANIO);
-		Goku goku = new Goku(tablero);
-		assertFalse(goku.puedeEvolucionar());
-		
-		goku.aumentarKi(KIEVOLUCION1GOKU);
-		assertTrue(goku.puedeEvolucionar());
-		goku.evolucionar();
-		
-		assertFalse(goku.puedeEvolucionar());
-
-	}
 	
 	@Test
 	public void test05VerificarEvolucionGohan(){

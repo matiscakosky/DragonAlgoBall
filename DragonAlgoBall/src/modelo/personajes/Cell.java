@@ -8,6 +8,7 @@ import modelo.Personaje;
 import modelo.Posicion;
 import modelo.StatsJuego;
 import modelo.Tablero;
+import modelo.fases.FaseInicialCell;
 
 public class Cell extends EnemigosDeLaTierra {
 	int cantidadDeAbsorber;
@@ -15,7 +16,8 @@ public class Cell extends EnemigosDeLaTierra {
 	public Cell(Tablero tablero) {
 		this.nombre = "Cell";
 		this.tablero = tablero;
-		this.estado = new Estado(this.nombre);
+		this.fase = new FaseInicialCell();
+		this.estado = new Estado(this.nombre,this.fase);
 		this.ataque = new Ataque();
 		Posicion pos = new Posicion(this.tablero.getTamanio(),this.tablero.getTamanio()); 
 		this.movimiento = new Movimiento(estado.getVelocidad(),pos);
