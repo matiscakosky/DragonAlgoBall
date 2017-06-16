@@ -10,18 +10,22 @@ import modelo.personajes.Gohan;
 import modelo.personajes.Goku;
 import modelo.personajes.MajinBoo;
 import modelo.personajes.Picolo;
+import modelo.Equipo;
 import modelo.ObjetoJuego;
 import modelo.Personaje;
 import modelo.StatsJuego;
 
 public class TestPersonaje {
 	
+	Equipo EQUIPO1 = new Equipo();
+	Equipo EQUIPO2 = new Equipo();
+	
 	@Test
 	public void test01CrearPersonajes(){
 		Tablero tablero = new Tablero(5);
-		Goku goku = new Goku(tablero);
-		Personaje majinboo = new MajinBoo(tablero);
-		ObjetoJuego picolo = new Picolo(tablero);
+		Goku goku = new Goku(tablero,EQUIPO1);
+		Personaje majinboo = new MajinBoo(tablero, EQUIPO2);
+		ObjetoJuego picolo = new Picolo(tablero,EQUIPO1);
 		assert(goku instanceof Goku);
 		assert(picolo instanceof Picolo);
 		assert(majinboo instanceof MajinBoo);
@@ -30,21 +34,21 @@ public class TestPersonaje {
 	@Test
 	public void test02GetNombre(){
 		Tablero tablero = new Tablero(5);
-		Goku goku = new Goku(tablero);
+		Goku goku = new Goku(tablero,EQUIPO1);
 		assertEquals(goku.getNombre(),"Goku");
 	}
 	
 	@Test
 	public void test03GetKi(){
 		Tablero tablero = new Tablero(5);
-		Goku goku = new Goku(tablero);
+		Goku goku = new Goku(tablero,EQUIPO1);
 		assertEquals(goku.getKi(),0);
 	}
 	
 	@Test
 	public void test04GetPosicion(){
 		Tablero tablero = new Tablero(5);
-		Goku goku = new Goku(tablero);
+		Goku goku = new Goku(tablero,EQUIPO1);
 		assertEquals(goku.getPosicion().getCoordenadaX(),1);
 		assertEquals(goku.getPosicion().getCoordenadaY(),1);
 	}
@@ -52,7 +56,7 @@ public class TestPersonaje {
 	@Test
 	public void test05AumentarKi(){
 		Tablero tablero = new Tablero(5);
-		Goku goku = new Goku(tablero);
+		Goku goku = new Goku(tablero,EQUIPO1);
 		goku.aumentarKi(100);
 		assertEquals(goku.getKi(),100);
 	}
@@ -60,48 +64,54 @@ public class TestPersonaje {
 	@Test
 	public void test06GetVelocidad(){
 		Tablero tablero = new Tablero(5);
-		Goku goku = new Goku(tablero);
+		Goku goku = new Goku(tablero,EQUIPO1);
 		assertEquals(goku.getVelocidad(),StatsJuego.velocidadGokuNormal);
 	}
 	
 	@Test
 	public void test07GetVelocidadDespuesDeEvolucionar(){
 		Tablero tablero = new Tablero(5);
-		Goku goku = new Goku(tablero);
+		Goku goku = new Goku(tablero,EQUIPO1);
+		assertEquals(goku.getKi(),0);
 		goku.aumentarKi(50);
-		goku.evolucionar();
+		assertEquals(goku.getKi(),50);
+		assertEquals(StatsJuego.kiEvolucionEstado1Goku,20);
+		goku.transformar();
 		assertEquals(goku.getVelocidad(),StatsJuego.velocidadGokuKaioKen);
+
 	}
 	
 	@Test
 	public void test08GetKiDespuesDeEvolucionar(){
 		Tablero tablero = new Tablero(5);
-		Goku goku = new Goku(tablero);
-		goku.aumentarKi(50);
-		goku.evolucionar();
-		assertEquals(goku.getKi(),30);
+		Goku goku = new Goku(tablero,EQUIPO1);
+		assertEquals(goku.getKi(),0);
+		goku.aumentarKi(60);
+		assertEquals(goku.getKi(),60);
+		goku.transformar();
+		assertEquals(goku.getKi(),40);
 	}
 	
 	@Test
 	public void test09GetPoderDePelea(){
 		Tablero tablero = new Tablero(5);
-		Goku goku = new Goku(tablero);
+		Goku goku = new Goku(tablero, EQUIPO1);
 		assertEquals(goku.getPoderDePelea(),StatsJuego.poderPeleaGokuNormal);
 	}
 	
 	@Test
 	public void test10GetPoderDePeleaDespuesDeEvolucionar(){
 		Tablero tablero = new Tablero(5);
-		Goku goku = new Goku(tablero);
+		Goku goku = new Goku(tablero, EQUIPO1);
 		goku.aumentarKi(50);
-		goku.evolucionar();
+		goku.transformar();
 		assertEquals(goku.getPoderDePelea(),StatsJuego.poderPeleaGokuKaioKen);
 	}
 	
 	@Test
 	public void test11MoverPersonajeHaciaArriba(){
 		Tablero tablero = new Tablero(5);
-		Goku goku = new Goku(tablero);
+		Goku goku = new Goku(tablero, EQUIPO1);
 		tablero.colocarObjeto(goku,goku.getPosicion());
 		goku.MoverPersonajeHaciaArriba();
 		assertEquals(goku.getPosicion().getCoordenadaX(),1);
@@ -111,7 +121,7 @@ public class TestPersonaje {
 	@Test
 	public void test12MoverPersonajeHaciaAbajo(){
 		Tablero tablero = new Tablero(5);
-		MajinBoo boo = new MajinBoo(tablero);
+		MajinBoo boo = new MajinBoo(tablero, EQUIPO2);
 		tablero.colocarObjeto(boo,boo.getPosicion());
 		boo.MoverPersonajeHaciaAbajo();
 		assertEquals(boo.getPosicion().getCoordenadaX(),4);
@@ -121,7 +131,7 @@ public class TestPersonaje {
 	@Test
 	public void test13MoverPersonajeHaciaDerecha(){
 		Tablero tablero = new Tablero(5);
-		Picolo picolo = new Picolo(tablero);
+		Picolo picolo = new Picolo(tablero, EQUIPO1);
 		tablero.colocarObjeto(picolo,picolo.getPosicion());
 		picolo.MoverPersonajeHaciaDerecha();
 		assertEquals(picolo.getPosicion().getCoordenadaX(),3);
@@ -131,7 +141,7 @@ public class TestPersonaje {
 	@Test
 	public void test14MoverPersonajeHaciaIzquierda(){
 		Tablero tablero = new Tablero(10);
-		Freezer freezer = new Freezer(tablero);
+		Freezer freezer = new Freezer(tablero, EQUIPO2);
 		tablero.colocarObjeto(freezer,freezer.getPosicion());
 		freezer.MoverPersonajeHaciaIzquierda();
 		assertEquals(freezer.getPosicion().getCoordenadaX(),9);
@@ -141,7 +151,7 @@ public class TestPersonaje {
 	@Test
 	public void test15MoverPersonajeHaciaArribaIzquierda(){
 		Tablero tablero = new Tablero(10);
-		Freezer freezer = new Freezer(tablero);
+		Freezer freezer = new Freezer(tablero, EQUIPO2);
 		tablero.colocarObjeto(freezer,freezer.getPosicion());
 		freezer.MoverPersonajeHaciaAbajo();
 		freezer.MoverPersonajeHaciaArribaIzquierda();
@@ -152,7 +162,7 @@ public class TestPersonaje {
 	@Test
 	public void test16MoverPersonajeHaciaArribaDerecha(){
 		Tablero tablero = new Tablero(10);
-		Gohan gohan = new Gohan(tablero);
+		Gohan gohan = new Gohan(tablero, EQUIPO1);
 		tablero.colocarObjeto(gohan,gohan.getPosicion());
 		gohan.MoverPersonajeHaciaArribaDerecha();
 		assertEquals(gohan.getPosicion().getCoordenadaX(),2);
@@ -162,7 +172,7 @@ public class TestPersonaje {
 	@Test
 	public void test17MoverPersonajeHaciaAbajoDerecha(){
 		Tablero tablero = new Tablero(15);
-		MajinBoo boo = new MajinBoo(tablero);
+		MajinBoo boo = new MajinBoo(tablero, EQUIPO2);
 		tablero.colocarObjeto(boo,boo.getPosicion());
 		boo.MoverPersonajeHaciaAbajo();
 		boo.MoverPersonajeHaciaAbajoDerecha();
@@ -173,7 +183,7 @@ public class TestPersonaje {
 	@Test
 	public void test18MoverPersonajeHaciaAbajoIzquierda(){
 		Tablero tablero = new Tablero(15);
-		Cell cell = new Cell(tablero);
+		Cell cell = new Cell(tablero, EQUIPO2);
 		tablero.colocarObjeto(cell,cell.getPosicion());
 		cell.MoverPersonajeHaciaAbajoIzquierda();
 		cell.MoverPersonajeHaciaAbajoIzquierda();
@@ -184,8 +194,8 @@ public class TestPersonaje {
 	@Test(expected = MovimientoInvalido.class)
 	public void test19MoverPersonajeHaciaAbajoMovimientoInvalidoPorPersonajeAdyacente(){
 		Tablero tablero = new Tablero(15);
-		Cell cell = new Cell(tablero);
-		Freezer freezer = new Freezer(tablero);
+		Cell cell = new Cell(tablero, EQUIPO2);
+		Freezer freezer = new Freezer(tablero, EQUIPO2);
 		tablero.colocarObjeto(cell,cell.getPosicion());
 		tablero.colocarObjeto(freezer,freezer.getPosicion());
 		cell.MoverPersonajeHaciaAbajo();
@@ -194,7 +204,7 @@ public class TestPersonaje {
 	@Test(expected = MovimientoInvalido.class)
 	public void test20MoverPersonajeHaciaAbajoMovimientoInvalidoLimitesTablero(){
 		Tablero tablero = new Tablero(15);
-		Goku goku = new Goku(tablero);
+		Goku goku = new Goku(tablero, EQUIPO1);
 		tablero.colocarObjeto(goku,goku.getPosicion());
 		goku.MoverPersonajeHaciaAbajo();
 	}
@@ -202,8 +212,8 @@ public class TestPersonaje {
 	@Test(expected = MovimientoInvalido.class)
 	public void test21MoverPersonajeHaciaArribaMovimientoInvalidoPorPersonajeAdyacente(){
 		Tablero tablero = new Tablero(15);
-		Cell cell = new Cell(tablero);
-		Freezer freezer = new Freezer(tablero);
+		Cell cell = new Cell(tablero, EQUIPO2);
+		Freezer freezer = new Freezer(tablero, EQUIPO2);
 		tablero.colocarObjeto(cell,cell.getPosicion());
 		tablero.colocarObjeto(freezer,freezer.getPosicion());
 		freezer.MoverPersonajeHaciaArriba();
@@ -212,7 +222,7 @@ public class TestPersonaje {
 	@Test(expected = MovimientoInvalido.class)
 	public void test22MoverPersonajeHaciaArribaMovimientoInvalidoLimitesTablero(){
 		Tablero tablero = new Tablero(StatsJuego.tamanioTablero);
-		MajinBoo boo = new MajinBoo(tablero);
+		MajinBoo boo = new MajinBoo(tablero, EQUIPO2);
 		tablero.colocarObjeto(boo,boo.getPosicion());
 		boo.MoverPersonajeHaciaArriba();
 	}
@@ -220,7 +230,7 @@ public class TestPersonaje {
 	@Test(expected = MovimientoInvalido.class)
 	public void test23MoverPersonajeHaciaDerechaMovimientoInvalidoLimitesTablero(){
 		Tablero tablero = new Tablero(StatsJuego.tamanioTablero);
-		Cell cell = new Cell(tablero);
+		Cell cell = new Cell(tablero, EQUIPO2);
 		tablero.colocarObjeto(cell,cell.getPosicion());
 		cell.MoverPersonajeHaciaDerecha();
 	}
@@ -228,9 +238,9 @@ public class TestPersonaje {
 	@Test(expected = MovimientoInvalido.class)
 	public void test24MoverPersonajeHaciaDerechaMovimientoInvalidoPorPersonajeAdyacente(){
 		Tablero tablero = new Tablero(StatsJuego.tamanioTablero);
-		MajinBoo boo = new MajinBoo(tablero);
+		MajinBoo boo = new MajinBoo(tablero, EQUIPO2);
 		tablero.colocarObjeto(boo,boo.getPosicion());
-		Cell cell = new Cell(tablero);
+		Cell cell = new Cell(tablero, EQUIPO2);
 		tablero.colocarObjeto(cell,cell.getPosicion());
 		boo.MoverPersonajeHaciaDerecha();
 	}
@@ -238,7 +248,7 @@ public class TestPersonaje {
 	@Test(expected = MovimientoInvalido.class)
 	public void test25MoverPersonajeHaciaIzquierdaMovimientoInvalidoLimitesTablero(){
 		Tablero tablero = new Tablero(StatsJuego.tamanioTablero);
-		Goku goku = new Goku(tablero);
+		Goku goku = new Goku(tablero, EQUIPO1);
 		tablero.colocarObjeto(goku,goku.getPosicion());
 		goku.MoverPersonajeHaciaIzquierda();
 	}
@@ -246,9 +256,9 @@ public class TestPersonaje {
 	@Test(expected = MovimientoInvalido.class)
 	public void test26MoverPersonajeHaciaIzquierdaMovimientoInvalidoPorPersonajeAdyacente(){
 		Tablero tablero = new Tablero(StatsJuego.tamanioTablero);
-		Picolo picolo = new Picolo(tablero);
+		Picolo picolo = new Picolo(tablero, EQUIPO1);
 		tablero.colocarObjeto(picolo,picolo.getPosicion());
-		Goku goku = new Goku(tablero);
+		Goku goku = new Goku(tablero, EQUIPO1);
 		tablero.colocarObjeto(goku,goku.getPosicion());
 		picolo.MoverPersonajeHaciaIzquierda();
 	}

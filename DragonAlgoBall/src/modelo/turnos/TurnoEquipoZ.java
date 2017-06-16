@@ -1,11 +1,14 @@
-package modelo;
+package modelo.turnos;
 
 
-import Juego.JugadaGuerrerosZ;
+import modelo.Equipo;
+import modelo.Personaje;
+import modelo.Tablero;
+import modelo.personajes.GuerreroZ;
 
 public class TurnoEquipoZ extends Turno {
 	
-	public TurnoEquipoZ(Tablero tablero, JugadaGuerrerosZ guerrerosZ){
+	public TurnoEquipoZ(Tablero tablero, Equipo guerrerosZ){
 		this.equipo = guerrerosZ;
 		this.tablero = tablero;
 		this.AumentarKiInicioDeTurno();
@@ -15,7 +18,7 @@ public class TurnoEquipoZ extends Turno {
 	
 	private void actualizarInmoviles(){
 		for (Personaje guerreroZ: this.equipo.getMiembros()) {
-			GuerrerosZ guerrero = (GuerrerosZ)guerreroZ;
+			GuerreroZ guerrero = (GuerreroZ)guerreroZ;
 			guerrero.actualizarInmovilizado();
 		}
 	}

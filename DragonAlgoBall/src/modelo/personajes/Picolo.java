@@ -3,12 +3,13 @@ package modelo.personajes;
 import modelo.*;
 import modelo.fases.FaseInicialPicolo;
 
-public class Picolo extends GuerrerosZ  {
+public class Picolo extends GuerreroZ  {
 	
-	public Picolo(Tablero tablero){
+	public Picolo(Tablero tablero,Equipo equipo){
 		this.nombre = "Picolo";
 		this.tablero = tablero;
 		this.fase = new FaseInicialPicolo();
+		this.equipo = equipo;
 		this.estado = new Estado(this.nombre,this.fase);
 		this.ataque = new Ataque();
 		Posicion pos = new Posicion(2,1);

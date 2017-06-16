@@ -1,8 +1,8 @@
 package modelo;
 
-import modelo.Movimiento;
 import modelo.excepciones.AtaqueInvalido;
 import modelo.excepciones.KiInsuficiente;
+import modelo.fases.Fase;
 
 
 public abstract class Personaje extends ObjetoJuego{
@@ -10,6 +10,7 @@ public abstract class Personaje extends ObjetoJuego{
 	protected Estado estado;
 	protected Ataque ataque;
 	protected Fase fase;
+	protected Equipo equipo;
 	private int ataquesRestantesEsferaDelDragon = 0;
 	private int cantidadEsferasConsumidas = 0;
 	private int turnosRestantesNubeVoladora = 0;
@@ -18,8 +19,10 @@ public abstract class Personaje extends ObjetoJuego{
 	public abstract void ataqueEspecial(Personaje enemigo);
 	
 	
-	public void evolucionar(){
-		this.fase = this.estado.evolucionar(this.nombre, this.fase);
+	public void transformar(){
+		int kiActual = this.estado.getKi();
+		this.fase = this.fase.evolucionar(kiActual);
+		this.estado.actualizar(this.nombre, this.fase);
 	}
 	
 	public int getVelocidad(){

@@ -1,5 +1,7 @@
 package modelo;
 
+import modelo.personajes.GuerreroZ;
+
 public class Ataque {
 	
 	public void ataqueBasico(Personaje personajeAtacado, int poderAtaque){
@@ -39,7 +41,7 @@ public class Ataque {
 		this.ataqueBasico(enemigo, (int)(poderAtaque*StatsJuego.factorAumentoRayoMortal));
 	}
 	
-	public void convertirEnChocolate(GuerrerosZ enemigo, int poderAtaque){
+	public void convertirEnChocolate(GuerreroZ enemigo, int poderAtaque){
 		enemigo.inmovilizar();
 	}
 	

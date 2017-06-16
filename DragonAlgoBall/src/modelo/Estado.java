@@ -2,10 +2,10 @@ package modelo;
 
 import java.util.HashMap;
 import modelo.StatsJuego;
-import modelo.excepciones.EvolucionInvalida;
+import modelo.fases.Fase;
 
 public class Estado {
-	private boolean vivo = true;
+	private boolean vivo;
 	private int poderDePelea;
 	private int distanciaDeAtaque;
 	private int velocidad;
@@ -16,7 +16,9 @@ public class Estado {
 	
 	public Estado(String nombre,Fase fase){
 		this.setearEstado(nombre,fase);
-		this.puntosDeVida = StatsJuego.statsIniciales.get(nombre).get("puntosDeVida");
+		this.puntosDeVida = fase.obtenerStats().get("puntosDeVida");
+		this.ki = 0;
+		this.vivo = true;
 	}
 	
 	public int getVelocidad(){
@@ -42,6 +44,7 @@ public class Estado {
 	public int getPoderDePelea() {
 		return this.poderDePelea;
 	}
+	
 	public boolean getVivo(){
 		return this.vivo;
 	}
@@ -50,29 +53,12 @@ public class Estado {
 		this.puntosDeVida-=vida;
 	}
 	
-	public void restarKi(int ki){
-		this.ki -= ki;
+	public void restarKi(int kiDisminuir){
+		this.ki -= kiDisminuir;
 	}
 	
 	public int getPuntosDeVida() {
 		return this.puntosDeVida;
-	}
-	
-	public boolean puedeEvolucionar(){
-		return this.ki>=this.kiEvolucion;
-	}
-	
-	public Fase evolucionar(String nombre,Fase fase){
-		if (this.puedeEvolucionar()){
-			Fase nuevaFase = fase.evolucionar();
-			int kiGastado = this.kiEvolucion;
-			this.setearEstado(nombre,nuevaFase);
-			this.ki -= kiGastado;
-			return nuevaFase;
-			}
-		else{
-			throw new EvolucionInvalida();
-		}
 	}
 	
 	public void aumentarAtaquePorEsferaDelDragon(){
@@ -112,6 +98,12 @@ public class Estado {
 		this.velocidad = 0;
 		this.distanciaDeAtaque = 0;
 		this.ki = 0;
+	}
+
+	public void actualizar(String nombre, Fase fase) {
+		this.ki -= this.kiEvolucion; 
+		this.setearEstado(nombre, fase);
+		
 	}
 
 }

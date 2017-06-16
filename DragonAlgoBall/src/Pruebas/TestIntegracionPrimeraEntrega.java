@@ -18,7 +18,8 @@ public class TestIntegracionPrimeraEntrega {
 	public void test01UbicarPersonajeEnCasilleroMoverloVerificarPosicion(){
 		
 		Tablero tablero = new Tablero(TAMANIO);
-		Goku goku = new Goku(tablero);
+		Equipo equipo = new Equipo();
+		Goku goku = new Goku(tablero,equipo);
 		Posicion posGoku = goku.getPosicion();
 		tablero.colocarObjeto(goku, posGoku);
 		assertTrue(tablero.compararPosicion(goku.getPosicion(),posGoku));
@@ -31,8 +32,10 @@ public class TestIntegracionPrimeraEntrega {
 	public void test02UbicarDosPersonajesEnElMismoCasillero(){
 		
 		Tablero tablero = new Tablero(TAMANIO);
-		Cell cell = new Cell(tablero);
-		Picolo picolo = new Picolo(tablero);
+		Equipo equipo1 = new Equipo();
+		Equipo equipo2 = new Equipo();
+		Cell cell = new Cell(tablero,equipo2);
+		Picolo picolo = new Picolo(tablero,equipo1);
 		Posicion pos = cell.getPosicion();
 		tablero.colocarObjeto(cell, pos);
 		tablero.colocarObjeto(picolo, pos);
@@ -42,19 +45,21 @@ public class TestIntegracionPrimeraEntrega {
 	public void test03NoPuedePasarUnPersonajePorEncimaDelOtro(){
 		
 		Tablero tablero = new Tablero(TAMANIO);
-		Freezer freezer = new Freezer(tablero);
-		MajinBoo majinBoo= new MajinBoo(tablero);
+		Equipo equipo1 = new Equipo();
+		Freezer freezer = new Freezer(tablero,equipo1);
+		MajinBoo majinBoo= new MajinBoo(tablero,equipo1);
 		tablero.colocarObjeto(freezer, freezer.getPosicion());
 		tablero.colocarObjeto(majinBoo, majinBoo.getPosicion());
 		majinBoo.MoverPersonajeHaciaAbajoDerecha();	
 	}
 	
-	@Test (expected = EvolucionInvalida.class)
+	@Test (expected = TransformacionInvalida.class)
 	public void test04FallaAlEvolucionar(){
 		
 		Tablero tablero = new Tablero(TAMANIO);
-		Gohan gohan = new Gohan(tablero);
-		gohan.evolucionar();
+		Equipo equipo1 = new Equipo();
+		Gohan gohan = new Gohan(tablero,equipo1);
+		gohan.transformar();
 	}
 	
 	
@@ -65,9 +70,10 @@ public class TestIntegracionPrimeraEntrega {
 		int PODERPELEAGOHANSSJ = 30;
 		
 		Tablero tablero = new Tablero(TAMANIO);
-		Gohan gohan = new Gohan(tablero);
+		Equipo equipo1 = new Equipo();
+		Gohan gohan = new Gohan(tablero,equipo1);
 		gohan.aumentarKi(KIEVOLUCION1GOHAN);
-		gohan.evolucionar();
+		gohan.transformar();
 		
 		assertEquals(gohan.getPoderDePelea(),PODERPELEAGOHANSSJ);
 	}
@@ -76,8 +82,10 @@ public class TestIntegracionPrimeraEntrega {
 	public void test06AtacarADistanciaInvalidaFalla(){
 		
 		Tablero tablero = new Tablero(TAMANIO);
-		Goku goku = new Goku(tablero);
-		Cell cell = new Cell(tablero);
+		Equipo equipo1 = new Equipo();
+		Equipo equipo2 = new Equipo();
+		Goku goku = new Goku(tablero,equipo1);
+		Cell cell = new Cell(tablero,equipo2);
 		
 		tablero.colocarObjeto(goku, goku.getPosicion());
 		tablero.colocarObjeto(cell, cell.getPosicion());
@@ -88,8 +96,10 @@ public class TestIntegracionPrimeraEntrega {
 	public void test07AtaqueValidoSinEvolucionVerificaRestaVida(){
 		
 		Tablero tablero = new Tablero(TAMANIO2);
-		Goku goku = new Goku(tablero);
-		Cell cell = new Cell(tablero);
+		Equipo equipo1 = new Equipo();
+		Equipo equipo2 = new Equipo();
+		Goku goku = new Goku(tablero,equipo1);
+		Cell cell = new Cell(tablero,equipo2);
 		
 		tablero.colocarObjeto(goku, goku.getPosicion());
 		tablero.colocarObjeto(cell, cell.getPosicion());

@@ -3,10 +3,13 @@ package Pruebas;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
-import Juego.JugadaEnemigosDeLaTierra;
-import Juego.JugadaGuerrerosZ;
 import modelo.*;
 import modelo.excepciones.PersonajeInmovilizado;
+import modelo.personajes.EnemigoDeLaTierra;
+import modelo.personajes.*;
+import modelo.personajes.GuerreroZ;
+import modelo.turnos.TurnoEquipoEnemigos;
+import modelo.turnos.TurnoEquipoZ;
 
 
 public class TestIntegracionJuego {
@@ -16,8 +19,27 @@ public class TestIntegracionJuego {
 	@Test
 	public void test01imitacionJuego(){
 		Tablero tablero = new Tablero(TAMANIO1);
-		JugadaGuerrerosZ equipoGuerrerosZ = new JugadaGuerrerosZ(tablero);
-		JugadaEnemigosDeLaTierra equipoEnemigos = new JugadaEnemigosDeLaTierra(tablero);
+		Equipo equipoGuerrerosZ = new Equipo();
+		Equipo equipoEnemigos = new Equipo();
+		Goku goku = new Goku(tablero,equipoGuerrerosZ);
+		Gohan gohan = new Gohan(tablero,equipoGuerrerosZ);
+		Picolo picolo = new Picolo(tablero,equipoGuerrerosZ);
+		Cell cell = new Cell(tablero,equipoEnemigos);
+		Freezer freezer = new Freezer(tablero,equipoEnemigos);
+		MajinBoo majinboo = new MajinBoo(tablero,equipoEnemigos);
+		equipoGuerrerosZ.agregarMiembro(picolo);
+		equipoGuerrerosZ.agregarMiembro(goku);
+		equipoGuerrerosZ.agregarMiembro(gohan);
+		equipoEnemigos.agregarMiembro(majinboo);
+		equipoEnemigos.agregarMiembro(cell);
+		equipoEnemigos.agregarMiembro(freezer);
+		tablero.colocarObjeto(goku,goku.getPosicion());
+		tablero.colocarObjeto(gohan,gohan.getPosicion());
+		tablero.colocarObjeto(picolo,picolo.getPosicion());
+		tablero.colocarObjeto(majinboo,majinboo.getPosicion());
+		tablero.colocarObjeto(cell,cell.getPosicion());
+		tablero.colocarObjeto(freezer,freezer.getPosicion());
+		
 		TurnoEquipoZ turnoZ1= new TurnoEquipoZ(tablero, equipoGuerrerosZ);
 		Posicion seleccionada = new Posicion(1,1);
 		turnoZ1.Mover(seleccionada);
@@ -47,8 +69,27 @@ public class TestIntegracionJuego {
 	@Test
 	public void test02ImitacionDelJuegoConElAtaqueDeMajinBooDeberiaInmovilizarPorTresTurnos(){
 		Tablero tablero = new Tablero(TAMANIO2);
-		JugadaGuerrerosZ equipoGuerrerosZ = new JugadaGuerrerosZ(tablero);
-		JugadaEnemigosDeLaTierra equipoEnemigos = new JugadaEnemigosDeLaTierra(tablero);
+		Equipo equipoGuerrerosZ = new Equipo();
+		Equipo equipoEnemigos = new Equipo();
+		Goku goku = new Goku(tablero,equipoGuerrerosZ);
+		Gohan gohan = new Gohan(tablero,equipoGuerrerosZ);
+		Picolo picolo = new Picolo(tablero,equipoGuerrerosZ);
+		Cell cell = new Cell(tablero,equipoEnemigos);
+		Freezer freezer = new Freezer(tablero,equipoEnemigos);
+		MajinBoo majinboo = new MajinBoo(tablero,equipoEnemigos);
+		equipoGuerrerosZ.agregarMiembro(picolo);
+		equipoGuerrerosZ.agregarMiembro(goku);
+		equipoGuerrerosZ.agregarMiembro(gohan);
+		equipoEnemigos.agregarMiembro(majinboo);
+		equipoEnemigos.agregarMiembro(cell);
+		equipoEnemigos.agregarMiembro(freezer);
+		tablero.colocarObjeto(goku,goku.getPosicion());
+		tablero.colocarObjeto(gohan,gohan.getPosicion());
+		tablero.colocarObjeto(picolo,picolo.getPosicion());
+		tablero.colocarObjeto(majinboo,majinboo.getPosicion());
+		tablero.colocarObjeto(cell,cell.getPosicion());
+		tablero.colocarObjeto(freezer,freezer.getPosicion());
+		
 		
 		TurnoEquipoEnemigos turnoE1 = new TurnoEquipoEnemigos(tablero, equipoEnemigos);
 		
@@ -58,7 +99,7 @@ public class TestIntegracionJuego {
 		//Usuario selecciono la posicion de MajinBoo para mover
 		turnoE1.atacar(seleccionada1);
 		
-		EnemigosDeLaTierra aMover = (EnemigosDeLaTierra)turnoE1.getPersonajeMovil();
+		EnemigoDeLaTierra aMover = (EnemigoDeLaTierra)turnoE1.getPersonajeMovil();
 		aMover.aumentarKi(30); // Harcodeo para probar el ataque especial
 		aMover.MoverPersonajeHaciaAbajoIzquierda();
 		aMover.MoverPersonajeHaciaAbajoIzquierda();
@@ -68,7 +109,7 @@ public class TestIntegracionJuego {
 		
 		//Usuario selecciono el personaje a atacar
 		Posicion seleccionada2 = new Posicion(2,1); 
-		EnemigosDeLaTierra atacante = (EnemigosDeLaTierra)turnoE1.getPersonajeatacante();
+		EnemigoDeLaTierra atacante = (EnemigoDeLaTierra)turnoE1.getPersonajeatacante();
 		
 		//usuario selecciono ataque epecial
 		atacante.ataqueEspecial(tablero.obtenerPersonaje(seleccionada2));
@@ -79,7 +120,7 @@ public class TestIntegracionJuego {
 		TurnoEquipoZ turnoZ1 = new TurnoEquipoZ(tablero, equipoGuerrerosZ);
 		//Usuario selecciono la posicion de Picolo para mover
 		turnoZ1.Mover(seleccionada2);
-		GuerrerosZ aMoverZ = (GuerrerosZ) turnoZ1.getPersonajeMovil();
+		GuerreroZ aMoverZ = (GuerreroZ) turnoZ1.getPersonajeMovil();
 		
 		//Voy a intentar mover un personaje inmovilizado por Boo, no deberia poder
 		try {
@@ -89,7 +130,7 @@ public class TestIntegracionJuego {
 			//Usuario selecciona otro personaje para mover, ahora a Goku a este si lo beria dejar
 			Posicion seleccionada3 = new Posicion(1,1); 
 			turnoZ1.Mover(seleccionada3);
-			aMoverZ = (GuerrerosZ) turnoZ1.getPersonajeMovil();
+			aMoverZ = (GuerreroZ) turnoZ1.getPersonajeMovil();
 			aMoverZ.MoverPersonajeHaciaArribaDerecha();
 			assertEquals(tablero.obtenerObjeto(new Posicion(2,2)).getNombre(), "Goku");
 		}
@@ -105,7 +146,7 @@ public class TestIntegracionJuego {
 		
 		//Usuario ya puede volvera jugar con picolo
 		turnoZ1.Mover(seleccionada2);
-		aMoverZ = (GuerrerosZ) turnoZ1.getPersonajeMovil();
+		aMoverZ = (GuerreroZ) turnoZ1.getPersonajeMovil();
 		aMoverZ.MoverPersonajeHaciaIzquierda();
 		assertEquals(tablero.obtenerObjeto(new Posicion(1,1)).getNombre(), "Picolo");
 		

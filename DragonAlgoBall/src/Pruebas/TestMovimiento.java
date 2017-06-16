@@ -2,6 +2,8 @@ package Pruebas;
 
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
+
+import modelo.Equipo;
 import modelo.Posicion;
 import modelo.Tablero;
 import modelo.excepciones.CasilleroVacio;
@@ -15,7 +17,8 @@ public class TestMovimiento {
 	@Test
 	public void test01CrearUnPersonajeYUbicarloInicialmente(){
 		Tablero tablero = new Tablero(TAMANIO);
-		Goku goku = new Goku(tablero);
+		Equipo equipo1 = new Equipo();
+		Goku goku = new Goku(tablero,equipo1);
 		Posicion pos = new Posicion(1,1);
 		tablero.colocarObjeto(goku,goku.getPosicion());
 		assertEquals(tablero.obtenerObjeto(pos),goku);
@@ -24,7 +27,8 @@ public class TestMovimiento {
 	@Test
 	public void test02CrearUnPersonajeUbicarloYMoverloHaciaArriba(){
 		Tablero tablero = new Tablero(TAMANIO);
-		Goku goku = new Goku(tablero);
+		Equipo equipo1 = new Equipo();
+		Goku goku = new Goku(tablero,equipo1);
 		Posicion pos = new Posicion(1,2);
 		tablero.colocarObjeto(goku,goku.getPosicion());
 		goku.MoverPersonajeHaciaArriba();
@@ -34,7 +38,8 @@ public class TestMovimiento {
 	@Test
 	public void test03CrearUnPersonajeUbicarloYMoverloHaciaArribaDosVeces(){
 		Tablero tablero = new Tablero(TAMANIO);
-		Goku goku = new Goku(tablero);
+		Equipo equipo1 = new Equipo();
+		Goku goku = new Goku(tablero,equipo1);
 		Posicion pos = new Posicion(1,3);
 		tablero.colocarObjeto(goku,goku.getPosicion());
 		goku.MoverPersonajeHaciaArriba();
@@ -45,7 +50,8 @@ public class TestMovimiento {
 	@Test (expected=CasilleroVacio.class)
 	public void test04CrearUnPersonajeUbicarloMoverloYCheckearQueSeHayaBorrado(){
 		Tablero tablero = new Tablero(TAMANIO);
-		Goku goku = new Goku(tablero);
+		Equipo equipo1 = new Equipo();
+		Goku goku = new Goku(tablero,equipo1);
 		Posicion pos = new Posicion(1,1);
 		tablero.colocarObjeto(goku,goku.getPosicion());
 		goku.MoverPersonajeHaciaArriba();
@@ -55,8 +61,9 @@ public class TestMovimiento {
 	@Test (expected=MovimientoInvalido.class)
 	public void test05CrearDosPersonajesUbicarlosYQueNoSePisen(){
 		Tablero tablero = new Tablero(TAMANIO);
-		Goku goku = new Goku(tablero);
-		Gohan gohan = new Gohan(tablero);
+		Equipo equipo1 = new Equipo();
+		Goku goku = new Goku(tablero,equipo1);
+		Gohan gohan = new Gohan(tablero,equipo1);
 		tablero.colocarObjeto(goku,goku.getPosicion());
 		tablero.colocarObjeto(gohan,gohan.getPosicion());
 		goku.MoverPersonajeHaciaArriba();

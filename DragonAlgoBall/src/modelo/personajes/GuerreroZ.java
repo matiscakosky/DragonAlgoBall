@@ -1,11 +1,12 @@
-package modelo;
+package modelo.personajes;
 
 
 
 
+import modelo.Personaje;
 import modelo.excepciones.PersonajeInmovilizado;
 
-public abstract class GuerrerosZ extends Personaje {
+public abstract class GuerreroZ extends Personaje {
 	protected boolean inmovilizado;	
 	protected int turnosRestantesInmovilizado;
 	

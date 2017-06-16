@@ -2,8 +2,8 @@ package modelo.fases;
 
 import java.util.HashMap;
 
-import modelo.Fase;
 import modelo.StatsJuego;
+import modelo.excepciones.TransformacionInvalida;
 
 public class FaseInicialGoku extends Fase {
 
@@ -11,7 +11,10 @@ public class FaseInicialGoku extends Fase {
 		return StatsJuego.statsIniciales.get("Goku");
 	}
 
-	public Fase evolucionar() {
+	public Fase evolucionar(int kiActual) {
+		if(kiActual<this.obtenerStats().get("kiEvolucion")){
+			throw new TransformacionInvalida();
+		}
 		return new FaseGoku1();
 	}
 

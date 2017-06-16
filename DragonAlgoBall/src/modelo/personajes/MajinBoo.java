@@ -3,12 +3,13 @@ package modelo.personajes;
 import modelo.*;
 import modelo.fases.FaseInicialMajinBoo;
 
-public class MajinBoo extends EnemigosDeLaTierra {
+public class MajinBoo extends EnemigoDeLaTierra {
 	
-	public MajinBoo(Tablero tablero) {
+	public MajinBoo(Tablero tablero,Equipo equipo) {
 		this.nombre = "MajinBoo";
 		this.tablero = tablero;
 		this.fase = new FaseInicialMajinBoo();
+		this.equipo = equipo;
 		this.estado = new Estado(this.nombre,this.fase);
 		this.ataque = new Ataque();
 		Posicion pos = new Posicion(this.tablero.getTamanio()-1,this.tablero.getTamanio());
@@ -19,7 +20,7 @@ public class MajinBoo extends EnemigosDeLaTierra {
 		this.corrobarDistancias(enemigo);
 		this.esAtacable(enemigo);
 		this.corrobarKiAtaqueEspecial(StatsJuego.kiAtaqueEspecialMajinBoo);
-		this.ataque.convertirEnChocolate((GuerrerosZ)enemigo, 0);
+		this.ataque.convertirEnChocolate((GuerreroZ)enemigo, 0);
 		this.estado.restarKi(StatsJuego.kiAtaqueEspecialMajinBoo);
 	}
 }

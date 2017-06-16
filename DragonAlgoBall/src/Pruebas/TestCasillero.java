@@ -7,6 +7,7 @@ import modelo.excepciones.CasilleroVacio;
 import modelo.excepciones.CasilleroOcupado;
 import modelo.personajes.Goku;
 import modelo.Casillero;
+import modelo.Equipo;
 import modelo.ObjetoJuego;
 
 public class TestCasillero {
@@ -26,7 +27,8 @@ public class TestCasillero {
 	public void test03CasilleroNoEstaVacio(){
 		Tablero tablero = new Tablero(5);
 		Casillero casillero = new Casillero();
-		ObjetoJuego objeto = new Goku(tablero);
+		Equipo equipo = new Equipo();
+		ObjetoJuego objeto = new Goku(tablero,equipo);
 		casillero.agregarObjeto(objeto);
 		assert(!casillero.estaVacio());
 	}
@@ -35,7 +37,8 @@ public class TestCasillero {
 	public void test04AgregarObjetoAlCasillero(){
 		Tablero tablero = new Tablero(5);
 		Casillero casillero = new Casillero();
-		ObjetoJuego objeto = new Goku(tablero);
+		Equipo equipo = new Equipo();
+		ObjetoJuego objeto = new Goku(tablero,equipo);
 		casillero.agregarObjeto(objeto);
 		assert(casillero.obtenerObjeto() instanceof ObjetoJuego);
 	}
@@ -44,7 +47,8 @@ public class TestCasillero {
 	public void test05ObtenerObjetoDelCasillero(){
 		Tablero tablero = new Tablero(5);
 		Casillero casillero = new Casillero();
-		ObjetoJuego objeto = new Goku(tablero);
+		Equipo equipo = new Equipo();
+		ObjetoJuego objeto = new Goku(tablero,equipo);
 		casillero.agregarObjeto(objeto);
 		assertEquals(casillero.obtenerObjeto(),objeto);
 	}
@@ -53,7 +57,8 @@ public class TestCasillero {
 	public void test06EliminarObjetoDelCasillero(){
 		Tablero tablero = new Tablero(5);
 		Casillero casillero = new Casillero();
-		ObjetoJuego objeto = new Goku(tablero);
+		Equipo equipo = new Equipo();
+		ObjetoJuego objeto = new Goku(tablero,equipo);
 		casillero.agregarObjeto(objeto);
 		ObjetoJuego objetoeliminado = casillero.eliminarObjeto();
 		assertEquals(objetoeliminado,objeto);
@@ -76,7 +81,8 @@ public class TestCasillero {
 	public void test09AgregarObjetoACasilleroOcupado(){
 		Tablero tablero = new Tablero(5);
 		Casillero casillero = new Casillero();
-		ObjetoJuego objeto = new Goku(tablero);
+		Equipo equipo = new Equipo();
+		ObjetoJuego objeto = new Goku(tablero,equipo);
 		casillero.agregarObjeto(objeto);
 		casillero.agregarObjeto(objeto);
 	}	

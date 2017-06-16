@@ -1,8 +1,12 @@
-package modelo;
+package modelo.turnos;
 
+import modelo.Equipo;
+import modelo.Personaje;
+import modelo.Posicion;
+import modelo.StatsJuego;
+import modelo.Tablero;
 import modelo.excepciones.JuegoTerminado;
 import modelo.excepciones.PosicionInvalida;
-import Juego.JugadaEquipo;
 
 public abstract class Turno {
 
@@ -10,7 +14,7 @@ public abstract class Turno {
 	protected Personaje personajeQueSeMueve;
 	protected Personaje personajeQueAtaca;
 	protected Personaje personajeEvoluciona;
-	protected JugadaEquipo equipo;
+	protected Equipo equipo;
 	
 		
 	public Personaje seleccionarPersonaje(Posicion posicion){

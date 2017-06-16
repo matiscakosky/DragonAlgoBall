@@ -2,9 +2,8 @@ package modelo.fases;
 
 import java.util.HashMap;
 
-import modelo.Fase;
 import modelo.StatsJuego;
-import modelo.excepciones.EvolucionInvalida;
+import modelo.excepciones.TransformacionInvalida;
 
 public class FaseMajinBoo2 extends Fase {
 
@@ -12,8 +11,8 @@ public class FaseMajinBoo2 extends Fase {
 		return StatsJuego.statsEstado2.get("MajinBoo");
 	}
 
-	public Fase evolucionar() {
-		throw new EvolucionInvalida();
+	public Fase evolucionar(int ki) {
+		throw new TransformacionInvalida();
 	}
 
 }

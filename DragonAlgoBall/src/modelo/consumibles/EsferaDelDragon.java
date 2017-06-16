@@ -5,7 +5,7 @@ public class EsferaDelDragon extends Consumible {
 	
 	public EsferaDelDragon(Tablero tablero){
 		this.tablero = tablero;
-		this.nombre = "Esfera del dragón";
+		this.nombre = "Esfera del dragï¿½n";
 		tablero.colocarObjeto(this, this.generarPosicion());
 	}
 	

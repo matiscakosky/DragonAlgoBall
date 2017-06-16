@@ -1,15 +1,12 @@
-package Juego;
+package modelo;
 
-import modelo.*;
 import java.util.*;
 
-
-
-public abstract class JugadaEquipo {
+public class Equipo {
 	protected Hashtable<String,Personaje> miembros;
 
 	
-	public JugadaEquipo(){
+	public Equipo(){
 		this.miembros = new Hashtable<String,Personaje>();
 	}
 	
@@ -29,7 +26,7 @@ public abstract class JugadaEquipo {
 		return total;
 	}
 	
-	protected void agregarMiembro(Personaje personaje){
+	public void agregarMiembro(Personaje personaje){
 		String nombre = personaje.getNombre();
 		this.miembros.put(nombre,personaje);
 	}

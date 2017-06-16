@@ -4,13 +4,14 @@ import modelo.*;
 import modelo.fases.FaseInicialGohan;
 
 
-public class Gohan extends GuerrerosZ {
+public class Gohan extends GuerreroZ {
 
 	
-	public Gohan(Tablero tablero){
+	public Gohan(Tablero tablero,Equipo equipo){
 			this.nombre = "Gohan";
 			this.tablero = tablero;
 			this.fase = new FaseInicialGohan();
+			this.equipo = equipo;
 			this.estado = new Estado(this.nombre,this.fase);
 			this.ataque = new Ataque();
 			this.ataque = new Ataque();

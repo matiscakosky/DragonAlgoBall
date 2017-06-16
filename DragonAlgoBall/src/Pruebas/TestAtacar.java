@@ -13,9 +13,11 @@ public class TestAtacar {
 	@Test
 	public void test01ColocarDosPersonajesInicialmenteYAtacarlos(){
 		Tablero tablero = new Tablero(3);
-		Goku goku = new Goku(tablero);
+		Equipo enemigos = new Equipo();
+		Equipo equipoz = new Equipo();
+		Goku goku = new Goku(tablero,equipoz);
 		tablero.colocarObjeto(goku,goku.getPosicion());
-		Cell cell = new Cell(tablero);
+		Cell cell = new Cell(tablero,enemigos);
 		tablero.colocarObjeto(cell,cell.getPosicion());
 		goku.atacarConBasico(cell);
 
@@ -26,9 +28,11 @@ public class TestAtacar {
 	@Test(expected= AtaqueInvalido.class)
 	public void test02ColocarDosPersonajesQueNoSeLleganAAtacar(){
 		Tablero tablero = new Tablero(15);
-		Goku goku = new Goku(tablero);
+		Equipo enemigos = new Equipo();
+		Equipo equipoz = new Equipo();
+		Goku goku = new Goku(tablero,equipoz);
 		tablero.colocarObjeto(goku,goku.getPosicion());
-		Cell cell = new Cell(tablero);
+		Cell cell = new Cell(tablero,enemigos);
 		tablero.colocarObjeto(cell,cell.getPosicion());
 		goku.atacarConBasico(cell);
 	}
@@ -36,9 +40,10 @@ public class TestAtacar {
 	@Test(expected= AtaqueInvalido.class)
 	public void test03ColocarDosPersonajesQueSonDelMismoEquipoNoSeDeberianAtacar(){
 		Tablero tablero = new Tablero(3);
-		Goku goku = new Goku(tablero);
+		Equipo equipoz = new Equipo();
+		Goku goku = new Goku(tablero,equipoz);
 		tablero.colocarObjeto(goku,goku.getPosicion());
-		Gohan gohan = new Gohan(tablero);
+		Gohan gohan = new Gohan(tablero,equipoz);
 		tablero.colocarObjeto(gohan,gohan.getPosicion());
 		goku.atacarConBasico(gohan);
 	}
@@ -46,11 +51,12 @@ public class TestAtacar {
 	@Test
 	public void test04ColocarDosPersonajesMoverYAtacar(){
 		Tablero tablero = new Tablero(6);
-		Goku goku = new Goku(tablero);
+		Equipo enemigos = new Equipo();
+		Equipo equipoz = new Equipo();
+		Goku goku = new Goku(tablero,equipoz);
 		tablero.colocarObjeto(goku,goku.getPosicion());
-		Cell cell = new Cell(tablero);
+		Cell cell = new Cell(tablero,enemigos);
 		tablero.colocarObjeto(cell,cell.getPosicion());
-		
 		goku.MoverPersonajeHaciaArribaDerecha();
 		goku.MoverPersonajeHaciaArriba();
 		cell.MoverPersonajeHaciaAbajoIzquierda();
@@ -64,9 +70,11 @@ public class TestAtacar {
 	@Test
 	public void test05ColocarDosPersonajesMoverYAtacarseMutuamente(){
 		Tablero tablero = new Tablero(6);
-		Goku goku = new Goku(tablero);
+		Equipo enemigos = new Equipo();
+		Equipo equipoz = new Equipo();
+		Goku goku = new Goku(tablero,equipoz);
 		tablero.colocarObjeto(goku,goku.getPosicion());
-		Cell cell = new Cell(tablero);
+		Cell cell = new Cell(tablero,enemigos);
 		tablero.colocarObjeto(cell,cell.getPosicion());
 		goku.MoverPersonajeHaciaArribaDerecha();
 		goku.MoverPersonajeHaciaArriba();
@@ -82,9 +90,11 @@ public class TestAtacar {
 	@Test(expected= KiInsuficiente.class)
 	public void test06ColocarDosPersonajesYUsarAtaqueEspecialGokuDeberiaTirarKiInsuficiente(){
 		Tablero tablero = new Tablero(3);
-		Goku goku = new Goku(tablero);
+		Equipo enemigos = new Equipo();
+		Equipo equipoz = new Equipo();
+		Goku goku = new Goku(tablero,equipoz);
 		tablero.colocarObjeto(goku,goku.getPosicion());
-		Cell cell = new Cell(tablero);
+		Cell cell = new Cell(tablero,enemigos);
 		tablero.colocarObjeto(cell,cell.getPosicion());
 		goku.ataqueEspecial(cell);
 		cell.atacarConBasico(goku);
@@ -97,9 +107,11 @@ public class TestAtacar {
 	@Test
 	public void test07ColocarDosPersonajesYUsarAtaqueEspecialGoku(){
 		Tablero tablero = new Tablero(3);
-		Goku goku = new Goku(tablero);
+		Equipo enemigos = new Equipo();
+		Equipo equipoz = new Equipo();
+		Goku goku = new Goku(tablero,equipoz);
 		tablero.colocarObjeto(goku,goku.getPosicion());
-		Cell cell = new Cell(tablero);
+		Cell cell = new Cell(tablero,enemigos);
 		tablero.colocarObjeto(cell,cell.getPosicion());
 		goku.aumentarKi(100);
 		goku.ataqueEspecial(cell);
@@ -113,9 +125,11 @@ public class TestAtacar {
 	@Test
 	public void test08ColocarDosPersonajesYUsarAbsorber(){
 		Tablero tablero = new Tablero(3);
-		Goku goku = new Goku(tablero);
+		Equipo enemigos = new Equipo();
+		Equipo equipoz = new Equipo();
+		Goku goku = new Goku(tablero,equipoz);
 		tablero.colocarObjeto(goku,goku.getPosicion());
-		Cell cell = new Cell(tablero);
+		Cell cell = new Cell(tablero,enemigos);
 		tablero.colocarObjeto(cell,cell.getPosicion());
 		cell.aumentarKi(100);
 		cell.ataqueEspecial(goku);
@@ -132,11 +146,13 @@ public class TestAtacar {
 	@Test(expected= AtaqueInvalido.class)
 	public void test09ColocarTresPersonajesYUsarAtaquesEspecialesNoDeberiaPoder(){
 		Tablero tablero = new Tablero(3);
-		Goku goku = new Goku(tablero);
-		Freezer freezer = new Freezer(tablero);
+		Equipo enemigos = new Equipo();
+		Equipo equipoz = new Equipo();
+		Goku goku = new Goku(tablero,equipoz);
 		tablero.colocarObjeto(goku,goku.getPosicion());
+		Freezer freezer = new Freezer(tablero,enemigos);
 		tablero.colocarObjeto(freezer,freezer.getPosicion());
-		Cell cell = new Cell(tablero);
+		Cell cell = new Cell(tablero,enemigos);
 		tablero.colocarObjeto(cell,cell.getPosicion());
 		cell.aumentarKi(100);
 		freezer.aumentarKi(100);
@@ -157,11 +173,13 @@ public class TestAtacar {
 	@Test
 	public void test10ColocarTresPersonajesYUsarAtaquesEspeciales(){
 		Tablero tablero = new Tablero(3);
-		Goku goku = new Goku(tablero);
-		Freezer freezer = new Freezer(tablero);
+		Equipo enemigos = new Equipo();
+		Equipo equipoz = new Equipo();
+		Goku goku = new Goku(tablero,equipoz);
 		tablero.colocarObjeto(goku,goku.getPosicion());
+		Freezer freezer = new Freezer(tablero,enemigos);
 		tablero.colocarObjeto(freezer,freezer.getPosicion());
-		Cell cell = new Cell(tablero);
+		Cell cell = new Cell(tablero,enemigos);
 		tablero.colocarObjeto(cell,cell.getPosicion());
 		cell.aumentarKi(100);
 		freezer.aumentarKi(100);

@@ -1,7 +1,7 @@
 package modelo.personajes;
 
 import modelo.Ataque;
-import modelo.EnemigosDeLaTierra;
+import modelo.Equipo;
 import modelo.Estado;
 import modelo.Movimiento;
 import modelo.Personaje;
@@ -10,13 +10,14 @@ import modelo.StatsJuego;
 import modelo.Tablero;
 import modelo.fases.FaseInicialCell;
 
-public class Cell extends EnemigosDeLaTierra {
+public class Cell extends EnemigoDeLaTierra {
 	int cantidadDeAbsorber;
 	
-	public Cell(Tablero tablero) {
+	public Cell(Tablero tablero,Equipo equipo) {
 		this.nombre = "Cell";
 		this.tablero = tablero;
 		this.fase = new FaseInicialCell();
+		this.equipo = equipo;
 		this.estado = new Estado(this.nombre,this.fase);
 		this.ataque = new Ataque();
 		Posicion pos = new Posicion(this.tablero.getTamanio(),this.tablero.getTamanio()); 

@@ -4,12 +4,13 @@ import modelo.*;
 import modelo.excepciones.PersonajeInmovilizado;
 import modelo.fases.FaseInicialGoku;
 
-public class Goku extends GuerrerosZ {
+public class Goku extends GuerreroZ {
 	
-	public Goku(Tablero tablero) {
+	public Goku(Tablero tablero,Equipo equipo) {
 		this.nombre = "Goku";
 		this.tablero = tablero;
 		this.fase = new FaseInicialGoku();
+		this.equipo = equipo;
 		this.estado = new Estado(this.nombre,this.fase);
 		this.ataque = new Ataque();
 		Posicion pos = new Posicion(1,1);
