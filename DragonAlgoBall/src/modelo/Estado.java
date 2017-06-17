@@ -70,7 +70,7 @@ public class Estado {
 	}
 	
 	public void aumentarVelocidadPorNubeVoladora(){
-		this.poderDePelea *= StatsJuego.factorAumentoNubeVoladora;
+		this.velocidad *= StatsJuego.factorAumentoNubeVoladora;
 	}
 	
 	public void aumentarPuntosDeVidaPorSemillaDelErmintanio(){

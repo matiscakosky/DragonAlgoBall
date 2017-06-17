@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 import modelo.*;
+import modelo.consumibles.EsferaDelDragon;
+import modelo.excepciones.JuegoTerminado;
 import modelo.excepciones.PersonajeInmovilizado;
 import modelo.personajes.EnemigoDeLaTierra;
 import modelo.personajes.*;
@@ -153,12 +155,47 @@ public class TestIntegracionJuego {
 
 	}
 	
-	@Test
+	@Test (expected = JuegoTerminado.class)
 	public void test03JuegoSeTerminaGananGuerrerosZConsiguieronLas7Esferas(){
 		/* generar 7 esferas del dragon tomarlas con un equipo y cuando termine el turno luego de agarrar la septima
 		 * al terminar el turno deberia levantar la excepcion de juego terminado
 		 * ATENCION! Poner al lado del @Test (excpected = JuegoTerminado.class) para que reconozca que espera eso
 		 */
+		
+		Tablero tablero = new Tablero(TAMANIO2);
+		Equipo equipoGuerrerosZ = new Equipo();
+		Goku goku = new Goku(tablero,equipoGuerrerosZ);
+		Gohan gohan = new Gohan(tablero,equipoGuerrerosZ);
+		Picolo picolo = new Picolo(tablero,equipoGuerrerosZ);
+		equipoGuerrerosZ.agregarMiembro(goku);
+		equipoGuerrerosZ.agregarMiembro(gohan);
+		equipoGuerrerosZ.agregarMiembro(picolo);
+		
+		EsferaDelDragon esfera1 = new EsferaDelDragon(tablero);
+		esfera1.consumir(goku);
+		
+		EsferaDelDragon esfera2 = new EsferaDelDragon(tablero);
+		esfera2.consumir(gohan);
+		
+		EsferaDelDragon esfera3 = new EsferaDelDragon(tablero);
+		esfera3.consumir(picolo);
+		
+		EsferaDelDragon esfera4 = new EsferaDelDragon(tablero);
+		esfera4.consumir(goku);
+		
+		EsferaDelDragon esfera5 = new EsferaDelDragon(tablero);
+		esfera5.consumir(goku);
+		
+		EsferaDelDragon esfera6 = new EsferaDelDragon(tablero);
+		esfera6.consumir(goku);
+		
+		TurnoEquipoZ turnoZ = new TurnoEquipoZ(tablero, equipoGuerrerosZ);
+		
+		EsferaDelDragon esfera7 = new EsferaDelDragon(tablero);
+		esfera7.consumir(goku);
+		
+		turnoZ.controlarCantidadEsferasDelDragon();
+		
 		
 	}
 	

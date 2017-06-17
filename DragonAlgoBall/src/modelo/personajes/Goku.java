@@ -46,7 +46,6 @@ public class Goku extends GuerreroZ {
 		this.ataque.kamehameha(enemigo, this.getPoderDePelea());
 		this.estado.restarKi(StatsJuego.kiAtaqueEspecialGoku);
 	}
-	
 
 	
 }

@@ -41,6 +41,14 @@ public abstract class Personaje extends ObjetoJuego{
 		return this.cantidadEsferasConsumidas;
 	}
 	
+	public int getAtaquesRestanteEsferaDelDragon(){
+		return ataquesRestantesEsferaDelDragon;
+	}
+	
+	public int getTurnosRestantesNubeVoladora(){
+		return turnosRestantesNubeVoladora;
+	}
+	
 	public Fase getFase(){
 		return fase;
 	}
