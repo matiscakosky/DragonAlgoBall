@@ -10,6 +10,7 @@ import modelo.StatsJuego;
 import modelo.Tablero;
 import modelo.fases.FaseInicialCell;
 
+
 public class Cell extends EnemigoDeLaTierra {
 	int cantidadDeAbsorber;
 	
@@ -39,6 +40,7 @@ public class Cell extends EnemigoDeLaTierra {
 		int kiActual = this.estado.getKi();
 		this.fase = this.fase.transformarCell(kiActual,this.cantidadDeAbsorber);
 		this.estado.actualizar(this.nombre, this.fase);
+
 	}
 
 }

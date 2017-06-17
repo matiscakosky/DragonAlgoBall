@@ -17,5 +17,4 @@ public class FaseInicialGoku extends Fase {
 		}
 		return new FaseGoku1();
 	}
-
 }
