@@ -160,4 +160,45 @@ public class TestIntegracionPrimeraEntrega {
 
 	}
 	
+	@Test (expected = AtaqueInvalido.class)
+	public void test09AtacarAPersonajeAMayorDistanciaDelAlcance(){
+		
+		Tablero tablero = new Tablero(StatsJuego.tamanioTablero);
+		Equipo equipoGuerrerosZ = new Equipo();
+		Equipo equipoEnemigos = new Equipo();
+		
+		Goku goku = new Goku(tablero,equipoGuerrerosZ);
+		equipoGuerrerosZ.agregarMiembro(goku);
+		
+		Cell cell = new Cell(tablero,equipoEnemigos);
+		equipoEnemigos.agregarMiembro(cell);
+		
+		goku.atacarConBasico(cell);
+	}
+	
+	@Test
+	public void test10AtaqueValidoVerificandoDanio(){
+		
+		int TAMANIOTABLERO = 5;
+		
+		Tablero tablero = new Tablero(TAMANIOTABLERO);
+		Equipo equipoGuerrerosZ = new Equipo();
+		Equipo equipoEnemigos = new Equipo();
+		
+		Gohan gohan =  new Gohan(tablero,equipoGuerrerosZ);
+		equipoGuerrerosZ.agregarMiembro(gohan);
+		tablero.colocarObjeto(gohan,gohan.getPosicion());
+		
+		MajinBoo majinBoo = new MajinBoo(tablero,equipoEnemigos);
+		equipoEnemigos.agregarMiembro(majinBoo);
+		tablero.colocarObjeto(majinBoo, majinBoo.getPosicion());
+		
+		gohan.MoverPersonajeHaciaArribaDerecha();
+		gohan.MoverPersonajeHaciaArribaDerecha();
+		
+		gohan.atacarConBasico(majinBoo);
+		
+		assertEquals(majinBoo.getPuntosDeVida(),StatsJuego.puntosVidaInicialMajinBoo-gohan.getPoderDePelea());
+	}
+	
 }
