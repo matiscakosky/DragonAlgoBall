@@ -21,7 +21,7 @@ public abstract class Personaje extends ObjetoJuego{
 	
 	public void transformar(){
 		int kiActual = this.estado.getKi();
-		this.fase = this.fase.evolucionar(kiActual);
+		this.fase = this.fase.transformar(kiActual);
 		this.estado.actualizar(this.nombre, this.fase);
 	}
 	

@@ -31,5 +31,9 @@ public class Equipo {
 		this.miembros.put(nombre,personaje);
 	}
 	
+	public Personaje obtenerPersonaje(String nombre){
+		return miembros.get(nombre);
+	}
+	
 
 }

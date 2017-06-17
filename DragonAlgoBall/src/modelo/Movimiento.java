@@ -78,7 +78,7 @@ public class Movimiento {
 	public void MoverAbajoIzquierda(Tablero tablero){
 		if(this.cantidadPasosMoverse == 0) throw new PasosInsuficientes();
 		Posicion posicionAMoverme = new Posicion(this.posicionActual.getCoordenadaX()-1,this.posicionActual.getCoordenadaY()-1);
-		tablero.moverPersonaje(posicionActual, posicionAMoverme);
+		tablero.moverPersonaje(this.posicionActual, posicionAMoverme);
 		this.cantidadPasosMoverse -= 1;
 		this.posicionActual = posicionAMoverme;
 	}

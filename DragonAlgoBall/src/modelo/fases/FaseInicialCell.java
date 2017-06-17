@@ -11,11 +11,17 @@ public class FaseInicialCell extends Fase {
 		return StatsJuego.statsIniciales.get("Cell");
 	}
 
-	public Fase evolucionar(int ki) {
+	public Fase transformar(int ki) {
 		if(ki<this.obtenerStats().get("kiEvolucion")){
 			throw new TransformacionInvalida();
 		}
 		return new FaseCell1();
 	}
-
+	
+	public Fase transformarCell(int ki,int cantidadDeAbsorber){
+			if(cantidadDeAbsorber < 4){
+				throw new TransformacionInvalida();
+			}
+			return transformar(ki);
+		}
 }

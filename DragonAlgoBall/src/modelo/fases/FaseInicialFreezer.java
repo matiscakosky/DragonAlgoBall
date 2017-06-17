@@ -11,7 +11,7 @@ public class FaseInicialFreezer extends Fase {
 		return StatsJuego.statsIniciales.get("Freezer");
 	}
 
-	public Fase evolucionar(int ki) {
+	public Fase transformar(int ki) {
 		if(ki<this.obtenerStats().get("kiEvolucion")){
 			throw new TransformacionInvalida();
 		}

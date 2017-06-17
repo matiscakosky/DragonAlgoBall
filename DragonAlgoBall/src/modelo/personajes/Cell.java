@@ -33,6 +33,12 @@ public class Cell extends EnemigoDeLaTierra {
 		this.estado.restarVida(-this.getPoderDePelea()); //me dio fiaca hacer el metodo sumar vida asique le tiro el negativo je, marcio no leas esto
 		this.estado.restarKi(StatsJuego.kiAtaqueEspecialCell);
 		this.cantidadDeAbsorber += 1;
-	}	
+	}
+	
+	public void transformar(){
+		int kiActual = this.estado.getKi();
+		this.fase = this.fase.transformarCell(kiActual,this.cantidadDeAbsorber);
+		this.estado.actualizar(this.nombre, this.fase);
+	}
 
 }

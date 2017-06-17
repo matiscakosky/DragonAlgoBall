@@ -29,6 +29,12 @@ public class Gohan extends GuerreroZ {
 		this.estado.restarKi(StatsJuego.kiAtaqueEspecialGohan);
 	}
 	
+	public void transformar(){
+		int kiActual = this.estado.getKi();
+		this.fase = this.fase.transformarGohan(kiActual,this.equipo);
+		this.estado.actualizar(this.nombre, this.fase);
+	}
+	
 
 
 }

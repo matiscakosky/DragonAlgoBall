@@ -8,10 +8,10 @@ import modelo.excepciones.TransformacionInvalida;
 public class FaseFreezer2 extends Fase {
 
 	public HashMap<String, Integer> obtenerStats() {
-		return StatsJuego.statsEstado2.get("Gohan");
+		return StatsJuego.statsEstado2.get("Freezer");
 	}
 
-	public Fase evolucionar(int ki) {
+	public Fase transformar(int ki) {
 		throw new TransformacionInvalida();
 	}
 

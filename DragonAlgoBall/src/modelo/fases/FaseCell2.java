@@ -11,7 +11,11 @@ public class FaseCell2 extends Fase {
 		return StatsJuego.statsEstado2.get("Cell");
 	}
 
-	public Fase evolucionar(int ki) {
+	public Fase transformar(int ki) {
+		throw new TransformacionInvalida();
+	}
+	
+	public Fase transformarCell(int ki,int cantidadDeAbsorber){
 		throw new TransformacionInvalida();
 	}
 

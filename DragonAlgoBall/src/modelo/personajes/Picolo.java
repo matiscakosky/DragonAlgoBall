@@ -27,4 +27,10 @@ public class Picolo extends GuerreroZ  {
 		this.estado.restarKi(StatsJuego.kiAtaqueEspecialPicolo);
 	}
 	
+	public void transformar(){
+		int kiActual = this.estado.getKi();
+		this.fase = this.fase.transformarPicolo(kiActual,this.equipo);
+		this.estado.actualizar(this.nombre, this.fase);
+	}
+	
 }

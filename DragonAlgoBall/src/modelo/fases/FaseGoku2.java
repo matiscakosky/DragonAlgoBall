@@ -11,7 +11,7 @@ public class FaseGoku2 extends Fase {
 		return StatsJuego.statsEstado2.get("Goku");
 	}
 
-	public Fase evolucionar(int ki) {
+	public Fase transformar(int ki) {
 		throw new TransformacionInvalida();
 	}
 
