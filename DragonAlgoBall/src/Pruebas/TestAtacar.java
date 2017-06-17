@@ -195,9 +195,4 @@ public class TestAtacar {
 		assertEquals(cell.getKi(),95);
 		assertEquals(freezer.getKi(),80);
 	}
-	
-	
-
-	
-
 }
