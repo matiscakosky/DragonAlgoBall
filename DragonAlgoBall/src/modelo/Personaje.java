@@ -97,6 +97,9 @@ public abstract class Personaje extends ObjetoJuego{
 		} 			
 	}
 	
+	public void reducirVida(int reduccion){
+		this.estado.restarVida(reduccion);
+	}
 	
 	public void corrobarKiAtaqueEspecial(int kiNecesario){
 		if(this.getKi() < kiNecesario){
