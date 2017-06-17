@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import modelo.*;
 import modelo.personajes.*;
+import modelo.turnos.*;
 import modelo.excepciones.*;
 
 
@@ -114,6 +115,49 @@ public class TestIntegracionPrimeraEntrega {
 		assertEquals(goku.getPuntosDeVida(), puntosVidaGokuInicial - ataqueNormalCell);
 	}
 	
-	
+	@Test (expected = JuegoTerminado.class)
+	public void test08CrearJuegoConDosJugadores(){
+		
+		Tablero tablero = new Tablero(StatsJuego.tamanioTablero);
+		Equipo equipoGuerrerosZ = new Equipo();
+		Equipo equipoEnemigos = new Equipo();
+		
+		Goku goku = new Goku(tablero,equipoGuerrerosZ);
+		Gohan gohan = new Gohan(tablero,equipoGuerrerosZ);
+		Picolo picolo = new Picolo(tablero,equipoGuerrerosZ);
+		Personaje[] equipoz = {goku,gohan,picolo};
+		
+		for(Personaje personaje: equipoz){
+			equipoGuerrerosZ.agregarMiembro(personaje);
+		}
+		
+
+		Cell cell = new Cell(tablero,equipoEnemigos);
+		Freezer freezer = new Freezer(tablero,equipoEnemigos);
+		MajinBoo majinBoo = new MajinBoo(tablero,equipoEnemigos);
+		
+		Personaje[] enemigos = {cell,freezer,majinBoo};
+		
+		for(Personaje personaje: enemigos){
+			equipoEnemigos.agregarMiembro(personaje);
+		}
+		
+		TurnoEquipoZ turnoZ1= new TurnoEquipoZ(tablero, equipoGuerrerosZ);
+		turnoZ1.controlarJuegadoresEquipoContrario();	
+		turnoZ1.terminoTurno();
+		
+		TurnoEquipoEnemigos turnoEnemigos1 = new TurnoEquipoEnemigos(tablero,equipoEnemigos);
+		turnoEnemigos1.controlarJuegadoresEquipoContrario();	
+
+		cell.morir();
+		freezer.morir();
+		majinBoo.morir();
+		
+		turnoEnemigos1.terminoTurno();
+		
+		TurnoEquipoZ turnoZ2= new TurnoEquipoZ(tablero, equipoGuerrerosZ);
+		turnoZ2.controlarJuegadoresEquipoContrario();
+
+	}
 	
 }

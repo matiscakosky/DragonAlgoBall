@@ -27,7 +27,7 @@ public class Goku extends GuerreroZ {
 	
 	
 	public void atacarConBasico(Personaje enemigo){
-		if (this.inmovilizado){throw new PersonajeInmovilizado();}
+		if (this.inmovilizado)throw new PersonajeInmovilizado();
 		this.corrobarDistancias(enemigo);
 		this.esAtacable(enemigo);
 		if(this.gokuTieneMenosDelTreintaPorcientoDeVida()){
