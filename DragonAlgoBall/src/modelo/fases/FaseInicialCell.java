@@ -10,7 +10,7 @@ public class FaseInicialCell extends Fase {
 	public HashMap<String, Integer> obtenerStats() {
 		return StatsJuego.statsIniciales.get("Cell");
 	}
-
+	
 	public Fase transformar(int ki) {
 		if(ki<this.obtenerStats().get("kiEvolucion")){
 			throw new TransformacionInvalida();

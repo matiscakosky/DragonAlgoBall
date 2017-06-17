@@ -58,16 +58,140 @@ public class TestIntegracionSegundaEntrega {
 		gohan.aumentarKi(StatsJuego.kiEvolucionEstado1Gohan);
 		gohan.transformar();
 		
-		System.out.println("Puntos de vida anteior Goku: "+goku.getPuntosDeVida());
-		System.out.println("Puntos de vida anteior Picolo: "+picolo.getPuntosDeVida());
-		
 		goku.reducirVida(REDUCCIONVIDAGOKU);
 		picolo.reducirVida(REDUCCIONVIDAPICOLO);
-		
-		System.out.println("Puntos de vida al momento de la evolucion Goku: "+goku.getPuntosDeVida());
-		System.out.println("Puntos de vida al momento de la evolucion Picolo: "+picolo.getPuntosDeVida());
 		
 		gohan.aumentarKi(StatsJuego.kiEvolucionEstado2Gohan);
 		gohan.transformar();
 	}
+	
+	@Test(expected = TransformacionInvalida.class)
+	public void test03PicoloRealizaPrimeraTransformacionNoPuedeRealizarLaSegunda(){
+		
+		Tablero tablero = new Tablero(StatsJuego.tamanioTablero);
+		Equipo equipoGuerrerosZ = new Equipo();
+		
+		Gohan gohan = new Gohan(tablero,equipoGuerrerosZ);
+		Picolo picolo = new Picolo(tablero,equipoGuerrerosZ);
+		
+		Personaje[] equipoZ = {gohan,picolo};
+
+		for(Personaje personaje: equipoZ){
+			equipoGuerrerosZ.agregarMiembro(personaje);
+			tablero.colocarObjeto(personaje, personaje.getPosicion());
+		}
+		
+		picolo.aumentarKi(StatsJuego.kiEvolucionEstado1Picolo);
+		picolo.transformar();
+		
+		picolo.aumentarKi(StatsJuego.kiEvolucionEstado2Picolo);
+		picolo.transformar();
+	}
+	
+	@Test
+	public void test04PicoloRealizaPrimeraYSegundaTransformacion(){
+		
+		int REDUCCIONVIDAGOHAN = (StatsJuego.puntosVidaInicialPicolo)*81/100;
+		
+		Tablero tablero = new Tablero(StatsJuego.tamanioTablero);
+		Equipo equipoGuerrerosZ = new Equipo();
+		
+		Gohan gohan = new Gohan(tablero,equipoGuerrerosZ);
+		Picolo picolo = new Picolo(tablero,equipoGuerrerosZ);
+		
+		Personaje[] equipoZ = {gohan,picolo};
+
+		for(Personaje personaje: equipoZ){
+			equipoGuerrerosZ.agregarMiembro(personaje);
+			tablero.colocarObjeto(personaje, personaje.getPosicion());
+		}
+		
+		picolo.aumentarKi(StatsJuego.kiEvolucionEstado1Picolo);
+		picolo.transformar();
+		
+		gohan.reducirVida(REDUCCIONVIDAGOHAN);
+		
+		picolo.aumentarKi(StatsJuego.kiEvolucionEstado2Picolo);
+		picolo.transformar();
+	}
+	
+	@Test(expected = TransformacionInvalida.class)
+	public void test05CellNoPuedeTransformarse(){
+		
+		Tablero tablero = new Tablero(StatsJuego.tamanioTablero);
+		Equipo equipoEnemigos = new Equipo();
+		
+		Cell cell = new Cell(tablero,equipoEnemigos);
+		equipoEnemigos.agregarMiembro(cell);
+		tablero.colocarObjeto(cell, cell.getPosicion());
+		
+		cell.aumentarKi(StatsJuego.kiEvolucionEstado1Cell);
+		cell.transformar();
+	}
+	
+	@Test
+	public void test06CellAbsorberVidaGoku(){
+		
+		int TAMANIOTABLERO = 5;
+		
+		Tablero tablero = new Tablero(TAMANIOTABLERO);
+		Equipo equipoZ = new Equipo();
+		Equipo equipoEnemigos = new Equipo();
+		
+		Cell cell = new Cell(tablero,equipoEnemigos);
+		equipoEnemigos.agregarMiembro(cell);
+		tablero.colocarObjeto(cell, cell.getPosicion());
+		
+		Goku goku = new Goku(tablero,equipoZ);
+		equipoZ.agregarMiembro(goku);
+		tablero.colocarObjeto(goku, goku.getPosicion());
+		
+		cell.aumentarKi(StatsJuego.kiAbsorberVidaCell);
+		cell.MoverPersonajeHaciaAbajoIzquierda();
+		cell.MoverPersonajeHaciaAbajoIzquierda();
+		cell.ataqueEspecial(goku);
+		
+		assertEquals(goku.getPuntosDeVida(),StatsJuego.puntosVidaInicialGoku-StatsJuego.poderPeleaCellNormal);
+		assertEquals(cell.getPuntosDeVida(),StatsJuego.puntosVidaInicialCell + StatsJuego.poderPeleaCellNormal);
+		
+	}
+	
+	@Test
+	public void test07CellAbsorberVidaAGokuHastaEVolucionar(){
+		
+		int TAMANIOTABLERO = 5;
+		int cantidadAbsorciones = 0;
+		
+		Tablero tablero = new Tablero(TAMANIOTABLERO);
+		Equipo equipoZ = new Equipo();
+		Equipo equipoEnemigos = new Equipo();
+		
+		Cell cell = new Cell(tablero,equipoEnemigos);
+		equipoEnemigos.agregarMiembro(cell);
+		tablero.colocarObjeto(cell, cell.getPosicion());
+		
+		Goku goku = new Goku(tablero,equipoZ);
+		equipoZ.agregarMiembro(goku);
+		tablero.colocarObjeto(goku, goku.getPosicion());
+		
+		cell.MoverPersonajeHaciaAbajoIzquierda();
+		cell.MoverPersonajeHaciaAbajoIzquierda();
+		
+		cell.aumentarKi(StatsJuego.kiEvolucionEstado1Cell);
+		
+		while(cantidadAbsorciones<StatsJuego.cantidadAbsorcionesCellParaPrimeraEvolucion){
+			cell.aumentarKi(StatsJuego.kiAbsorberVidaCell);
+			cell.ataqueEspecial(goku);
+			cantidadAbsorciones++;
+		}
+		
+		assertEquals(cell.getPuntosDeVida(),StatsJuego.puntosVidaInicialCell+cell.getPoderDePelea()*cantidadAbsorciones);
+		assertEquals(goku.getPuntosDeVida(),StatsJuego.puntosVidaInicialGoku-cell.getPoderDePelea()*cantidadAbsorciones);
+				
+		cell.transformar();
+		assertEquals(cell.getPoderDePelea(),StatsJuego.poderPeleaCellSemiPerfecto);
+		assertEquals(cell.getVelocidad(),StatsJuego.velocidadCellSemiPerfecto);
+	}
+	
+	
 }

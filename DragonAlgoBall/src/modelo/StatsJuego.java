@@ -73,6 +73,7 @@ public class StatsJuego {
 	public static final int poderPeleaMajinBooOriginal = 60;
 	public static final int puntosVidaInicialMajinBoo = 300;
 	public static final int kiAtaqueEspecialMajinBoo = 30;
+	public static final int kiAbsorberVidaCell = 5;
 	public static final int kiEvolucionEstado1Goku = 20;
 	public static final int kiEvolucionEstado2Goku = 50;
 	public static final int kiEvolucionEstado1Gohan = 10;
@@ -95,6 +96,8 @@ public class StatsJuego {
 	public static final double factorAumentoEsferaDelDragon = 1.25;
 	public static final int factorAumentoNubeVoladora = 2;
 	public static final int aumentoDeVidaSemillaErmitanio = 100;
+	public static final int cantidadAbsorcionesCellParaPrimeraEvolucion = 4;
+	public static final int cantidadAbsorcionesCellParaSegundaEvolucion = 8;
 	
 	
 	public static final HashMap<String,HashMap<String,Integer>> statsIniciales = obtenerEstadosIniciales();

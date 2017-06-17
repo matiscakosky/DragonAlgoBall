@@ -26,5 +26,4 @@ public class FaseCell2 extends Fase {
 	public boolean esPrimeraFase(){
 		return false;
 	}
-
 }

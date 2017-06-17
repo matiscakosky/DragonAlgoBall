@@ -31,7 +31,7 @@ public class Cell extends EnemigoDeLaTierra {
 		this.esAtacable(enemigo);
 		this.corrobarKiAtaqueEspecial(StatsJuego.kiAtaqueEspecialCell);
 		this.ataque.absorber(enemigo, this.getPoderDePelea());
-		this.estado.restarVida(-this.getPoderDePelea()); //me dio fiaca hacer el metodo sumar vida asique le tiro el negativo je, marcio no leas esto
+		this.estado.incrementarVida(this.getPoderDePelea());
 		this.estado.restarKi(StatsJuego.kiAtaqueEspecialCell);
 		this.cantidadDeAbsorber += 1;
 	}
@@ -42,5 +42,4 @@ public class Cell extends EnemigoDeLaTierra {
 		this.estado.actualizar(this.nombre, this.fase);
 
 	}
-
 }
