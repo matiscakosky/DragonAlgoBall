@@ -193,5 +193,61 @@ public class TestIntegracionSegundaEntrega {
 		assertEquals(cell.getVelocidad(),StatsJuego.velocidadCellSemiPerfecto);
 	}
 	
+
+	@Test(expected = PersonajeInmovilizado.class)
+	public void test08CovierteEnChocolate(){
+		
+		int TAMANIOTABLERO = 5;
+		
+		Tablero tablero = new Tablero(TAMANIOTABLERO);
+		Equipo equipoZ = new Equipo();
+		Equipo equipoEnemigos = new Equipo();
+		
+		MajinBoo majinBoo = new MajinBoo(tablero,equipoEnemigos);
+		equipoEnemigos.agregarMiembro(majinBoo);
+		tablero.colocarObjeto(majinBoo, majinBoo.getPosicion());
+		
+		Goku goku = new Goku(tablero,equipoZ);
+		equipoZ.agregarMiembro(goku);
+		tablero.colocarObjeto(goku, goku.getPosicion());
+		
+		goku.MoverPersonajeHaciaArribaDerecha();
+		
+		majinBoo.MoverPersonajeHaciaAbajoIzquierda();
+		majinBoo.MoverPersonajeHaciaAbajoIzquierda();
+		
+		majinBoo.aumentarKi(StatsJuego.kiAtaqueEspecialMajinBoo);
+		majinBoo.ataqueEspecial(goku);
+		
+		goku.MoverPersonajeHaciaAbajoIzquierda();
+	}
+	
+	@Test
+	public void test09AumentaElDanioDeGokuAlTenerMenosDelVeintePorcientoDeVida(){
+		
+int TAMANIOTABLERO = 5;
+		
+		Tablero tablero = new Tablero(TAMANIOTABLERO);
+		Equipo equipoZ = new Equipo();
+		Equipo equipoEnemigos = new Equipo();
+		
+		Goku goku = new Goku(tablero,equipoZ);
+		equipoZ.agregarMiembro(goku);
+		tablero.colocarObjeto(goku, goku.getPosicion());
+		
+		Cell cell = new Cell(tablero,equipoEnemigos);
+		equipoEnemigos.agregarMiembro(cell);
+		tablero.colocarObjeto(cell, cell.getPosicion());
+		
+		cell.MoverPersonajeHaciaAbajoIzquierda();
+		cell.MoverPersonajeHaciaAbajoIzquierda();
+		
+		goku.MoverPersonajeHaciaArribaDerecha();
+		goku.reducirVida(StatsJuego.puntosVidaInicialGoku*71/100);
+		goku.atacarConBasico(cell);
+		
+		assertEquals(cell.getPuntosDeVida(),StatsJuego.puntosVidaInicialCell-StatsJuego.poderPeleaGokuNormal*12/10);
+	}
+	
 	
 }

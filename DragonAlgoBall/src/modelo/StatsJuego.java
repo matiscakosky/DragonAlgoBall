@@ -88,7 +88,7 @@ public class StatsJuego {
 	public static final int kiEvolucionEstado2Cell = 0;
 	public static final int kiAumentoPorTurno = 5;
 	public static final double factorReduccionVidaGoku = 0.3;
-	public static final double factorAumentoDanioGlobalGoku = 0.2;
+	public static final double factorAumentoDanioGlobalGoku = 1.2;
 	public static final double factorAumentoKamehameha = 1.5;
 	public static final double factorAumentoMasenko = 1.25;
 	public static final double factorAumentoMakankosappo = 1.25;

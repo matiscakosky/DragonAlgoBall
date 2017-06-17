@@ -17,7 +17,7 @@ public abstract class GuerreroZ extends Personaje {
 	
 	public void inmovilizar(){
 		this.inmovilizado=true;
-		this.turnosRestantesInmovilizado =3 ;
+		this.turnosRestantesInmovilizado = 3 ;
 	}
 	public void actualizarInmovilizado(){
 		if(this.inmovilizado && this.turnosRestantesInmovilizado>0){
