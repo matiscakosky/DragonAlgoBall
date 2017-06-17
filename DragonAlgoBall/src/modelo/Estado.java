@@ -53,6 +53,10 @@ public class Estado {
 		this.puntosDeVida-=vida;
 	}
 	
+	public void incrementarVida(int vida){
+		this.puntosDeVida+=vida;
+	}
+	
 	public void restarKi(int kiDisminuir){
 		this.ki -= kiDisminuir;
 	}
