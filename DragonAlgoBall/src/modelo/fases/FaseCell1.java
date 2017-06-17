@@ -24,5 +24,4 @@ public class FaseCell1 extends Fase {
 		}
 		return this.transformar(ki);
 	}
-
 }

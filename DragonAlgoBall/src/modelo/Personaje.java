@@ -41,6 +41,10 @@ public abstract class Personaje extends ObjetoJuego{
 		return this.cantidadEsferasConsumidas;
 	}
 	
+	public Fase getFase(){
+		return fase;
+	}
+	
 	
 	public void aumentarKi(int ki) {
 		this.estado.aumentarKi(ki);
