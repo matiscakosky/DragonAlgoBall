@@ -13,6 +13,7 @@ public abstract class Turno {
 	protected Tablero tablero;
 	protected Personaje personajeQueSeMueve;
 	protected Personaje personajeQueAtaca;
+	protected Personaje personajeQueSeAtaca;
 	protected Personaje personajeEvoluciona;
 	protected Equipo equipo;
 	
@@ -53,6 +54,10 @@ public abstract class Turno {
 		return this.personajeEvoluciona;
 	}
 	
+	public Personaje getPersonajeQueSeAtaca(){
+		return this.personajeQueSeAtaca;
+	}
+	
 	public void controlarCantidadEsferasDelDragon(){
 		if (this.equipo.getCantidadDeEsferasCapturadas() == 7){
 			throw new JuegoTerminado();
@@ -81,6 +86,10 @@ public abstract class Turno {
 	public void atacar(Posicion posicion){
 		this.personajeQueAtaca = this.seleccionarPersonaje(posicion);
 		personajeQueAtaca.actualizarEstadoPersonajeAumentadoPorEsferas();
+	}
+	
+	public void elegirPersonajeQueSeAtaca(Posicion posicion){
+		this.personajeQueSeAtaca = this.seleccionarPersonaje(posicion);
 	}
 	
 	
