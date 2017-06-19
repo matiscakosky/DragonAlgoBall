@@ -18,7 +18,7 @@ public class Freezer extends EnemigoDeLaTierra {
 		this.fase = new FaseInicialFreezer();
 		this.equipo = equipo;
 		this.estado = new Estado(this.nombre,this.fase);
-		this.ataque = new Ataque();
+		this.ataque = new Ataque(this.getPoderDePelea());
 		Posicion pos = new Posicion(this.tablero.getTamanio(),this.tablero.getTamanio()-1);
 		this.movimiento = new Movimiento(estado.getVelocidad(),pos);
 	}

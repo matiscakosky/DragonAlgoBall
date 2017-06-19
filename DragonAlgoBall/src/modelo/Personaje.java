@@ -23,6 +23,7 @@ public abstract class Personaje extends ObjetoJuego{
 		int kiActual = this.estado.getKi();
 		this.fase = this.fase.transformar(kiActual);
 		this.estado.actualizar(this.nombre, this.fase);
+		this.ataque.setPoderActual(this.getPoderDePelea());
 	}
 	
 	public int getVelocidad(){

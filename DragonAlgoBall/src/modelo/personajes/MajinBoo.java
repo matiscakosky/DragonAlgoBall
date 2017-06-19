@@ -11,7 +11,7 @@ public class MajinBoo extends EnemigoDeLaTierra {
 		this.fase = new FaseInicialMajinBoo();
 		this.equipo = equipo;
 		this.estado = new Estado(this.nombre,this.fase);
-		this.ataque = new Ataque();
+		this.ataque = new Ataque(this.getPoderDePelea());
 		Posicion pos = new Posicion(this.tablero.getTamanio()-1,this.tablero.getTamanio());
 		this.movimiento = new Movimiento(estado.getVelocidad(),pos);
 	}
