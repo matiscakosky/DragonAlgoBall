@@ -195,10 +195,9 @@ public class TestIntegracionPrimeraEntrega {
 		
 		gohan.MoverPersonajeHaciaArribaDerecha();
 		gohan.MoverPersonajeHaciaArribaDerecha();
-		
 		gohan.atacarConBasico(majinBoo);
 		
-		assertEquals(majinBoo.getPuntosDeVida(),StatsJuego.puntosVidaInicialMajinBoo-gohan.getPoderDePelea());
+		assertEquals(majinBoo.getPuntosDeVida(),288);
 	}
 	
 }
