@@ -13,7 +13,7 @@ public class Gohan extends GuerreroZ {
 			this.fase = new FaseInicialGohan();
 			this.equipo = equipo;
 			this.estado = new Estado(this.nombre,this.fase);
-			this.ataque = new Ataque();
+			this.ataque = new Ataque(this.getPoderDePelea());
 			Posicion pos = new Posicion(1,2);
 			this.movimiento = new Movimiento(estado.getVelocidad(),pos);
 			this.inmovilizado = false;

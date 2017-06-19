@@ -98,7 +98,7 @@ public class StatsJuego {
 	public static final int aumentoDeVidaSemillaErmitanio = 100;
 	public static final int cantidadAbsorcionesCellParaPrimeraEvolucion = 4;
 	public static final int cantidadAbsorcionesCellParaSegundaEvolucion = 8;
-	
+	public static final double factorReduccionAtaquePorMayorPoderDePeleaEnemigo = 0.8;
 	
 	public static final HashMap<String,HashMap<String,Integer>> statsIniciales = obtenerEstadosIniciales();
 	public static final HashMap<String,HashMap<String,Integer>> statsEstado1 = obtenerEstados1();

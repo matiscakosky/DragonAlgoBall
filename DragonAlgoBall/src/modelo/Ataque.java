@@ -3,8 +3,13 @@ package modelo;
 import modelo.personajes.GuerreroZ;
 
 public class Ataque {
+	int poderActual;
+	public Ataque (int actual){
+		poderActual=actual;
+	}
 	
 	public void ataqueBasico(Personaje personajeAtacado, int poderAtaque){
+		poderAtaque = modificarAtaqueSegunPoderEnemigo(poderActual, personajeAtacado.getPoderDePelea());
 		personajeAtacado.estado.restarVida(poderAtaque);
 		if (!personajeAtacado.estado.sigueVivo()){
 			personajeAtacado.morir();			
@@ -45,6 +50,16 @@ public class Ataque {
 		enemigo.inmovilizar();
 	}
 	
+	public void setPoderActual(int actual){
+		this.poderActual = actual;
+	}
+	
+	public int modificarAtaqueSegunPoderEnemigo(int poderAtacante, int poderAtacado){
+		if (poderAtacado > poderAtacante){
+			return (int)(poderAtacante*StatsJuego.factorReduccionAtaquePorMayorPoderDePeleaEnemigo);
+		}		
+		return poderAtacante;
+	}
 	
 
 }

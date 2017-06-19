@@ -5,37 +5,43 @@ import controlador.BotonAtaqueEspecialHandler;
 import controlador.BotonEvolucionarHandler;
 import controlador.BotonMoverHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
-
+import javafx.scene.image.Image;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import modelo.Tablero;
 import modelo.turnos.Turno;
 
 public class ContenedorPrincipal extends BorderPane {
 
     BarraDeMenu menuBar;
-  //  VistaJuego vistaJuego;
-    Canvas canvasCentral;
+    Canvas canvasTablero;
     VBox contenedorCentral;
-    Tablero tablero;
+    Turno turno;
+    Stage stage;
 
     public ContenedorPrincipal(Stage stage, Turno turno) {
     	
-    	
+    	this.stage = stage;
+    	this.turno = turno;
         this.setBotonera(turno);
     }
 
     private void setBotonera( Turno turno) {
+    	
 
         Button botonAtacar = new Button();
         botonAtacar.setText("Atacar");
         BotonAtacarHandler atacarButtonHandler = new BotonAtacarHandler(turno);
         botonAtacar.setOnAction(atacarButtonHandler);
-        
-        
+         
         Button botonAtaqueEspecial = new Button();
         botonAtaqueEspecial.setText("Ataque Especial");
         BotonAtaqueEspecialHandler ataqueEspecialButtonHandler = new BotonAtaqueEspecialHandler(turno);
@@ -56,7 +62,7 @@ public class ContenedorPrincipal extends BorderPane {
         contenedorVertical.setPadding(new Insets(15));
 
         this.setLeft(contenedorVertical);
-
+        
     }
 
     private void setMenu(Stage stage) {
@@ -64,23 +70,19 @@ public class ContenedorPrincipal extends BorderPane {
         this.setTop(menuBar);
     }
     
-/*
-   private void setCentro(Robot robot) {
-
-        canvasCentral = new Canvas(460, 220);
-        vistaRobot = new VistaRobot(robot, canvasCentral);
-        vistaRobot.dibujar();
-
-        contenedorCentral = new VBox(canvasCentral);
+    private void setCentro(){
+    	
+    	canvasTablero = new Canvas(460,220);
+    	contenedorCentral = new VBox(canvasTablero);
         contenedorCentral.setAlignment(Pos.CENTER);
-        contenedorCentral.setSpacing(20);
-        contenedorCentral.setPadding(new Insets(25));
-        Image imagen = new Image("file:src/vista/imagenes/fondo-verde.jpg");
-        BackgroundImage imagenDeFondo = new BackgroundImage(imagen, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+        Image imagen = new Image("file:src/vista/Imagenes/Tablero.jpg");
+        BackgroundImage imagenDeFondo = new BackgroundImage(imagen,BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
         contenedorCentral.setBackground(new Background(imagenDeFondo));
-
+        
         this.setCenter(contenedorCentral);
-    }*/
+    	
+    }
+   
 /*
     private void setConsola() {
 

@@ -11,7 +11,7 @@ public class Picolo extends GuerreroZ  {
 		this.fase = new FaseInicialPicolo();
 		this.equipo = equipo;
 		this.estado = new Estado(this.nombre,this.fase);
-		this.ataque = new Ataque();
+		this.ataque = new Ataque(this.getPoderDePelea());
 		Posicion pos = new Posicion(2,1);
 		this.movimiento = new Movimiento(estado.getVelocidad(),pos);
 		this.inmovilizado = false;
