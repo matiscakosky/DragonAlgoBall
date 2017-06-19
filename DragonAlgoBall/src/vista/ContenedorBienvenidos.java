@@ -1,53 +1,95 @@
 package vista;
 
+
+
+import controlador.BotonSalirHandler;
+import controlador.BotonSonidoHandler;
+import javafx.beans.binding.Bindings;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
+import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
-import vista.eventos.BotonEntrarEventHandler;
 
-public class ContenedorBienvenidos extends VBox {
 
-    Stage stage;
+public class ContenedorBienvenidos extends BorderPane{
+	
+	Stage stage;
 
-    public ContenedorBienvenidos(Stage stage, Scene proximaEscena) {
-
-        super();
-
+	public ContenedorBienvenidos (Stage stage, AudioClip musicaDeFondo) {
+		super();
         this.stage = stage;
-
-        this.setAlignment(Pos.CENTER);
-        this.setSpacing(20);
-        this.setPadding(new Insets(25));
-        Image imagen = new Image("file:src/vista/imagenes/textura.png");
-        BackgroundImage imagenDeFondo = new BackgroundImage(imagen, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+        this.setPadding(new Insets(40));
+        Image imagen = new Image("file:src/vista/Imagenes/MainFondo.jpg");
+        BackgroundImage imagenDeFondo = new BackgroundImage(imagen,BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
         this.setBackground(new Background(imagenDeFondo));
+        Image jugarSinPulsar  = new Image("file:src/vista/Imagenes/play-encima.png");
+        Image jugarPulsado  = new Image("file:src/vista/Imagenes/play-normal.png");
+        Image salirSinPulsar  = new Image("file:src/vista/Imagenes/salir-encima.png");
+        Image salirPulsado  = new Image("file:src/vista/Imagenes/salir-normal.png");
+        Image conSonido  = new Image("file:src/vista/Imagenes/ConSonido.png");
+        Image sinSonido  = new Image("file:src/vista/Imagenes/SinSoido.png");
+        Button botonIniciarJuego = new Button();
+        Button botonSalirJuego = new Button();
+        ToggleButton botonSonido = new ToggleButton();
+        ImageView imagen2 = new ImageView();
+        botonSonido.setGraphic(imagen2);
+        imagen2.imageProperty().bind(Bindings.when(botonSonido.selectedProperty())
+            .then(sinSonido)
+            .otherwise(conSonido)
+        );
+        botonIniciarJuego.setGraphic(new ImageView(jugarPulsado));
+        botonSalirJuego.setGraphic(new ImageView(salirPulsado));
+        botonIniciarJuego.setStyle("-fx-border-color: transparent; -fx-background-color: transparent; ");
+        botonSalirJuego.setStyle("-fx-border-color: transparent; -fx-background-color: transparent; ");
+        botonSonido.setStyle("-fx-border-color: transparent; -fx-background-color: transparent; ");
 
-        Button botonEntrar = new Button();
-        botonEntrar.setText("Entrar");
-
-        Label etiqueta = new Label();
-        etiqueta.setFont(Font.font("Tahoma", FontWeight.BOLD, 18));
-
-        etiqueta.setText("Bienvenidos a la aplicación MVC con JAVA FX de algoritmos y programación III. Haga click en entrar");
-        etiqueta.setTextFill(Color.web("#66A7C5"));
-
-        BotonEntrarEventHandler botonEntrarHandler = new BotonEntrarEventHandler(stage, proximaEscena);
-        botonEntrar.setOnAction(botonEntrarHandler);
-
-        this.getChildren().addAll(etiqueta, botonEntrar);
-    }
-
+        
+        botonIniciarJuego.addEventHandler(MouseEvent.MOUSE_ENTERED,new EventHandler<MouseEvent>() {
+        	        @Override public void handle(MouseEvent e) {
+        	        	botonIniciarJuego.setGraphic(new ImageView(jugarSinPulsar)); }});
+        
+        
+        botonIniciarJuego.addEventHandler(MouseEvent.MOUSE_EXITED,new EventHandler<MouseEvent>() {
+        	        @Override public void handle(MouseEvent e) {
+        	        	botonIniciarJuego.setGraphic(new ImageView(jugarPulsado));}});
+        
+        
+        botonSalirJuego.addEventHandler(MouseEvent.MOUSE_ENTERED,new EventHandler<MouseEvent>() {
+	        @Override public void handle(MouseEvent e) {
+	        	botonSalirJuego.setGraphic(new ImageView(salirSinPulsar)); }});
+        
+        botonSalirJuego.addEventHandler(MouseEvent.MOUSE_EXITED,new EventHandler<MouseEvent>() {
+	        @Override public void handle(MouseEvent e) {
+	        	botonSalirJuego.setGraphic(new ImageView(salirPulsado));}});
+        
+        
+        //Botoniniciarjuegohandler botoniniciarjuegohandler = new Botoniniciarjuegohandler();
+        BotonSalirHandler botonsalirjuegohandler = new BotonSalirHandler();
+        BotonSonidoHandler botonsonidohandler = new BotonSonidoHandler(musicaDeFondo);
+        //botonIniciarJuego.setOnAction(botoniniciarjuegohandler);
+        botonSalirJuego.setOnAction(botonsalirjuegohandler);
+        botonSonido.setOnAction(botonsonidohandler);
+        VBox contenedorVertical = new VBox(botonIniciarJuego, botonSalirJuego);
+        VBox contenedorVertical2 = new VBox(botonSonido);
+        contenedorVertical.setSpacing(15);
+        contenedorVertical.setAlignment(Pos.CENTER_LEFT);
+        contenedorVertical2.setAlignment(Pos.TOP_RIGHT);
+        //contenedorVertical.setPadding(new Insets(15));
+        this.setLeft(contenedorVertical);
+        //this.getChildren().addAll(botonIniciarJuego,botonSalirJuego,botonSonidoActivado);
+        this.setRight(contenedorVertical2);
+	}
 }

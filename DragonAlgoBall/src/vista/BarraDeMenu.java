@@ -1,13 +1,12 @@
 package vista;
 
+import controlador.OpcionComoJugarEventHandler;
+import controlador.OpcionPantallaCompletaEventHandler;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SeparatorMenuItem;
 import javafx.stage.Stage;
-import vista.eventos.OpcionComoJugarEventHandler;
-import vista.eventos.OpcionPantallaCompletaEventHandler;
-//import vista.eventos.OpcionSalirEventHandler;
 
 public class BarraDeMenu extends MenuBar {
 
@@ -18,7 +17,7 @@ public class BarraDeMenu extends MenuBar {
         Menu menuOpciones = new Menu("Opciones");
         Menu menuAyuda = new Menu("Ayuda");
         
-        MenuItem opcionComoJuego = new MenuItem("¿Cómo juego?");
+        MenuItem opcionComoJuego = new MenuItem("ï¿½Cï¿½mo juego?");
         
         OpcionComoJugarEventHandler opcionComoJuegarHandler = new OpcionComoJugarEventHandler();
         opcionComoJuego.setOnAction(opcionComoJuegarHandler);

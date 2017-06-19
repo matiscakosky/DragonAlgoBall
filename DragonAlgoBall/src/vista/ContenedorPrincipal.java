@@ -1,5 +1,9 @@
 package vista;
 
+import controlador.BotonAtacarHandler;
+import controlador.BotonAtaqueEspecialHandler;
+import controlador.BotonEvolucionarHandler;
+import controlador.BotonMoverHandler;
 import javafx.geometry.Insets;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
@@ -9,10 +13,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import modelo.Tablero;
 import modelo.turnos.Turno;
-import vista.eventos.BotonMoverHandler;
-import vista.eventos.BotonAtacarHandler;
-import vista.eventos.BotonAtaqueEspecialHandler;
-import vista.eventos.BotonEvolucionarHandler;
 
 public class ContenedorPrincipal extends BorderPane {
 
