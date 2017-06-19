@@ -45,14 +45,10 @@ public abstract class Personaje extends ObjetoJuego{
 		return ataquesRestantesEsferaDelDragon;
 	}
 	
+
 	public int getTurnosRestantesNubeVoladora(){
 		return turnosRestantesNubeVoladora;
 	}
-	
-	public Fase getFase(){
-		return fase;
-	}
-	
 	
 	public void aumentarKi(int ki) {
 		this.estado.aumentarKi(ki);
@@ -110,7 +106,7 @@ public abstract class Personaje extends ObjetoJuego{
 	}
 	
 	public void corrobarKiAtaqueEspecial(int kiNecesario){
-		if(this.getKi() < kiNecesario){
+		if(this.estado.getKi() < kiNecesario){
 			throw new KiInsuficiente();
 		} 			
 	}

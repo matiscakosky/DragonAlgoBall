@@ -18,12 +18,5 @@ public class FaseCell2 extends Fase {
 	public Fase transformarCell(int ki,int cantidadDeAbsorber){
 		throw new TransformacionInvalida();
 	}
-	
-	public boolean esFaseInicial(){
-		return false;
-	}
-	
-	public boolean esPrimeraFase(){
-		return false;
-	}
+
 }
