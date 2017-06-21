@@ -20,7 +20,7 @@ public class MajinBoo extends EnemigoDeLaTierra {
 		this.corrobarDistancias(enemigo);
 		this.esAtacable(enemigo);
 		this.corrobarKiAtaqueEspecial(StatsJuego.kiAtaqueEspecialMajinBoo);
-		this.ataque.convertirEnChocolate((GuerreroZ)enemigo, 0);
+		this.ataque.convertirEnChocolate((GuerreroZ)enemigo);
 		this.estado.restarKi(StatsJuego.kiAtaqueEspecialMajinBoo);
 	}
 }

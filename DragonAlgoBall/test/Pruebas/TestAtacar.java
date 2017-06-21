@@ -27,7 +27,7 @@ public class TestAtacar {
 	
 	@Test(expected= AtaqueInvalido.class)
 	public void test02ColocarDosPersonajesQueNoSeLleganAAtacar(){
-		Tablero tablero = new Tablero(15);
+		Tablero tablero = new Tablero(10);
 		Equipo enemigos = new Equipo();
 		Equipo equipoz = new Equipo();
 		Goku goku = new Goku(tablero,equipoz);
@@ -118,7 +118,7 @@ public class TestAtacar {
 		cell.atacarConBasico(goku);
 
 		//Corroboro las nuevas vidas
-		assertEquals(cell.getPuntosDeVida(),480);  //TIENE QUE DAR 470 ¿?
+		assertEquals(cell.getPuntosDeVida(),470);  //TIENE QUE DAR 470 ¿?
 		assertEquals(goku.getPuntosDeVida(),480);
 	}
 	
@@ -187,7 +187,7 @@ public class TestAtacar {
 		cell.atacarConBasico(goku);
 		freezer.ataqueEspecial(goku);
 		assertEquals(cell.getPuntosDeVida(),520);
-		assertEquals(goku.getPuntosDeVida(),440); //TIENE QUE DAR 430 ¿?
+		assertEquals(goku.getPuntosDeVida(),430); //TIENE QUE DAR 430 ¿?
 		assertEquals(cell.getKi(),95);
 		assertEquals(freezer.getKi(),80);
 	}

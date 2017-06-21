@@ -11,6 +11,7 @@ import modelo.excepciones.PosicionInvalida;
 public abstract class Turno {
 
 	protected Tablero tablero;
+	protected Personaje personajeSeleccionado;
 	protected Personaje personajeQueSeMueve;
 	protected Personaje personajeQueAtaca;
 	protected Personaje personajeQueSeAtaca;
@@ -23,6 +24,7 @@ public abstract class Turno {
 		if(!this.equipo.contiene(personaje)){
 			throw new PosicionInvalida();
 		}
+		this.personajeSeleccionado = personaje;
 		return personaje;
 	}
 	

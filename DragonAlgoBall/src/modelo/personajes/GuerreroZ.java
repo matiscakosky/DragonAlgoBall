@@ -31,7 +31,7 @@ public abstract class GuerreroZ extends Personaje {
 		if (this.inmovilizado){throw new PersonajeInmovilizado();}
 		this.corrobarDistancias(enemigo);
 		this.esAtacable(enemigo);
-		ataque.ataqueBasico(enemigo, this.estado.getPoderDePelea());
+		ataque.ataqueBasico(enemigo);
 	}
 	
 	public void MoverPersonajeHaciaArriba(){

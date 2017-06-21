@@ -27,7 +27,7 @@ public class Freezer extends EnemigoDeLaTierra {
 		this.corrobarDistancias(enemigo);
 		this.esAtacable(enemigo);
 		this.corrobarKiAtaqueEspecial(StatsJuego.kiAtaqueEspecialFreezer);
-		this.ataque.rayoMortal(enemigo, this.getPoderDePelea());
+		this.ataque.rayoMortal(enemigo);
 		this.estado.restarKi(StatsJuego.kiAtaqueEspecialFreezer);
 	}
 	

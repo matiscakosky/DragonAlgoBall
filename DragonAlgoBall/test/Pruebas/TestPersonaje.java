@@ -171,29 +171,29 @@ public class TestPersonaje {
 	
 	@Test
 	public void test17MoverPersonajeHaciaAbajoDerecha(){
-		Tablero tablero = new Tablero(15);
+		Tablero tablero = new Tablero(10);
 		MajinBoo boo = new MajinBoo(tablero, EQUIPO2);
 		tablero.colocarObjeto(boo,boo.getPosicion());
 		boo.MoverPersonajeHaciaAbajo();
 		boo.MoverPersonajeHaciaAbajoDerecha();
-		assertEquals(boo.getPosicion().getCoordenadaX(),15);
-		assertEquals(boo.getPosicion().getCoordenadaY(),13);
+		assertEquals(boo.getPosicion().getCoordenadaX(),10);
+		assertEquals(boo.getPosicion().getCoordenadaY(),8);
 	}
 	
 	@Test
 	public void test18MoverPersonajeHaciaAbajoIzquierda(){
-		Tablero tablero = new Tablero(15);
+		Tablero tablero = new Tablero(10);
 		Cell cell = new Cell(tablero, EQUIPO2);
 		tablero.colocarObjeto(cell,cell.getPosicion());
 		cell.MoverPersonajeHaciaAbajoIzquierda();
 		cell.MoverPersonajeHaciaAbajoIzquierda();
-		assertEquals(cell.getPosicion().getCoordenadaX(),13);
-		assertEquals(cell.getPosicion().getCoordenadaY(),13);
+		assertEquals(cell.getPosicion().getCoordenadaX(),8);
+		assertEquals(cell.getPosicion().getCoordenadaY(),8);
 	}
 	
 	@Test(expected = MovimientoInvalido.class)
 	public void test19MoverPersonajeHaciaAbajoMovimientoInvalidoPorPersonajeAdyacente(){
-		Tablero tablero = new Tablero(15);
+		Tablero tablero = new Tablero(10);
 		Cell cell = new Cell(tablero, EQUIPO2);
 		Freezer freezer = new Freezer(tablero, EQUIPO2);
 		tablero.colocarObjeto(cell,cell.getPosicion());
@@ -203,7 +203,7 @@ public class TestPersonaje {
 	
 	@Test(expected = MovimientoInvalido.class)
 	public void test20MoverPersonajeHaciaAbajoMovimientoInvalidoLimitesTablero(){
-		Tablero tablero = new Tablero(15);
+		Tablero tablero = new Tablero(10);
 		Goku goku = new Goku(tablero, EQUIPO1);
 		tablero.colocarObjeto(goku,goku.getPosicion());
 		goku.MoverPersonajeHaciaAbajo();
@@ -211,7 +211,7 @@ public class TestPersonaje {
 	
 	@Test(expected = MovimientoInvalido.class)
 	public void test21MoverPersonajeHaciaArribaMovimientoInvalidoPorPersonajeAdyacente(){
-		Tablero tablero = new Tablero(15);
+		Tablero tablero = new Tablero(10);
 		Cell cell = new Cell(tablero, EQUIPO2);
 		Freezer freezer = new Freezer(tablero, EQUIPO2);
 		tablero.colocarObjeto(cell,cell.getPosicion());

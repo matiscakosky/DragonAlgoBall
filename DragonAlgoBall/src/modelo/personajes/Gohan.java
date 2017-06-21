@@ -24,7 +24,7 @@ public class Gohan extends GuerreroZ {
 		this.corrobarDistancias(enemigo);
 		this.esAtacable(enemigo);
 		this.corrobarKiAtaqueEspecial(StatsJuego.kiAtaqueEspecialGohan);
-		this.ataque.masenko(enemigo, this.getPoderDePelea());
+		this.ataque.masenko(enemigo);
 		this.estado.restarKi(StatsJuego.kiAtaqueEspecialGohan);
 	}
 	

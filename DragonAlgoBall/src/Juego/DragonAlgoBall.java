@@ -17,8 +17,6 @@ public class DragonAlgoBall {
 	
 	public Turno crearModelo(){
 		this.tablero = new Tablero(StatsJuego.tamanioTablero);
-
-		
 		this.equipoGuerrerosZ = new Equipo();
 		this.equipoEnemigos = new Equipo();
 		Goku goku = new Goku(tablero,equipoGuerrerosZ);

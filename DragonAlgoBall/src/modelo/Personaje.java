@@ -120,7 +120,7 @@ public abstract class Personaje extends ObjetoJuego{
 	public void atacarConBasico(Personaje enemigo){
 		this.corrobarDistancias(enemigo);
 		this.esAtacable(enemigo);
-		ataque.ataqueBasico(enemigo, this.estado.getPoderDePelea());
+		ataque.ataqueBasico(enemigo);
 	}
 	
 	public void consumirEsferaDelDragon(){

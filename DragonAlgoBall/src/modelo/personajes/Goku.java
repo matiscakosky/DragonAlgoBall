@@ -31,10 +31,10 @@ public class Goku extends GuerreroZ {
 		this.corrobarDistancias(enemigo);
 		this.esAtacable(enemigo);
 		if(this.gokuTieneMenosDelTreintaPorcientoDeVida()){
-			ataque.ataqueBasicoMejoradoGoku(enemigo, this.getPoderDePelea());
+			ataque.ataqueBasicoMejoradoGoku(enemigo);
 			return;
 		}
-		ataque.ataqueBasico(enemigo, this.estado.getPoderDePelea());
+		ataque.ataqueBasico(enemigo);
 	}
 	
 	
@@ -43,7 +43,7 @@ public class Goku extends GuerreroZ {
 		this.corrobarDistancias(enemigo);
 		this.esAtacable(enemigo);
 		this.corrobarKiAtaqueEspecial(StatsJuego.kiAtaqueEspecialGoku);
-		this.ataque.kamehameha(enemigo, this.getPoderDePelea());
+		this.ataque.kamehameha(enemigo);
 		this.estado.restarKi(StatsJuego.kiAtaqueEspecialGoku);
 	}
 

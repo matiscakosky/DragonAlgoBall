@@ -30,7 +30,7 @@ public class Cell extends EnemigoDeLaTierra {
 		this.corrobarDistancias(enemigo);
 		this.esAtacable(enemigo);
 		this.corrobarKiAtaqueEspecial(StatsJuego.kiAtaqueEspecialCell);
-		this.ataque.absorber(enemigo, this.getPoderDePelea());
+		this.ataque.absorber(enemigo);
 		this.estado.incrementarVida(this.getPoderDePelea());
 		this.estado.restarKi(StatsJuego.kiAtaqueEspecialCell);
 		this.cantidadDeAbsorber += 1;

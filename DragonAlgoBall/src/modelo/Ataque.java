@@ -8,45 +8,59 @@ public class Ataque {
 		poderActual=actual;
 	}
 	
-	public void ataqueBasico(Personaje personajeAtacado, int poderAtaque){
-		poderAtaque = modificarAtaqueSegunPoderEnemigo(poderActual, personajeAtacado.getPoderDePelea());
-		personajeAtacado.estado.restarVida(poderAtaque);
+	private void atacar(Personaje personajeAtacado, int poderDeAtaque){
+		personajeAtacado.estado.restarVida(poderDeAtaque);
 		if (!personajeAtacado.estado.sigueVivo()){
 			personajeAtacado.morir();			
 		}
 	}
 	
-	public void kamehameha(Personaje personajeAtacado, int poderAtaque){
+	public void ataqueBasico(Personaje personajeAtacado){
+		int poderPelea = modificarAtaqueSegunPoderEnemigo(poderActual, personajeAtacado.getPoderDePelea());
+		atacar(personajeAtacado,poderPelea);
+	}
+	
+	public void kamehameha(Personaje personajeAtacado){
 		//Ataque especial Goku
-		this.ataqueBasico(personajeAtacado,(int)(poderAtaque*StatsJuego.factorAumentoKamehameha));		
+		int poderPelea = modificarAtaqueSegunPoderEnemigo(poderActual, personajeAtacado.getPoderDePelea());
+		this.atacar(personajeAtacado,(int)(poderPelea*StatsJuego.factorAumentoKamehameha));		
 	}
 	
-	public void ataqueBasicoMejoradoGoku(Personaje personajeAtacado, int poderAtaque){
+	public void ataqueBasicoMejoradoGoku(Personaje personajeAtacado){
 		//Ataque basico Goku cuando tiene menos del 30% de vida
-		this.ataqueBasico(personajeAtacado,(int)(poderAtaque*StatsJuego.factorAumentoDanioGlobalGoku));
+		int poderPelea = modificarAtaqueSegunPoderEnemigo(poderActual, personajeAtacado.getPoderDePelea());
+		
+		this.atacar(personajeAtacado,(int)(poderPelea*StatsJuego.factorAumentoDanioGlobalGoku));
 	}
 	
-	public void masenko(Personaje enemigo, int poderAtaque){
+	public void masenko(Personaje personajeAtacado){
 		// Ataque especial Gohan
-		this.ataqueBasico(enemigo,(int)(poderAtaque*StatsJuego.factorAumentoMasenko));
+		int poderPelea = modificarAtaqueSegunPoderEnemigo(poderActual, personajeAtacado.getPoderDePelea());
+		this.atacar(personajeAtacado,(int)(poderPelea*StatsJuego.factorAumentoMasenko));
 	}
 	
-	public void makankosappo(Personaje enemigo, int poderAtaque){
+	public void makankosappo(Personaje enemigo){
 		//Ataque especial Piccolo
-		this.ataqueBasico(enemigo,(int)(poderAtaque*StatsJuego.factorAumentoMakankosappo));
+		int poderPelea = modificarAtaqueSegunPoderEnemigo(poderActual, enemigo.getPoderDePelea());
+		
+		this.atacar(enemigo,(int)(poderPelea*StatsJuego.factorAumentoMakankosappo));
 	}
 	
-	public void absorber(Personaje enemigo, int poderAtaque){
+	public void absorber(Personaje enemigo){
 		//Ataque especial Cell
-		this.ataqueBasico(enemigo,poderAtaque);
+		int poderPelea = modificarAtaqueSegunPoderEnemigo(poderActual, enemigo.getPoderDePelea());
+		
+		this.atacar(enemigo,poderPelea);
 	}
 	
-	public void rayoMortal(Personaje enemigo, int poderAtaque){
+	public void rayoMortal(Personaje enemigo){
 		//Ataque especial de Freezer
-		this.ataqueBasico(enemigo, (int)(poderAtaque*StatsJuego.factorAumentoRayoMortal));
+		int poderPelea = modificarAtaqueSegunPoderEnemigo(poderActual, enemigo.getPoderDePelea());
+		
+		this.atacar(enemigo, (int)(poderPelea*StatsJuego.factorAumentoRayoMortal));
 	}
 	
-	public void convertirEnChocolate(GuerreroZ enemigo, int poderAtaque){
+	public void convertirEnChocolate(GuerreroZ enemigo){
 		enemigo.inmovilizar();
 	}
 	
@@ -54,7 +68,7 @@ public class Ataque {
 		this.poderActual = actual;
 	}
 	
-	public int modificarAtaqueSegunPoderEnemigo(int poderAtacante, int poderAtacado){
+	private int modificarAtaqueSegunPoderEnemigo(int poderAtacante, int poderAtacado){
 		if (poderAtacado > poderAtacante){
 			return (int)(poderAtacante*StatsJuego.factorReduccionAtaquePorMayorPoderDePeleaEnemigo);
 		}		

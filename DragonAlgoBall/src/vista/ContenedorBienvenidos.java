@@ -3,11 +3,13 @@ package vista;
 
 
 import controlador.BotonSalirHandler;
+import controlador.BotonIniciarJuegoHandler;
 import controlador.BotonSonidoHandler;
 import javafx.beans.binding.Bindings;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
@@ -28,7 +30,7 @@ public class ContenedorBienvenidos extends BorderPane{
 	
 	Stage stage;
 
-	public ContenedorBienvenidos (Stage stage, AudioClip musicaDeFondo) {
+	public ContenedorBienvenidos (Stage stage, AudioClip musicaDeFondo, Scene escenaJuego) {
 		super();
         this.stage = stage;
         this.setPadding(new Insets(40));
@@ -76,10 +78,10 @@ public class ContenedorBienvenidos extends BorderPane{
 	        	botonSalirJuego.setGraphic(new ImageView(salirPulsado));}});
         
         
-        //Botoniniciarjuegohandler botoniniciarjuegohandler = new Botoniniciarjuegohandler();
+        BotonIniciarJuegoHandler botoniniciarjuegohandler = new BotonIniciarJuegoHandler(stage,escenaJuego,musicaDeFondo);
         BotonSalirHandler botonsalirjuegohandler = new BotonSalirHandler();
         BotonSonidoHandler botonsonidohandler = new BotonSonidoHandler(musicaDeFondo);
-        //botonIniciarJuego.setOnAction(botoniniciarjuegohandler);
+        botonIniciarJuego.setOnAction(botoniniciarjuegohandler);
         botonSalirJuego.setOnAction(botonsalirjuegohandler);
         botonSonido.setOnAction(botonsonidohandler);
         VBox contenedorVertical = new VBox(botonIniciarJuego, botonSalirJuego);

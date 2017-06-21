@@ -23,7 +23,7 @@ public class Picolo extends GuerreroZ  {
 		this.corrobarDistancias(enemigo);
 		this.esAtacable(enemigo);
 		this.corrobarKiAtaqueEspecial(StatsJuego.kiAtaqueEspecialPicolo);
-		this.ataque.makankosappo(enemigo, this.getPoderDePelea());
+		this.ataque.makankosappo(enemigo);
 		this.estado.restarKi(StatsJuego.kiAtaqueEspecialPicolo);
 	}
 	
