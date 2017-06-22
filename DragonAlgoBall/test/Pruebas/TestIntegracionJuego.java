@@ -44,7 +44,8 @@ public class TestIntegracionJuego {
 		
 		TurnoEquipoZ turnoZ1= new TurnoEquipoZ(tablero, equipoGuerrerosZ);
 		Posicion seleccionada = new Posicion(1,1);
-		turnoZ1.Mover(seleccionada);
+		turnoZ1.seleccionarPersonaje(seleccionada);
+		turnoZ1.Mover();
 		
 		//Usuario toco boton mover a arriba - derecha - arriba&derecha
 		Personaje aMover = turnoZ1.getPersonajeMovil();
@@ -54,8 +55,8 @@ public class TestIntegracionJuego {
 		
 		TurnoEquipoEnemigos turnoE1 = new TurnoEquipoEnemigos(tablero, equipoEnemigos);
 		Posicion seleccionada2 = new Posicion(10,9); 
-		turnoE1.Mover(seleccionada2);
-		
+		turnoE1.seleccionarPersonaje(seleccionada2);
+		turnoE1.Mover();
 		
 		//Usuario toco boton mover a la abajo - izq - abajoderecha 
 		Personaje aMover2 = turnoE1.getPersonajeMovil();
@@ -97,7 +98,8 @@ public class TestIntegracionJuego {
 		
 		//Usuario selecciono la posicion de MajinBoo para mover
 		Posicion seleccionada1 = new Posicion(4,5); 
-		turnoE1.Mover(seleccionada1);
+		turnoE1.seleccionarPersonaje(seleccionada1);
+		turnoE1.Mover();
 		//Usuario selecciono la posicion de MajinBoo para mover
 		turnoE1.atacar(seleccionada1);
 		
@@ -121,7 +123,8 @@ public class TestIntegracionJuego {
 		
 		TurnoEquipoZ turnoZ1 = new TurnoEquipoZ(tablero, equipoGuerrerosZ);
 		//Usuario selecciono la posicion de Picolo para mover
-		turnoZ1.Mover(seleccionada2);
+		turnoZ1.seleccionarPersonaje(seleccionada2);
+		turnoZ1.Mover();
 		GuerreroZ aMoverZ = (GuerreroZ) turnoZ1.getPersonajeMovil();
 		
 		//Voy a intentar mover un personaje inmovilizado por Boo, no deberia poder
@@ -131,7 +134,8 @@ public class TestIntegracionJuego {
 		} catch (PersonajeInmovilizado e) {
 			//Usuario selecciona otro personaje para mover, ahora a Goku a este si lo beria dejar
 			Posicion seleccionada3 = new Posicion(1,1); 
-			turnoZ1.Mover(seleccionada3);
+			turnoZ1.seleccionarPersonaje(seleccionada3);
+			turnoZ1.Mover();
 			aMoverZ = (GuerreroZ) turnoZ1.getPersonajeMovil();
 			aMoverZ.MoverPersonajeHaciaArribaDerecha();
 			assertEquals(tablero.obtenerObjeto(new Posicion(2,2)).getNombre(), "Goku");
@@ -147,7 +151,8 @@ public class TestIntegracionJuego {
 		
 		
 		//Usuario ya puede volvera jugar con picolo
-		turnoZ1.Mover(seleccionada2);
+		turnoZ1.seleccionarPersonaje(seleccionada2);
+		turnoZ1.Mover();
 		aMoverZ = (GuerreroZ) turnoZ1.getPersonajeMovil();
 		aMoverZ.MoverPersonajeHaciaIzquierda();
 		assertEquals(tablero.obtenerObjeto(new Posicion(1,1)).getNombre(), "Picolo");

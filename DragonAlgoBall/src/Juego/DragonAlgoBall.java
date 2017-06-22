@@ -1,10 +1,15 @@
 package Juego;
 
 import modelo.Equipo;
+import modelo.Personaje;
 import modelo.StatsJuego;
 import modelo.Tablero;
 import modelo.personajes.*;
 import modelo.turnos.*;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
 import java.util.Random;
 
 public class DragonAlgoBall {
@@ -71,6 +76,23 @@ public class DragonAlgoBall {
 			Actual = turnoZ;
 		}
 		return Actual;
+	}
+	
+	public ArrayList<Personaje> getPersonajes(){
+		ArrayList<Personaje> lista = new ArrayList<Personaje>();
+		Collection<Personaje> personajesEnemigos = equipoEnemigos.getMiembros();
+		Collection<Personaje> personajesZ = equipoGuerrerosZ.getMiembros();
+		for (Personaje personaje : personajesEnemigos) {
+			lista.add(personaje); 
+		}
+		for (Personaje personaje : personajesZ) {
+			lista.add(personaje);
+		}
+		return lista;
+	}
+
+	public Turno getTurnoActual() {
+		return this.Actual;
 	}
 
 }

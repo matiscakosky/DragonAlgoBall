@@ -26,8 +26,8 @@ public class BotonIniciarJuegoHandler implements EventHandler<ActionEvent> {
         stage.setMaxWidth(Double.MAX_VALUE);
         stage.close();
         stage.setScene(proximaEscena);
-        stage.setFullScreen(true);
-        stage.setMaximized(true);
+        stage.setFullScreen(false);
+        stage.setMaximized(false);
         stage.show();
         
     }

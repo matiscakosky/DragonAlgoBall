@@ -38,8 +38,8 @@ public abstract class Turno {
 		this.personajeEvoluciona = this.seleccionarPersonaje(posicion);
 	}
 	
-	public void Mover(Posicion posicion){
-		this.personajeQueSeMueve = this.seleccionarPersonaje(posicion);
+	public void Mover(){
+		this.personajeQueSeMueve = this.personajeSeleccionado;
 		this.personajeQueSeMueve.actualizarCantidadPasos();
 	}
 	
@@ -93,6 +93,8 @@ public abstract class Turno {
 	public void elegirPersonajeQueSeAtaca(Posicion posicion){
 		this.personajeQueSeAtaca = this.seleccionarPersonaje(posicion);
 	}
+
+
 	
 	
 }

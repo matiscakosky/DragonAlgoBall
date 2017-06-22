@@ -1,11 +1,11 @@
 package vista;
 
+import controlador.BotonSalirHandler;
 import controlador.OpcionComoJugarEventHandler;
 import controlador.OpcionPantallaCompletaEventHandler;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.SeparatorMenuItem;
 import javafx.stage.Stage;
 
 public class BarraDeMenu extends MenuBar {
@@ -16,8 +16,14 @@ public class BarraDeMenu extends MenuBar {
 
         Menu menuOpciones = new Menu("Opciones");
         Menu menuAyuda = new Menu("Ayuda");
+        Menu menuSalir = new Menu("Salir");
         
-        MenuItem opcionComoJuego = new MenuItem("ï¿½Cï¿½mo juego?");
+        MenuItem opcionComoJuego = new MenuItem("¿Como juego?");
+        MenuItem opcionSalir = new MenuItem("Salir del juego");
+        
+        
+        BotonSalirHandler salirHandler = new BotonSalirHandler();
+        opcionSalir.setOnAction(salirHandler);
         
         OpcionComoJugarEventHandler opcionComoJuegarHandler = new OpcionComoJugarEventHandler();
         opcionComoJuego.setOnAction(opcionComoJuegarHandler);
@@ -31,8 +37,9 @@ public class BarraDeMenu extends MenuBar {
         
         menuOpciones.getItems().addAll(opcionPantallaCompleta);
         menuAyuda.getItems().addAll(opcionComoJuego);
+        menuSalir.getItems().addAll(opcionSalir);
         
-        this.getMenus().addAll(menuOpciones, menuAyuda);
+        this.getMenus().addAll(menuOpciones, menuAyuda, menuSalir);
 
     	}
     	
