@@ -101,7 +101,7 @@ public class TestIntegracionJuego {
 		turnoE1.seleccionarPersonaje(seleccionada1);
 		turnoE1.Mover();
 		//Usuario selecciono la posicion de MajinBoo para mover
-		turnoE1.atacar(seleccionada1);
+		turnoE1.atacar();
 		
 		EnemigoDeLaTierra aMover = (EnemigoDeLaTierra)turnoE1.getPersonajeMovil();
 		aMover.aumentarKi(30); // Harcodeo para probar el ataque especial

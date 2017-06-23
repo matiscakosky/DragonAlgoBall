@@ -8,13 +8,18 @@ public class BotonTerminarTurnoHandler implements EventHandler<ActionEvent> {
 
 
 	ContenedorPrincipal contenedor;
+	DragonAlgoBall juego;
+	Boolean desactivarBotones = true;
 	
-	public BotonTerminarTurnoHandler(ContenedorPrincipal contenedor) {
+	public BotonTerminarTurnoHandler(DragonAlgoBall juego, ContenedorPrincipal contenedor) {
 		this.contenedor = contenedor;
+		this.juego = juego;
 	}
     @Override
     public void handle(ActionEvent actionEvent) {
+    	contenedor.setBotonera(juego.getTurnoActual(), desactivarBotones);
     	contenedor.cambioDeTurno();
+    	
     }
 
 

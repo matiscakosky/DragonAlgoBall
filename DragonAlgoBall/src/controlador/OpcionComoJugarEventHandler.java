@@ -10,7 +10,7 @@ public class OpcionComoJugarEventHandler implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent actionEvent) {
     	Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle("ï¿½Cï¿½mo Juego?");
+        alert.setTitle("¿Cómo Juego?");
         alert.setHeaderText("Explicacion del Juego:");
         String mensaje = " bla bla bla bla bla bla";
         alert.setContentText(mensaje);

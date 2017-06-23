@@ -1,26 +1,29 @@
 package controlador;
 
+import Juego.DragonAlgoBall;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
 import modelo.turnos.Turno;
+import vista.ContenedorPrincipal;
 
 public class BotonAtacarHandler implements EventHandler<ActionEvent> {
 
-   // private final VistaRobot vista;
-
-	private final Turno turno;
-	
+	private Turno turno;
+	private final DragonAlgoBall juego;
 	
 
-    public BotonAtacarHandler(Turno turno) {
-      //  this.vista = vista;
-    	this.turno = turno;
+    public BotonAtacarHandler(DragonAlgoBall juego) {
+    	this.juego = juego;
     }
 
     @Override
     public void handle(ActionEvent actionEvent) {
-    	
+    	this.turno = juego.getTurnoActual();
+    	//try{
+    		//turno.atacar();
+    		
+    	//}
     	//Obtengo la posiccion
     	//turno.atacar(posicion);
     	//personajeQueAtaca = getPersonajeQueAtaca();

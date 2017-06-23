@@ -34,8 +34,8 @@ public abstract class Turno {
 	}
 	
 
-	public void elegirPersonajeEvolucionar(Posicion posicion){
-		this.personajeEvoluciona = this.seleccionarPersonaje(posicion);
+	public void elegirPersonajeEvolucionar(){
+		this.personajeEvoluciona = this.personajeSeleccionado;
 	}
 	
 	public void Mover(){
@@ -85,8 +85,8 @@ public abstract class Turno {
 		}
 	}
 	
-	public void atacar(Posicion posicion){
-		this.personajeQueAtaca = this.seleccionarPersonaje(posicion);
+	public void atacar(){
+		this.personajeQueAtaca = this.personajeSeleccionado;
 		personajeQueAtaca.actualizarEstadoPersonajeAumentadoPorEsferas();
 	}
 	

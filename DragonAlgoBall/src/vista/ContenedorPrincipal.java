@@ -42,6 +42,8 @@ public class ContenedorPrincipal extends BorderPane {
     Turno turno;
     Stage stage;
     VBox contenedorVertical;
+    boolean botonesDesactivados = true;
+    
     
     public ContenedorPrincipal(Stage stage, DragonAlgoBall juego) {
     	
@@ -49,22 +51,22 @@ public class ContenedorPrincipal extends BorderPane {
     	this.juego = juego;
     	this.turno = juego.crearModelo();
     	this.setMenu(stage);
-        this.setBotonera(turno);
+        this.setBotonera(turno, botonesDesactivados);
         this.setCentro();
+
     }
 
-    private void setBotonera( Turno turno) {
+    public void setBotonera( Turno turno, boolean desactivado) {
     	
     	
-
         Button botonTerminarTurno = new Button();
         botonTerminarTurno.setText("Terminar turno");
-        BotonTerminarTurnoHandler terminarButtonHandler = new BotonTerminarTurnoHandler(this);
+        BotonTerminarTurnoHandler terminarButtonHandler = new BotonTerminarTurnoHandler(this.juego, this);
         botonTerminarTurno.setOnAction(terminarButtonHandler);
     	
         Button botonAtacar = new Button();
         botonAtacar.setText("Atacar");
-        BotonAtacarHandler atacarButtonHandler = new BotonAtacarHandler(turno);
+        BotonAtacarHandler atacarButtonHandler = new BotonAtacarHandler(this.juego);
         botonAtacar.setOnAction(atacarButtonHandler);
          
         Button botonAtaqueEspecial = new Button();
@@ -75,59 +77,60 @@ public class ContenedorPrincipal extends BorderPane {
         Button botonMoverDerecha = new Button();
         botonMoverDerecha.setText("Derecha");
         BotonMoverDerechaHandler moverDerechaButtonHandler = new BotonMoverDerechaHandler(this.juego,this);
-        botonMoverDerecha.setDisable(false);
+        botonMoverDerecha.setDisable(desactivado);
         botonMoverDerecha.setOnAction(moverDerechaButtonHandler);
         
         Button botonMoverIzquierda = new Button();
         botonMoverIzquierda.setText("Izquierda");
         BotonMoverIzquierdaHandler moverIzquierdaButtonHandler = new BotonMoverIzquierdaHandler(this.juego,this);
-        botonMoverIzquierda.setDisable(false);
+        botonMoverIzquierda.setDisable(desactivado);
         botonMoverIzquierda.setOnAction(moverIzquierdaButtonHandler);
         
         Button botonMoverArriba = new Button();
         botonMoverArriba.setText("Arriba");
         BotonMoverArribaHandler moverArribaButtonHandler = new BotonMoverArribaHandler(this.juego,this);
-        botonMoverArriba.setDisable(false);
+        botonMoverArriba.setDisable(desactivado);
         botonMoverArriba.setOnAction(moverArribaButtonHandler);
         
         Button botonMoverAbajo = new Button();
         botonMoverAbajo.setText("Abajo");
         BotonMoverAbajoHandler moverAbajoButtonHandler = new BotonMoverAbajoHandler(this.juego,this);
-        botonMoverAbajo.setDisable(false);
+        botonMoverAbajo.setDisable(desactivado);
         botonMoverAbajo.setOnAction(moverAbajoButtonHandler);
         
         Button botonMoverArribaDerecha = new Button();
         botonMoverArribaDerecha.setText("Arriba Derecha");
         BotonMoverArribaDerechaHandler moverArribaDerechaButtonHandler = new BotonMoverArribaDerechaHandler(this.juego,this);
-        botonMoverArribaDerecha.setDisable(false);
+        botonMoverArribaDerecha.setDisable(desactivado);
         botonMoverArribaDerecha.setOnAction(moverArribaDerechaButtonHandler);
         
         Button botonMoverArribaIzquierda = new Button();
         botonMoverArribaIzquierda.setText("Arriba Izquierda");
         BotonMoverArribaIzquierdaHandler moverArribaIzquierdaButtonHandler = new BotonMoverArribaIzquierdaHandler(this.juego,this);
-        botonMoverArribaIzquierda.setDisable(false);
+        botonMoverArribaIzquierda.setDisable(desactivado);
         botonMoverArribaIzquierda.setOnAction(moverArribaIzquierdaButtonHandler);
         
         Button botonMoverAbajoDerecha = new Button();
         botonMoverAbajoDerecha.setText("Abajo Derecha");
         BotonMoverAbajoDerechaHandler moverAbajoDerechaButtonHandler = new BotonMoverAbajoDerechaHandler(this.juego,this);
-        botonMoverAbajoDerecha.setDisable(false);
+        botonMoverAbajoDerecha.setDisable(desactivado);
         botonMoverAbajoDerecha.setOnAction(moverAbajoDerechaButtonHandler);
         
         Button botonMoverAbajoIzquierda = new Button();
         botonMoverAbajoIzquierda.setText("Abajo Izquierda");
         BotonMoverAbajoIzquierdaHandler moverAbajoIzquierdaButtonHandler = new BotonMoverAbajoIzquierdaHandler(this.juego,this);
-        botonMoverAbajoIzquierda.setDisable(false);
+        botonMoverAbajoIzquierda.setDisable(desactivado);
         botonMoverAbajoIzquierda.setOnAction(moverAbajoIzquierdaButtonHandler);
         
     	Button botonMover = new Button();
     	botonMover.setText("Mover");
-        BotonMoverHandler moverButtonHandler = new BotonMoverHandler(this.juego);
+        BotonMoverHandler moverButtonHandler = new BotonMoverHandler(this.juego, this);
+        botonMover.setDisable(!desactivado);
         botonMover.setOnAction(moverButtonHandler);
         
         Button botonEvolucionar = new Button();
         botonEvolucionar.setText("Evolucionar");
-        BotonEvolucionarHandler evolucionarButtonHandler = new BotonEvolucionarHandler(turno);
+        BotonEvolucionarHandler evolucionarButtonHandler = new BotonEvolucionarHandler(this.juego);
         botonEvolucionar.setOnAction(evolucionarButtonHandler);
         
         HBox contenedorHorizontal1 = new HBox(botonMoverArribaIzquierda,botonMoverArriba,botonMoverArribaDerecha);
@@ -147,6 +150,7 @@ public class ContenedorPrincipal extends BorderPane {
         contenedorVertical.setSpacing(20);
         contenedorVertical.setPadding(new Insets(10));
         contenedorVertical.setMaxWidth(300);
+        
         contenedorVertical.getChildren().addAll(botonTerminarTurno,botonAtacar,botonAtaqueEspecial,botonEvolucionar);
         contenedorVertical.getChildren().addAll(contenedorHorizontal1,contenedorHorizontal2,contenedorHorizontal3);
         this.setLeft(contenedorVertical);
@@ -201,6 +205,7 @@ public class ContenedorPrincipal extends BorderPane {
     	
     	
     }
+
     
     private int coordenadaTableroX(int posX){
     	return ((posX -1)*ValoresGraficos.tamanioCasillero);
