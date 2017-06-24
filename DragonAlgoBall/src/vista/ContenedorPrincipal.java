@@ -11,6 +11,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
@@ -58,6 +59,15 @@ public class ContenedorPrincipal extends BorderPane {
 
     public void setBotonera( Turno turno, boolean desactivado) {
     	
+    	Image flechaAbajo  = new Image("file:src/vista/Imagenes/FlechaAbajo.png");
+    	Image flechaAbajoDerecha  = new Image("file:src/vista/Imagenes/FlechaAbajoDerecha.png");
+    	Image flechaAbajoIzquierda  = new Image("file:src/vista/Imagenes/FlechaAbajoIzquierda.png");
+    	Image flechaArriba  = new Image("file:src/vista/Imagenes/FlechaArriba.png");
+    	Image flechaArribaDerecha  = new Image("file:src/vista/Imagenes/FlechaArribaDerecha.png");
+    	Image flechaArribaIzquierda  = new Image("file:src/vista/Imagenes/FlechaArribaIzquierda.png");
+    	Image flechaDerecha  = new Image("file:src/vista/Imagenes/FlechaDerecha.png");
+    	Image flechaIzquierda  = new Image("file:src/vista/Imagenes/FlechaIzquierda.png");
+    	Image flechaMover  = new Image("file:src/vista/Imagenes/FlechaMover.png");
     	
         Button botonTerminarTurno = new Button();
         botonTerminarTurno.setText("Terminar turno");
@@ -75,55 +85,61 @@ public class ContenedorPrincipal extends BorderPane {
         botonAtaqueEspecial.setOnAction(ataqueEspecialButtonHandler);
 
         Button botonMoverDerecha = new Button();
-        botonMoverDerecha.setText("Derecha");
+        botonMoverDerecha.setGraphic(new ImageView(flechaDerecha));
+        botonMoverDerecha.setStyle("-fx-border-color: transparent; -fx-background-color: transparent; ");
         BotonMoverDerechaHandler moverDerechaButtonHandler = new BotonMoverDerechaHandler(this.juego,this);
         botonMoverDerecha.setDisable(desactivado);
         botonMoverDerecha.setOnAction(moverDerechaButtonHandler);
         
         Button botonMoverIzquierda = new Button();
-        botonMoverIzquierda.setText("Izquierda");
+        botonMoverIzquierda.setGraphic(new ImageView(flechaIzquierda));
+        botonMoverIzquierda.setStyle("-fx-border-color: transparent; -fx-background-color: transparent; ");
         BotonMoverIzquierdaHandler moverIzquierdaButtonHandler = new BotonMoverIzquierdaHandler(this.juego,this);
         botonMoverIzquierda.setDisable(desactivado);
         botonMoverIzquierda.setOnAction(moverIzquierdaButtonHandler);
         
         Button botonMoverArriba = new Button();
-        botonMoverArriba.setText("Arriba");
+        botonMoverArriba.setGraphic(new ImageView(flechaArriba));
+        botonMoverArriba.setStyle("-fx-border-color: transparent; -fx-background-color: transparent; ");
         BotonMoverArribaHandler moverArribaButtonHandler = new BotonMoverArribaHandler(this.juego,this);
         botonMoverArriba.setDisable(desactivado);
         botonMoverArriba.setOnAction(moverArribaButtonHandler);
         
         Button botonMoverAbajo = new Button();
-        botonMoverAbajo.setText("Abajo");
+        botonMoverAbajo.setGraphic(new ImageView(flechaAbajo));
+        botonMoverAbajo.setStyle("-fx-border-color: transparent; -fx-background-color: transparent; ");
         BotonMoverAbajoHandler moverAbajoButtonHandler = new BotonMoverAbajoHandler(this.juego,this);
         botonMoverAbajo.setDisable(desactivado);
         botonMoverAbajo.setOnAction(moverAbajoButtonHandler);
         
         Button botonMoverArribaDerecha = new Button();
-        botonMoverArribaDerecha.setText("Arriba Derecha");
-        BotonMoverArribaDerechaHandler moverArribaDerechaButtonHandler = new BotonMoverArribaDerechaHandler(this.juego,this);
+        botonMoverArribaDerecha.setGraphic(new ImageView(flechaArribaDerecha));
+        botonMoverArribaDerecha.setStyle("-fx-border-color: transparent; -fx-background-color: transparent; ");        BotonMoverArribaDerechaHandler moverArribaDerechaButtonHandler = new BotonMoverArribaDerechaHandler(this.juego,this);
         botonMoverArribaDerecha.setDisable(desactivado);
         botonMoverArribaDerecha.setOnAction(moverArribaDerechaButtonHandler);
         
         Button botonMoverArribaIzquierda = new Button();
-        botonMoverArribaIzquierda.setText("Arriba Izquierda");
-        BotonMoverArribaIzquierdaHandler moverArribaIzquierdaButtonHandler = new BotonMoverArribaIzquierdaHandler(this.juego,this);
+        botonMoverArribaIzquierda.setGraphic(new ImageView(flechaArribaIzquierda));
+        botonMoverArribaIzquierda.setStyle("-fx-border-color: transparent; -fx-background-color: transparent; ");        BotonMoverArribaIzquierdaHandler moverArribaIzquierdaButtonHandler = new BotonMoverArribaIzquierdaHandler(this.juego,this);
         botonMoverArribaIzquierda.setDisable(desactivado);
         botonMoverArribaIzquierda.setOnAction(moverArribaIzquierdaButtonHandler);
         
         Button botonMoverAbajoDerecha = new Button();
-        botonMoverAbajoDerecha.setText("Abajo Derecha");
-        BotonMoverAbajoDerechaHandler moverAbajoDerechaButtonHandler = new BotonMoverAbajoDerechaHandler(this.juego,this);
+        botonMoverAbajoDerecha.setGraphic(new ImageView(flechaAbajoDerecha));
+        botonMoverAbajoDerecha.setStyle("-fx-border-color: transparent; -fx-background-color: transparent; ");        BotonMoverAbajoDerechaHandler moverAbajoDerechaButtonHandler = new BotonMoverAbajoDerechaHandler(this.juego,this);
         botonMoverAbajoDerecha.setDisable(desactivado);
         botonMoverAbajoDerecha.setOnAction(moverAbajoDerechaButtonHandler);
         
         Button botonMoverAbajoIzquierda = new Button();
-        botonMoverAbajoIzquierda.setText("Abajo Izquierda");
+        botonMoverAbajoIzquierda.setGraphic(new ImageView(flechaAbajoIzquierda));
+        botonMoverAbajoIzquierda.setStyle("-fx-border-color: transparent; -fx-background-color: transparent; ");
         BotonMoverAbajoIzquierdaHandler moverAbajoIzquierdaButtonHandler = new BotonMoverAbajoIzquierdaHandler(this.juego,this);
         botonMoverAbajoIzquierda.setDisable(desactivado);
         botonMoverAbajoIzquierda.setOnAction(moverAbajoIzquierdaButtonHandler);
         
     	Button botonMover = new Button();
-    	botonMover.setText("Mover");
+    	botonMover.setGraphic(new ImageView(flechaMover));
+        botonMover.setStyle("-fx-border-color: transparent; -fx-background-color: transparent; ");
         BotonMoverHandler moverButtonHandler = new BotonMoverHandler(this.juego, this);
         botonMover.setDisable(!desactivado);
         botonMover.setOnAction(moverButtonHandler);
@@ -138,7 +154,7 @@ public class ContenedorPrincipal extends BorderPane {
         contenedorHorizontal1.setPadding(new Insets(5));
         
         HBox contenedorHorizontal2 = new HBox(botonMoverIzquierda,botonMover,botonMoverDerecha);
-        contenedorHorizontal2.setSpacing(30);
+        contenedorHorizontal2.setSpacing(10);
         contenedorHorizontal2.setPadding(new Insets(5));
         
         HBox contenedorHorizontal3 = new HBox(botonMoverAbajoIzquierda,botonMoverAbajo,botonMoverAbajoDerecha);

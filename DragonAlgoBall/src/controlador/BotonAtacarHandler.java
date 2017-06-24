@@ -3,7 +3,7 @@ package controlador;
 import Juego.DragonAlgoBall;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-
+import modelo.excepciones.AtaqueInvalido;
 import modelo.turnos.Turno;
 import vista.ContenedorPrincipal;
 
@@ -20,10 +20,13 @@ public class BotonAtacarHandler implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent actionEvent) {
     	this.turno = juego.getTurnoActual();
-    	//try{
-    		//turno.atacar();
+    	try{
+    		turno.atacar();
     		
-    	//}
+    	}
+    	catch(AtaqueInvalido p){
+    		System.out.println("NO se pudo atacar");
+    	}
     	//Obtengo la posiccion
     	//turno.atacar(posicion);
     	//personajeQueAtaca = getPersonajeQueAtaca();

@@ -205,10 +205,35 @@ public class TestIntegracionJuego {
 	}
 	
 	
-	@Test
-	public void test04JuegoSeTerminaGananEnemigosDestruyeronAlOtroEquipo(){
+	@Test (expected = JuegoTerminado.class)
+	public void test04JuegoSeTerminaGananEnemigosCuandoMuerenTodosLosDelOtroEquipo(){
 		/*idem anterior pero que se maten todos los de un equipo*/
 		
+		Tablero tablero = new Tablero(TAMANIO2);
+		
+		Equipo equipoGuerrerosZ = new Equipo();
+		TurnoEquipoZ turnoEquipoZ = new TurnoEquipoZ(tablero,equipoGuerrerosZ);
+		Goku goku = new Goku(tablero,equipoGuerrerosZ);
+		Gohan gohan = new Gohan(tablero,equipoGuerrerosZ);
+		Picolo picolo = new Picolo(tablero,equipoGuerrerosZ);
+		equipoGuerrerosZ.agregarMiembro(goku);
+		equipoGuerrerosZ.agregarMiembro(gohan);
+		equipoGuerrerosZ.agregarMiembro(picolo);
+		
+		Equipo equipoEnemigos = new Equipo();
+		TurnoEquipoEnemigos turnoEnemigos = new TurnoEquipoEnemigos(tablero,equipoEnemigos);
+		Cell cell = new Cell(tablero,equipoEnemigos);
+		Freezer freezer = new Freezer(tablero,equipoEnemigos);
+		MajinBoo majinBoo = new MajinBoo(tablero,equipoEnemigos);
+		equipoEnemigos.agregarMiembro(cell);
+		equipoEnemigos.agregarMiembro(freezer);
+		equipoEnemigos.agregarMiembro(majinBoo);
+		
+		goku.morir();
+		gohan.morir();
+		picolo.morir();
+		
+		turnoEnemigos.controlarJuegadoresEquipoContrario();
 	}
 	
 }	
