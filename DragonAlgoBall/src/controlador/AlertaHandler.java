@@ -12,7 +12,7 @@ public class AlertaHandler implements EventHandler<WindowEvent> {
 		 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 		 alert.setTitle("Confirmacion salida");
 		 alert.setHeaderText("SALIDA");
-		 alert.setContentText("Â¿Seguro desea abandonar el juego?");
+		 alert.setContentText("¿Seguro desea abandonar el juego?");
 		 Optional<ButtonType> resultado = alert.showAndWait();
 		 if (resultado.get() == ButtonType.CANCEL){
 			 windowEvent.consume();

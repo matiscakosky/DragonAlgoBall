@@ -6,7 +6,7 @@ import javafx.scene.image.Image;
 
 public class ValoresGraficos {
 	
-	public static final int tamanioTablero = 900;
+	public static final int tamanioTablero = 350;
 	public static final int ladoCasillero = 10;
 	public static final int tamanioCasillero = (int) tamanioTablero/ladoCasillero;
 
