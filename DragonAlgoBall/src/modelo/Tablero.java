@@ -73,7 +73,7 @@ public class Tablero {
 		this.casilleros.put(posicion,casillero);
 	}
 	
-	public boolean posicionValidaParaMoverse(Posicion posicion){
+	public boolean posicionValidaParaMoverse(Posicion posicion){   //q sea void y tire excepcion si no puede sino q se encargue el mover
 		for (Posicion pos : this.casilleros.keySet()) {
 			if (compararPosicion(pos, posicion)){
 				return (this.casilleros.get(pos).obtenerObjeto() instanceof Consumible);
