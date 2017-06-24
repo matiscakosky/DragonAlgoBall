@@ -31,8 +31,7 @@ public abstract class Turno {
 	public void terminoTurno(){
 		controlarCantidadEsferasDelDragon();
 		controlarJuegadoresEquipoContrario();
-	}
-	
+	}	
 
 	public void elegirPersonajeEvolucionar(){
 		this.personajeEvoluciona = this.personajeSeleccionado;
@@ -58,6 +57,10 @@ public abstract class Turno {
 	
 	public Personaje getPersonajeQueSeAtaca(){
 		return this.personajeQueSeAtaca;
+	}
+	
+	public Personaje getPersonajeSeleccionado(){
+		return this.personajeSeleccionado;
 	}
 	
 	public void controlarCantidadEsferasDelDragon(){

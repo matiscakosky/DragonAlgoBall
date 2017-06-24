@@ -5,7 +5,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import modelo.excepciones.AtaqueInvalido;
 import modelo.turnos.Turno;
-import vista.ContenedorPrincipal;
 
 public class BotonAtacarHandler implements EventHandler<ActionEvent> {
 

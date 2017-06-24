@@ -11,7 +11,8 @@ public class ValoresGraficos {
 	public static final int tamanioCasillero = (int) tamanioTablero/ladoCasillero;
 
 	public static final Hashtable<String,Image> imagenesPersonajes = obtenerImagenes();
-	
+	public static final Hashtable<String, Integer> posImagenesPersonajesEnX = obtenerPosicionesImagenesEnX();
+	public static final Hashtable<String, Integer> posImagenesPersonajesEnY = obtenerPosicionesImagenesEnY();
 	
 	
 	
@@ -31,6 +32,28 @@ public class ValoresGraficos {
 		imagenesPersonajes.put("MajinBoo", imagenMajinBoo);
 		imagenesPersonajes.put("Cell", imagenCell);
 		return imagenesPersonajes;
+	}
+	
+	private static Hashtable<String, Integer> obtenerPosicionesImagenesEnY(){
+		Hashtable<String,Integer> posImagenesPersonajes = new Hashtable<String,Integer>();
+		posImagenesPersonajes.put("Goku", 300);
+		posImagenesPersonajes.put("Gohan", 300);
+		posImagenesPersonajes.put("Picolo", 400);
+		posImagenesPersonajes.put("Freezer", 400);
+		posImagenesPersonajes.put("MajinBoo", 500);
+		posImagenesPersonajes.put("Cell",500);
+		return posImagenesPersonajes;
+	}
+	
+	private static Hashtable<String, Integer> obtenerPosicionesImagenesEnX(){
+		Hashtable<String,Integer> posImagenesPersonajes = new Hashtable<String,Integer>();
+		posImagenesPersonajes.put("Goku", 40);
+		posImagenesPersonajes.put("Gohan",130);
+		posImagenesPersonajes.put("Picolo", 40);
+		posImagenesPersonajes.put("Freezer", 130);
+		posImagenesPersonajes.put("MajinBoo", 40);
+		posImagenesPersonajes.put("Cell", 130);
+		return posImagenesPersonajes;
 	}
 
 

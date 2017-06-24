@@ -22,11 +22,13 @@ public class SeleccionarPersonajeHandler implements EventHandler<MouseEvent> {
 	private Turno turno;
 	private Canvas canvas;
 	private DragonAlgoBall juego;
-	
+	private Canvas canvasDerecho;
 
-    public SeleccionarPersonajeHandler(Canvas canvas, DragonAlgoBall juego) {
+
+    public SeleccionarPersonajeHandler(Canvas canvas, DragonAlgoBall juego, Canvas canvasDerecho) {
     	this.canvas = canvas;
     	this.juego = juego;
+    	this.canvasDerecho = canvasDerecho;	
     }
     
     
@@ -40,14 +42,23 @@ public class SeleccionarPersonajeHandler implements EventHandler<MouseEvent> {
 		context.setStroke(Color.RED);
 		try {
 			int coorX = ((int)(t.getX()/ValoresGraficos.tamanioCasillero))+1; 
-			int coorY = Math.abs(((int)(t.getY()/ValoresGraficos.tamanioCasillero))-10);
-			turno.seleccionarPersonaje(new Posicion(coorX,coorY));
+			int coorY = Math.abs(((int)(t.getY()/ValoresGraficos.tamanioCasillero))-10);	
+		    turno.seleccionarPersonaje(new Posicion(coorX,coorY)); 
+		    modificarImagenCanvasDerecho();
 			context.strokeRect(((int)(t.getX()/ValoresGraficos.tamanioCasillero))*ValoresGraficos.tamanioCasillero, ((int)(t.getY()/ValoresGraficos.tamanioCasillero))*ValoresGraficos.tamanioCasillero, ValoresGraficos.tamanioCasillero, ValoresGraficos.tamanioCasillero);
-			}
+		}
 		catch (PosicionInvalida  e) {}
 		catch(CasilleroVacio e){}
 		
 
+	}
+	
+	private void modificarImagenCanvasDerecho(){
+		Hashtable<String,Image> imagenesPersonajes = ValoresGraficos.imagenesPersonajes;
+		GraphicsContext context = canvasDerecho.getGraphicsContext2D();
+		context.clearRect(50, 100, 150, 150);
+    	Personaje personaje = turno.getPersonajeSeleccionado();
+    	context.drawImage(imagenesPersonajes.get(personaje.getNombre()), 50,100,150,150);
 	}
 	
 	

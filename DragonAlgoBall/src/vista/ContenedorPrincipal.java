@@ -2,14 +2,13 @@ package vista;
 
 
 import controlador.*;
-import vista.*;
-import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
@@ -24,8 +23,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import modelo.turnos.*;
 import modelo.*;
-import modelo.excepciones.CasilleroVacio;
-import modelo.excepciones.PosicionInvalida;
+
 
 import java.util.Collection;
 import java.util.Hashtable;
@@ -38,12 +36,14 @@ public class ContenedorPrincipal extends BorderPane {
 
     BarraDeMenu menuBar;
     Canvas canvasTablero;
+    Canvas canvasDerecho;
     VBox contenedorCentral;
     DragonAlgoBall juego;
     Turno turno;
     Stage stage;
     VBox contenedorVertical;
     boolean botonesDesactivados = true;
+    Hashtable<String,Image> imagenesPersonajes = ValoresGraficos.imagenesPersonajes;
     
     
     public ContenedorPrincipal(Stage stage, DragonAlgoBall juego) {
@@ -53,7 +53,10 @@ public class ContenedorPrincipal extends BorderPane {
     	this.turno = juego.crearModelo();
     	this.setMenu(stage);
         this.setBotonera(turno, botonesDesactivados);
+        this.setContenedorDerecho();
         this.setCentro();
+       
+     
 
     }
 
@@ -114,19 +117,22 @@ public class ContenedorPrincipal extends BorderPane {
         
         Button botonMoverArribaDerecha = new Button();
         botonMoverArribaDerecha.setGraphic(new ImageView(flechaArribaDerecha));
-        botonMoverArribaDerecha.setStyle("-fx-border-color: transparent; -fx-background-color: transparent; ");        BotonMoverArribaDerechaHandler moverArribaDerechaButtonHandler = new BotonMoverArribaDerechaHandler(this.juego,this);
+        botonMoverArribaDerecha.setStyle("-fx-border-color: transparent; -fx-background-color: transparent; ");        
+        BotonMoverArribaDerechaHandler moverArribaDerechaButtonHandler = new BotonMoverArribaDerechaHandler(this.juego,this);
         botonMoverArribaDerecha.setDisable(desactivado);
         botonMoverArribaDerecha.setOnAction(moverArribaDerechaButtonHandler);
         
         Button botonMoverArribaIzquierda = new Button();
         botonMoverArribaIzquierda.setGraphic(new ImageView(flechaArribaIzquierda));
-        botonMoverArribaIzquierda.setStyle("-fx-border-color: transparent; -fx-background-color: transparent; ");        BotonMoverArribaIzquierdaHandler moverArribaIzquierdaButtonHandler = new BotonMoverArribaIzquierdaHandler(this.juego,this);
+        botonMoverArribaIzquierda.setStyle("-fx-border-color: transparent; -fx-background-color: transparent; ");       
+        BotonMoverArribaIzquierdaHandler moverArribaIzquierdaButtonHandler = new BotonMoverArribaIzquierdaHandler(this.juego,this);
         botonMoverArribaIzquierda.setDisable(desactivado);
         botonMoverArribaIzquierda.setOnAction(moverArribaIzquierdaButtonHandler);
         
         Button botonMoverAbajoDerecha = new Button();
         botonMoverAbajoDerecha.setGraphic(new ImageView(flechaAbajoDerecha));
-        botonMoverAbajoDerecha.setStyle("-fx-border-color: transparent; -fx-background-color: transparent; ");        BotonMoverAbajoDerechaHandler moverAbajoDerechaButtonHandler = new BotonMoverAbajoDerechaHandler(this.juego,this);
+        botonMoverAbajoDerecha.setStyle("-fx-border-color: transparent; -fx-background-color: transparent; ");       
+        BotonMoverAbajoDerechaHandler moverAbajoDerechaButtonHandler = new BotonMoverAbajoDerechaHandler(this.juego,this);
         botonMoverAbajoDerecha.setDisable(desactivado);
         botonMoverAbajoDerecha.setOnAction(moverAbajoDerechaButtonHandler);
         
@@ -178,18 +184,33 @@ public class ContenedorPrincipal extends BorderPane {
         this.setTop(menuBar);
     }
     
+    private void setContenedorDerecho(){
+    	Hashtable<String,Integer> posImagenesEnX = ValoresGraficos.posImagenesPersonajesEnX;
+    	Hashtable<String,Integer> posImagenesEnY = ValoresGraficos.posImagenesPersonajesEnY;
+    	canvasDerecho =  new Canvas(250,750);
+    	GraphicsContext context = canvasDerecho.getGraphicsContext2D();
+    	Hashtable<String,ProgressBar> progressBar = new Hashtable<String,ProgressBar>();
+        
+    	
+		for (Personaje personaje : juego.getPersonajes()) {
+			context.drawImage(imagenesPersonajes.get(personaje.getNombre()), posImagenesEnX.get(personaje.getNombre()),posImagenesEnY.get(personaje.getNombre()),75,75);
+			ProgressBar barra = new ProgressBar(personaje.getPuntosDeVida());
+			progressBar.put(personaje.getNombre(),barra);		
+		}
+     	this.setRight(canvasDerecho);
+    }
+    
     private void setCentro(){ 
     	canvasTablero = new Canvas(ValoresGraficos.tamanioTablero,ValoresGraficos.tamanioTablero);
-
-      
+    
     	setVacio();
     	ubicarPersonajes();
-		
-    	canvasTablero.addEventHandler(MouseEvent.MOUSE_PRESSED,new SeleccionarPersonajeHandler(canvasTablero,this.juego));
+		  	
+    	canvasTablero.addEventHandler(MouseEvent.MOUSE_PRESSED,new SeleccionarPersonajeHandler(canvasTablero,this.juego, canvasDerecho)); 
+    	  	
     	contenedorCentral = new VBox(canvasTablero);
         contenedorCentral.setAlignment(Pos.CENTER);
         
-        //contenedorCentral.setStyle("-fx-border-color: transparent; -fx-background-color: transparent; ");
         Image imagen = new Image("file:src/vista/Imagenes/Tablero.jpg");
         BackgroundImage imagenDeFondo = new BackgroundImage(imagen,BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
         contenedorCentral.setBackground(new Background(imagenDeFondo));
