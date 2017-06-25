@@ -22,7 +22,8 @@ public class BotonMoverHandler implements EventHandler<ActionEvent> {
     	this.turno = juego.getTurnoActual();
         try {
         	turno.Mover();
-        	contenedor.setBotonera(turno, desactivarBotones);
+        	contenedor.setBotoneraMovimiento(desactivarBotones);
+        	contenedor.setContenedorIzquierda();
         	
 		} catch (NullPointerException e) {
 			//Me molesta el error gigante de la consola para decirme nada mas que no seleccione un personaje le cambio el print

@@ -126,6 +126,17 @@ public class Tablero {
 		}
 		return false;
 	}
+	
+	
+	public ArrayList<Personaje> getPersonajes(){
+		ArrayList<Personaje> lista = new ArrayList<Personaje>();
+		for (Casillero casillero : this.casilleros.values()) {
+			if(casillero.obtenerObjeto() instanceof Personaje){
+				lista.add((Personaje)casillero.obtenerObjeto());
+			}
+		}
+		return lista;
+	}
 
 	public Set<Posicion> obtenerPosiciones() {
 		return this.casilleros.keySet();

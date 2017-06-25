@@ -13,14 +13,14 @@ public abstract class Turno {
 	protected Personaje personajeSeleccionado;
 	protected Personaje personajeQueSeMueve;
 	protected Personaje personajeQueAtaca;
-	protected Personaje personajeQueSeAtaca;
+	protected Personaje personajeAtacado;
 	protected Personaje personajeEvoluciona;
 	protected Equipo equipo;
 	
 	public abstract void controlarCantidadEsferasDelDragon();
 	
 	public abstract void controlarJuegadoresEquipoContrario();
-	
+
 		
 	public Personaje seleccionarPersonaje(Posicion posicion){
 		Personaje personaje = this.tablero.obtenerPersonaje(posicion);
@@ -47,6 +47,7 @@ public abstract class Turno {
 	public void Mover(){
 		this.personajeQueSeMueve = this.personajeSeleccionado;
 		this.personajeQueSeMueve.actualizarCantidadPasos();
+
 	}
 	
 	public Personaje getPersonajeMovil(){
@@ -62,8 +63,8 @@ public abstract class Turno {
 		return this.personajeEvoluciona;
 	}
 	
-	public Personaje getPersonajeQueSeAtaca(){
-		return this.personajeQueSeAtaca;
+	public Personaje getPersonajeAtacado(){
+		return this.personajeAtacado;
 	}
 	
 	public Personaje getPersonajeSeleccionado(){
@@ -85,13 +86,26 @@ public abstract class Turno {
 	public void atacar(){
 		this.personajeQueAtaca = this.personajeSeleccionado;
 		personajeQueAtaca.actualizarEstadoPersonajeAumentadoPorEsferas();
+		
+		
 	}
+	
 	
 	public void elegirPersonajeQueSeAtaca(Posicion posicion){
-		this.personajeQueSeAtaca = this.seleccionarPersonaje(posicion);
+		Personaje personaje = this.tablero.obtenerPersonaje(posicion);
+		if(this.equipo.contiene(personaje)){
+			throw new PosicionInvalida();
+		}
+		this.personajeAtacado = personaje;
+
 	}
 
+	public int getCantidadDePasosRestantesEsteTurno() {
+		return personajeQueSeMueve.getRestantes();
+	}
+}
+
 
 	
 	
-}
+

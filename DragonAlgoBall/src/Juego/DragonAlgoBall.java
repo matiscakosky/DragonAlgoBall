@@ -11,7 +11,6 @@ import modelo.personajes.*;
 import modelo.turnos.*;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 import java.util.Random;
 
@@ -85,16 +84,7 @@ public class DragonAlgoBall {
 	}
 	
 	public ArrayList<Personaje> getPersonajes(){
-		ArrayList<Personaje> lista = new ArrayList<Personaje>();
-		Collection<Personaje> personajesEnemigos = equipoEnemigos.getMiembros();
-		Collection<Personaje> personajesZ = equipoGuerrerosZ.getMiembros();
-		for (Personaje personaje : personajesEnemigos) {
-			lista.add(personaje); 
-		}
-		for (Personaje personaje : personajesZ) {
-			lista.add(personaje);
-		}
-		return lista;
+		return tablero.getPersonajes();
 	}
 
 	public Turno getTurnoActual() {
@@ -118,3 +108,5 @@ public class DragonAlgoBall {
 		}
 	}
 }
+
+

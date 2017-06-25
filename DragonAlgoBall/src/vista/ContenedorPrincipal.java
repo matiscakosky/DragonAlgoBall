@@ -6,9 +6,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
-import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
@@ -19,10 +17,8 @@ import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import modelo.turnos.*;
-import modelo.*;
 
 
 import java.util.Hashtable;
@@ -34,15 +30,15 @@ import Juego.*;
 public class ContenedorPrincipal extends BorderPane {
 
     BarraDeMenu menuBar;
-    Canvas canvasTablero;
+    CanvasTablero canvasTablero;
     Canvas canvasDerecho;
     VBox contenedorCentral;
+    VBox botoneraMovimiento;
     DragonAlgoBall juego;
     Turno turno;
     Stage stage;
     VBox contenedorVertical;
     boolean botonesDesactivados = true;
-    Hashtable<String,Image> imagenes = ValoresGraficos.imagenes;
     
     
     public ContenedorPrincipal(Stage stage, DragonAlgoBall juego) {
@@ -51,16 +47,20 @@ public class ContenedorPrincipal extends BorderPane {
     	this.juego = juego;
     	this.turno = juego.crearModelo();
     	this.setMenu(stage);
-        this.setBotonera(turno, botonesDesactivados);
+    	setBotoneraMovimiento(true);
+        this.setContenedorIzquierda();
         this.setContenedorDerecho();
         this.setCentro();
        
      
 
     }
+    
+    
 
-    public void setBotonera( Turno turno, boolean desactivado) {
-    	
+    
+    public void setBotoneraMovimiento(boolean desactivado){
+
     	Image flechaAbajo  = new Image("file:src/vista/Imagenes/FlechaAbajo.png");
     	Image flechaAbajoDerecha  = new Image("file:src/vista/Imagenes/FlechaAbajoDerecha.png");
     	Image flechaAbajoIzquierda  = new Image("file:src/vista/Imagenes/FlechaAbajoIzquierda.png");
@@ -71,22 +71,7 @@ public class ContenedorPrincipal extends BorderPane {
     	Image flechaIzquierda  = new Image("file:src/vista/Imagenes/FlechaIzquierda.png");
     	Image flechaMover  = new Image("file:src/vista/Imagenes/FlechaMover.png");
     	
-        Button botonTerminarTurno = new Button();
-        botonTerminarTurno.setText("Terminar turno");
-        BotonTerminarTurnoHandler terminarButtonHandler = new BotonTerminarTurnoHandler(this.juego, this);
-        botonTerminarTurno.setOnAction(terminarButtonHandler);
-    	
-        Button botonAtacar = new Button();
-        botonAtacar.setText("Atacar");
-        BotonAtacarHandler atacarButtonHandler = new BotonAtacarHandler(this.juego);
-        botonAtacar.setOnAction(atacarButtonHandler);
-         
-        Button botonAtaqueEspecial = new Button();
-        botonAtaqueEspecial.setText("Ataque Especial");
-        BotonAtaqueEspecialHandler ataqueEspecialButtonHandler = new BotonAtaqueEspecialHandler(turno);
-        botonAtaqueEspecial.setOnAction(ataqueEspecialButtonHandler);
-
-        Button botonMoverDerecha = new Button();
+    	Button botonMoverDerecha = new Button();
         botonMoverDerecha.setGraphic(new ImageView(flechaDerecha));
         botonMoverDerecha.setStyle("-fx-border-color: transparent; -fx-background-color: transparent; ");
         BotonMoverDerechaHandler moverDerechaButtonHandler = new BotonMoverDerechaHandler(this.juego,this);
@@ -148,11 +133,7 @@ public class ContenedorPrincipal extends BorderPane {
         BotonMoverHandler moverButtonHandler = new BotonMoverHandler(this.juego, this);
         botonMover.setDisable(!desactivado);
         botonMover.setOnAction(moverButtonHandler);
-        
-        Button botonEvolucionar = new Button();
-        botonEvolucionar.setText("Evolucionar");
-        BotonTransformarHandler evolucionarButtonHandler = new BotonTransformarHandler(this.juego);
-        botonEvolucionar.setOnAction(evolucionarButtonHandler);
+       
         
         HBox contenedorHorizontal1 = new HBox(botonMoverArribaIzquierda,botonMoverArriba,botonMoverArribaDerecha);
         contenedorHorizontal1.setSpacing(10);
@@ -165,15 +146,55 @@ public class ContenedorPrincipal extends BorderPane {
         HBox contenedorHorizontal3 = new HBox(botonMoverAbajoIzquierda,botonMoverAbajo,botonMoverAbajoDerecha);
         contenedorHorizontal3.setSpacing(10);
         contenedorHorizontal3.setPadding(new Insets(5));
+        
+        VBox contenedorVertical = new VBox(contenedorHorizontal1,contenedorHorizontal2,contenedorHorizontal3);
+        
+        this.botoneraMovimiento =contenedorVertical;
+        
 
+    }
+
+    public void setContenedorIzquierda() {
+
+        Button botonTerminarTurno = new Button();
+        botonTerminarTurno.setText("Terminar turno");
+        BotonTerminarTurnoHandler terminarButtonHandler = new BotonTerminarTurnoHandler(this.juego, this);
+        botonTerminarTurno.setOnAction(terminarButtonHandler);
+
+
+        Button botonAtaqueEspecial = new Button();
+        botonAtaqueEspecial.setText("Ataque Especial");
+        BotonAtaqueEspecialHandler ataqueEspecialButtonHandler = new BotonAtaqueEspecialHandler(juego,this);
+        //botonAtaqueEspecial.setDisable(desactivado);
+        botonAtaqueEspecial.setOnAction(ataqueEspecialButtonHandler);
+        
+        Button botonAtacar = new Button();
+        botonAtacar.setText("Atacar");
+        BotonAtacarHandler atacarButtonHandler = new BotonAtacarHandler(this.juego, this);
+        //botonAtacar.setDisable(!desactivado);
+        botonAtacar.setOnAction(atacarButtonHandler);
+        
+        
+        Button botonAtacarBasico = new Button();
+        botonAtacarBasico.setText("Ataque Basico");
+        BotonAtacarBasicoHandler atacarBasicoButtonHandler = new BotonAtacarBasicoHandler(this.juego, this);
+        //botonAtacarBasico.setDisable(desactivado);
+        botonAtacarBasico.setOnAction(atacarBasicoButtonHandler);
+        Button botonTransformar = new Button();
+        botonTransformar.setText("Evolucionar");
+        BotonTransformarHandler transformarButtonHandler = new BotonTransformarHandler(this.juego);
+        botonTransformar.setOnAction(transformarButtonHandler);
+        
+        
+        
         contenedorVertical = new VBox();
         contenedorVertical.setAlignment(Pos.CENTER);
         contenedorVertical.setSpacing(20);
         contenedorVertical.setPadding(new Insets(10));
         contenedorVertical.setMaxWidth(300);
         
-        contenedorVertical.getChildren().addAll(botonTerminarTurno,botonAtacar,botonAtaqueEspecial,botonEvolucionar);
-        contenedorVertical.getChildren().addAll(contenedorHorizontal1,contenedorHorizontal2,contenedorHorizontal3);
+        contenedorVertical.getChildren().addAll(botonTerminarTurno,botonTransformar, botonAtacar, botonAtacarBasico,botonAtaqueEspecial);
+        contenedorVertical.getChildren().addAll(this.botoneraMovimiento);
         this.setLeft(contenedorVertical);
         
     }
@@ -184,29 +205,69 @@ public class ContenedorPrincipal extends BorderPane {
     }
     
     private void setContenedorDerecho(){
-    	Hashtable<String,Integer> posImagenesEnX = ValoresGraficos.posImagenesPersonajesEnX;
-    	Hashtable<String,Integer> posImagenesEnY = ValoresGraficos.posImagenesPersonajesEnY;
-    	canvasDerecho =  new Canvas(250,750);
-    	GraphicsContext context = canvasDerecho.getGraphicsContext2D();
-    	Hashtable<String,ProgressBar> progressBar = new Hashtable<String,ProgressBar>();
+        Hashtable<String,Image> imagenesPersonajes = ValoresGraficos.imagenesPersonajesChibi;
+    	
+    	
+    	Button botonGoku = new Button();
+    	botonGoku.setGraphic(new ImageView(imagenesPersonajes.get("Goku")));
+    	botonGoku.setStyle("-fx-border-color: transparent; -fx-background-color: transparent; ");
+        
+    	Button botonGohan = new Button();
+    	botonGohan.setGraphic(new ImageView(imagenesPersonajes.get("Gohan")));
+    	botonGohan.setStyle("-fx-border-color: transparent; -fx-background-color: transparent; ");
+        
+    	Button botonPicolo = new Button();
+    	botonPicolo.setGraphic(new ImageView(imagenesPersonajes.get("Picolo")));
+    	botonPicolo.setStyle("-fx-border-color: transparent; -fx-background-color: transparent; ");
+        
+    	Button botonCell = new Button();
+    	botonCell.setGraphic(new ImageView(imagenesPersonajes.get("Cell")));
+    	botonCell.setStyle("-fx-border-color: transparent; -fx-background-color: transparent; ");
+        
+    	Button botonFreezer = new Button();
+    	botonFreezer.setGraphic(new ImageView(imagenesPersonajes.get("Freezer")));
+    	botonFreezer.setStyle("-fx-border-color: transparent; -fx-background-color: transparent; ");
+        
+    	Button botonBoo = new Button();
+    	botonBoo.setGraphic(new ImageView(imagenesPersonajes.get("MajinBoo")));
+    	botonBoo.setStyle("-fx-border-color: transparent; -fx-background-color: transparent; ");
+    	
+    	
+    	HBox contenedorHorizontal1 = new HBox(botonGoku,botonGohan);
+    	HBox contenedorHorizontal2 = new HBox(botonPicolo,botonFreezer);
+    	HBox contenedorHorizontal3 = new HBox(botonCell, botonBoo);
+    	
+    	contenedorHorizontal1.setSpacing(20);
+    	contenedorHorizontal2.setSpacing(20);
+    	contenedorHorizontal3.setSpacing(20);
+    	
+    	VBox contenedorPersonajesVertical = new VBox(contenedorHorizontal1,contenedorHorizontal2,contenedorHorizontal3);
+    	contenedorPersonajesVertical.setAlignment(Pos.BOTTOM_RIGHT);
+    	contenedorPersonajesVertical.setPadding(new Insets(30));
+    	contenedorPersonajesVertical.setSpacing(20);
+    	
+    	/*Hashtable<String,ProgressBar> progressBar = new Hashtable<String,ProgressBar>();
         
     	
 		for (Personaje personaje : juego.getPersonajes()) {
+
 			context.drawImage(imagenes.get(personaje.getNombre()), posImagenesEnX.get(personaje.getNombre()),posImagenesEnY.get(personaje.getNombre()),75,75);
+
 			ProgressBar barra = new ProgressBar(personaje.getPuntosDeVida());
 			progressBar.put(personaje.getNombre(),barra);		
-		}
-     	this.setRight(canvasDerecho);
+		}*/
+    	
+     	this.setRight(contenedorPersonajesVertical);
     }
     
     private void setCentro(){ 
-    	canvasTablero = new Canvas(ValoresGraficos.tamanioTablero,ValoresGraficos.tamanioTablero);
-    	setVacio();
-    	this.dibujarTablero();
-		  	
-    	canvasTablero.addEventHandler(MouseEvent.MOUSE_PRESSED,new SeleccionarPersonajeHandler(canvasTablero,this.juego, canvasDerecho,this)); 
+
+    	this.canvasTablero = new CanvasTablero(juego);
+    	canvasTablero.dibujarTablero();
+    	this.canvasTablero.addEventHandler(MouseEvent.MOUSE_PRESSED,new SeleccionarPersonajeHandler(this.canvasTablero,this.juego)); 
+
     	  	
-    	contenedorCentral = new VBox(canvasTablero);
+    	contenedorCentral = new VBox(this.canvasTablero);
         contenedorCentral.setAlignment(Pos.CENTER);
         
         Image imagen = new Image("file:src/vista/Imagenes/Tablero.jpg");
@@ -214,53 +275,33 @@ public class ContenedorPrincipal extends BorderPane {
         contenedorCentral.setBackground(new Background(imagenDeFondo));
         this.setCenter(contenedorCentral);
     }
-    
-    
-    public void setVacio(){
-    	GraphicsContext context = canvasTablero.getGraphicsContext2D();
-    	context.setFill(Color.LIGHTBLUE);
-    	context.fillRect(0, 0, ValoresGraficos.tamanioTablero, ValoresGraficos.tamanioTablero);
-    	Image casillero = new Image("file:src/vista/Imagenes/casilleroVacio.jpg");  
-    	for(int i=0 ; i< ValoresGraficos.ladoCasillero ;i++){
-    		for(int j=0 ;j<ValoresGraficos.ladoCasillero;j++){
-    			context.drawImage(casillero, ValoresGraficos.tamanioCasillero*i, ValoresGraficos.tamanioCasillero*j, ValoresGraficos.tamanioCasillero, ValoresGraficos.tamanioCasillero);
-    		}
-    	}
-    }
-    
-    public void dibujarTablero(){
-    	GraphicsContext context = canvasTablero.getGraphicsContext2D();
-    	Hashtable<String,Image> imagenes = ValoresGraficos.imagenes;
-    	Tablero tablero = turno.obtenerTablero();
-    	for(Posicion pos: tablero.obtenerPosiciones()){
-    		ObjetoJuego objeto = tablero.obtenerObjeto(pos);
-    		int coorX = coordenadaTableroX(pos.getCoordenadaX());
-    		int coorY = coordenadaTableroY(pos.getCoordenadaY());
-    		context.drawImage(imagenes.get(objeto.getNombre()), coorX, coorY, ValoresGraficos.tamanioCasillero, ValoresGraficos.tamanioCasillero);
-    	}
-    }
-    
-   
-    
-    private int coordenadaTableroX(int posX){
-    	return ((posX -1)*ValoresGraficos.tamanioCasillero);
-    }
-    private int coordenadaTableroY(int posY){
-    	return Math.abs((posY -10)*ValoresGraficos.tamanioCasillero);
-    }	
- 
 
-    public BarraDeMenu getBarraDeMenu() {
+
+    	public void dibujarTablero(){
+    		canvasTablero.dibujarTablero();
+    	}
+    	
+    
+    	public BarraDeMenu getBarraDeMenu() {
         return menuBar;
-    }
+    	}
     
-    public void cambioDeTurno() {               //Atrapar excepcion casillero ocupado en el controlador
-       this.turno = juego.cambiarTurno();       // ya que si queres colocar consumibel puede caer en casillero ocupado
-    }
+    	public void cambioDeTurno() {
+    		dibujarTablero();
+    		this.turno = juego.cambiarTurno();
+    		this.setBotoneraMovimiento(true);
+    		this.setContenedorIzquierda();
+
+    	}
     
-    public Canvas getTablero(){
+    public CanvasTablero getTablero(){
     	return canvasTablero;
     }
+    
+
+	public void reiniciarAccionDelTablero() {
+		canvasTablero.addEventHandler(MouseEvent.MOUSE_PRESSED,new SeleccionarPersonajeHandler(canvasTablero,this.juego)); 
+	}
 
 
 
