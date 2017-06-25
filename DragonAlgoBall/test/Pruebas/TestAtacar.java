@@ -187,7 +187,7 @@ public class TestAtacar {
 		cell.atacarConBasico(goku);
 		freezer.ataqueEspecial(goku);
 		assertEquals(cell.getPuntosDeVida(),520);
-		assertEquals(goku.getPuntosDeVida(),430); //TIENE QUE DAR 430 ¿?
+		assertEquals(goku.getPuntosDeVida(),430);
 		assertEquals(cell.getKi(),95);
 		assertEquals(freezer.getKi(),80);
 	}

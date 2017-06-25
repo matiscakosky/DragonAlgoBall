@@ -14,6 +14,7 @@ public class TurnoEquipoZ extends Turno {
 		this.AumentarKiInicioDeTurno();
 		this.actualizarInmoviles();
 		actualizarTurnoNubeVoladora();
+		this.ataco = false;
 	}
 	
 	private void actualizarInmoviles(){

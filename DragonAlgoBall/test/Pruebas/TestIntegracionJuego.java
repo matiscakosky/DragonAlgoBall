@@ -212,7 +212,6 @@ public class TestIntegracionJuego {
 		Tablero tablero = new Tablero(TAMANIO2);
 		
 		Equipo equipoGuerrerosZ = new Equipo();
-		TurnoEquipoZ turnoEquipoZ = new TurnoEquipoZ(tablero,equipoGuerrerosZ);
 		Goku goku = new Goku(tablero,equipoGuerrerosZ);
 		Gohan gohan = new Gohan(tablero,equipoGuerrerosZ);
 		Picolo picolo = new Picolo(tablero,equipoGuerrerosZ);

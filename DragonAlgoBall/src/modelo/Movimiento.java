@@ -86,5 +86,9 @@ public class Movimiento {
 	public void actualizarCantidadPasos(int velocidad) {
 		this.cantidadPasosMoverse = velocidad;
 	}
+
+	public int getRestantes() {
+		return this.cantidadPasosMoverse;
+	}
 	
 }

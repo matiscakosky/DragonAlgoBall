@@ -4,6 +4,8 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import vista.ContenedorPrincipal;
 import Juego.DragonAlgoBall;
+
+
 public class BotonTerminarTurnoHandler implements EventHandler<ActionEvent> {
 
 
@@ -17,7 +19,8 @@ public class BotonTerminarTurnoHandler implements EventHandler<ActionEvent> {
 	}
     @Override
     public void handle(ActionEvent actionEvent) {
-    	contenedor.setBotonera(juego.getTurnoActual(), desactivarBotones);
+    	contenedor.setContenedorIzquierda();
+    	contenedor.reiniciarAccionDelTablero();
     	contenedor.cambioDeTurno();
     	
     }

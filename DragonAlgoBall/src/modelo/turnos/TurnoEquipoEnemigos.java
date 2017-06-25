@@ -11,6 +11,7 @@ public class TurnoEquipoEnemigos extends Turno {
 		this.tablero = tablero;
 		this.AumentarKiInicioDeTurno();
 		actualizarTurnoNubeVoladora();
+		this.ataco = false;
 	}
 	
 }

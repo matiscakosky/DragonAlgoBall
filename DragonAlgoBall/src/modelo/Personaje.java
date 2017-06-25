@@ -161,6 +161,9 @@ public abstract class Personaje extends ObjetoJuego{
 	public void actualizarCantidadPasos() {
 		this.movimiento.actualizarCantidadPasos(this.estado.getVelocidad());
 	}
+	public int getRestantes() {
+		return this.movimiento.getRestantes();
+	}
 
 		
 }

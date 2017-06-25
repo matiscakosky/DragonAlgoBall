@@ -6,7 +6,6 @@ import org.junit.Test;
 
 import modelo.*;
 import modelo.personajes.*;
-import modelo.turnos.*;
 import modelo.excepciones.*;
 
 public class TestIntegracionSegundaEntrega {

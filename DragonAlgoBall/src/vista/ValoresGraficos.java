@@ -11,9 +11,10 @@ public class ValoresGraficos {
 	public static final int tamanioCasillero = (int) tamanioTablero/ladoCasillero;
 
 	public static final Hashtable<String,Image> imagenesPersonajes = obtenerImagenes();
-	public static final Hashtable<String, Integer> posImagenesPersonajesEnX = obtenerPosicionesImagenesEnX();
-	public static final Hashtable<String, Integer> posImagenesPersonajesEnY = obtenerPosicionesImagenesEnY();
+	public static final Hashtable<String,Image> imagenesPersonajesChibi = obtenerImagenesChibi();
 	
+	private static final int tamanioChibiAncho=50;
+	private static final int tamanioChibiAlto=100;
 	
 	
 	private static Hashtable<String,Image> obtenerImagenes(){
@@ -34,27 +35,29 @@ public class ValoresGraficos {
 		return imagenesPersonajes;
 	}
 	
-	private static Hashtable<String, Integer> obtenerPosicionesImagenesEnY(){
-		Hashtable<String,Integer> posImagenesPersonajes = new Hashtable<String,Integer>();
-		posImagenesPersonajes.put("Goku", 300);
-		posImagenesPersonajes.put("Gohan", 300);
-		posImagenesPersonajes.put("Picolo", 400);
-		posImagenesPersonajes.put("Freezer", 400);
-		posImagenesPersonajes.put("MajinBoo", 500);
-		posImagenesPersonajes.put("Cell",500);
-		return posImagenesPersonajes;
+	
+	private static Hashtable<String,Image> obtenerImagenesChibi(){
+		Hashtable<String,Image> imagenesPersonajes = new Hashtable<String,Image>();
+		Image imagenGoku = new Image("file:src/vista/Imagenes/chibiGoku.png",tamanioChibiAncho,tamanioChibiAlto,false,false);
+		Image imagenGohan = new Image("file:src/vista/Imagenes/chibiGohan.png",tamanioChibiAncho,tamanioChibiAlto,false,false);
+		Image imagenPicolo = new Image("file:src/vista/Imagenes/chibiPicolo.png",tamanioChibiAncho,tamanioChibiAlto,false,false);
+		Image imagenFreezer = new Image("file:src/vista/Imagenes/chibiFreezer.png",tamanioChibiAncho,tamanioChibiAlto,false,false);
+		Image imagenCell = new Image("file:src/vista/Imagenes/chibiCell.png",tamanioChibiAncho,tamanioChibiAlto,false,false);
+		Image imagenMajinBoo = new Image("file:src/vista/Imagenes/chibiMajinBoo.png",tamanioChibiAncho,tamanioChibiAlto,false,false);
+		
+		imagenesPersonajes.put("Goku", imagenGoku);
+		imagenesPersonajes.put("Gohan", imagenGohan);
+		imagenesPersonajes.put("Picolo", imagenPicolo);
+		imagenesPersonajes.put("Freezer", imagenFreezer);
+		imagenesPersonajes.put("MajinBoo", imagenMajinBoo);
+		imagenesPersonajes.put("Cell", imagenCell);
+		return imagenesPersonajes;
 	}
 	
-	private static Hashtable<String, Integer> obtenerPosicionesImagenesEnX(){
-		Hashtable<String,Integer> posImagenesPersonajes = new Hashtable<String,Integer>();
-		posImagenesPersonajes.put("Goku", 40);
-		posImagenesPersonajes.put("Gohan",130);
-		posImagenesPersonajes.put("Picolo", 40);
-		posImagenesPersonajes.put("Freezer", 130);
-		posImagenesPersonajes.put("MajinBoo", 40);
-		posImagenesPersonajes.put("Cell", 130);
-		return posImagenesPersonajes;
-	}
+	
+	
+	
+	
 
 
 	

@@ -14,7 +14,6 @@ public class BotonMoverArribaDerechaHandler implements EventHandler<ActionEvent>
 	DragonAlgoBall juego;
 	ContenedorPrincipal contenedor;
 	Turno turno;
-	private boolean desactivarBotones = true;
 	
 	public BotonMoverArribaDerechaHandler(DragonAlgoBall juego, ContenedorPrincipal contenedor){
 		this.juego = juego;
@@ -29,8 +28,7 @@ public class BotonMoverArribaDerechaHandler implements EventHandler<ActionEvent>
         			
 		} catch (PasosInsuficientes p) {
 			//El cambio de turno esta nada mas porque queria probar algo, no va asi aca puesto
-			contenedor.setBotonera(turno, desactivarBotones);//Desactivar Botones
-			contenedor.cambioDeTurno();
+
 		}
         catch (MovimientoInvalido p) {
 		}
@@ -38,7 +36,6 @@ public class BotonMoverArribaDerechaHandler implements EventHandler<ActionEvent>
         	//Ojo! esta excpecion es posible, hay que tenerla en cuenta por mas que no sea del modelo
         	//Tenes que seleccionar "MOVER"        	
         }
-        contenedor.setVacio();
         contenedor.ubicarPersonajes();
     }
 
