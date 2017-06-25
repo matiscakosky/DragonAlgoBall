@@ -7,6 +7,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
@@ -18,10 +19,12 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import modelo.Personaje;
 import modelo.turnos.*;
 
 
 import java.util.Hashtable;
+
 
 import Juego.*;
 
@@ -186,7 +189,6 @@ public class ContenedorPrincipal extends BorderPane {
         botonTransformar.setOnAction(transformarButtonHandler);
         
         
-        
         contenedorVertical = new VBox();
         contenedorVertical.setAlignment(Pos.CENTER);
         contenedorVertical.setSpacing(20);
@@ -195,6 +197,11 @@ public class ContenedorPrincipal extends BorderPane {
         
         contenedorVertical.getChildren().addAll(botonTerminarTurno,botonTransformar, botonAtacar, botonAtacarBasico,botonAtaqueEspecial);
         contenedorVertical.getChildren().addAll(this.botoneraMovimiento);
+        
+        Image imagen = new Image("file:src/vista/Imagenes/Amarillo.jpg");
+        BackgroundImage imagenDeFondo = new BackgroundImage(imagen,BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+        contenedorVertical.setBackground(new Background(imagenDeFondo));
+        
         this.setLeft(contenedorVertical);
         
     }
@@ -206,56 +213,46 @@ public class ContenedorPrincipal extends BorderPane {
     
     private void setContenedorDerecho(){
         Hashtable<String,Image> imagenesPersonajes = ValoresGraficos.imagenesPersonajesChibi;
-    	
-    	
-    	Button botonGoku = new Button();
-    	botonGoku.setGraphic(new ImageView(imagenesPersonajes.get("Goku")));
-    	botonGoku.setStyle("-fx-border-color: transparent; -fx-background-color: transparent; ");
+    	Canvas canvas = new Canvas(220,300);
+        Hashtable<String,ProgressBar> barras = new Hashtable<String,ProgressBar>();
+        Hashtable<String,Button> botonesPersonajes = new Hashtable<String,Button>();
         
-    	Button botonGohan = new Button();
-    	botonGohan.setGraphic(new ImageView(imagenesPersonajes.get("Gohan")));
-    	botonGohan.setStyle("-fx-border-color: transparent; -fx-background-color: transparent; ");
-        
-    	Button botonPicolo = new Button();
-    	botonPicolo.setGraphic(new ImageView(imagenesPersonajes.get("Picolo")));
-    	botonPicolo.setStyle("-fx-border-color: transparent; -fx-background-color: transparent; ");
-        
-    	Button botonCell = new Button();
-    	botonCell.setGraphic(new ImageView(imagenesPersonajes.get("Cell")));
-    	botonCell.setStyle("-fx-border-color: transparent; -fx-background-color: transparent; ");
-        
-    	Button botonFreezer = new Button();
-    	botonFreezer.setGraphic(new ImageView(imagenesPersonajes.get("Freezer")));
-    	botonFreezer.setStyle("-fx-border-color: transparent; -fx-background-color: transparent; ");
-        
-    	Button botonBoo = new Button();
-    	botonBoo.setGraphic(new ImageView(imagenesPersonajes.get("MajinBoo")));
-    	botonBoo.setStyle("-fx-border-color: transparent; -fx-background-color: transparent; ");
     	
+    	for (Personaje personaje : juego.getPersonajes()) {
+			ProgressBar barra = new ProgressBar(personaje.getPuntosDeVida());
+			barras.put(personaje.getNombre(),barra);
+			
+			Button boton = new Button();
+    		boton.setGraphic(new ImageView(imagenesPersonajes.get(personaje.getNombre())));
+    		boton.setStyle("-fx-border-color: transparent; -fx-background-color: transparent; ");
+    		BotonInformacionPersonajes informacionPersonaje =  new BotonInformacionPersonajes(personaje, canvas);
+    		boton.setOnAction(informacionPersonaje);
+    		botonesPersonajes.put(personaje.getNombre(), boton);
+    
+    	}
     	
-    	HBox contenedorHorizontal1 = new HBox(botonGoku,botonGohan);
-    	HBox contenedorHorizontal2 = new HBox(botonPicolo,botonFreezer);
-    	HBox contenedorHorizontal3 = new HBox(botonCell, botonBoo);
+    	HBox contenedorHorizontal1 = new HBox(botonesPersonajes.get("Goku"), botonesPersonajes.get("Gohan"));
+    	HBox contenedorHorizontal1B = new HBox(barras.get("Goku"),barras.get("Gohan"));
+    	HBox contenedorHorizontal2 = new HBox(botonesPersonajes.get("Freezer"), botonesPersonajes.get("Picolo"));
+    	HBox contenedorHorizontal2B = new HBox(barras.get("Freezer"),barras.get("Picolo"));
+    	HBox contenedorHorizontal3 = new HBox(botonesPersonajes.get("Cell"), botonesPersonajes.get("MajinBoo"));
+    	HBox contenedorHorizontal3B = new HBox(barras.get("Cell"), barras.get("MajinBoo"));
     	
-    	contenedorHorizontal1.setSpacing(20);
-    	contenedorHorizontal2.setSpacing(20);
-    	contenedorHorizontal3.setSpacing(20);
+    	contenedorHorizontal1.setSpacing(50);
+    	contenedorHorizontal1B.setSpacing(20);    	
+    	contenedorHorizontal2.setSpacing(70);
+    	contenedorHorizontal2B.setSpacing(20);
+    	contenedorHorizontal3.setSpacing(70);
+    	contenedorHorizontal3B.setSpacing(20);
     	
-    	VBox contenedorPersonajesVertical = new VBox(contenedorHorizontal1,contenedorHorizontal2,contenedorHorizontal3);
+    	VBox contenedorPersonajesVertical = new VBox(canvas, contenedorHorizontal1,contenedorHorizontal1B,contenedorHorizontal2,contenedorHorizontal2B,contenedorHorizontal3,contenedorHorizontal3B);
     	contenedorPersonajesVertical.setAlignment(Pos.BOTTOM_RIGHT);
     	contenedorPersonajesVertical.setPadding(new Insets(30));
-    	contenedorPersonajesVertical.setSpacing(20);
+    	contenedorPersonajesVertical.setSpacing(10);
     	
-    	/*Hashtable<String,ProgressBar> progressBar = new Hashtable<String,ProgressBar>();
-        
-    	
-		for (Personaje personaje : juego.getPersonajes()) {
-
-			context.drawImage(imagenes.get(personaje.getNombre()), posImagenesEnX.get(personaje.getNombre()),posImagenesEnY.get(personaje.getNombre()),75,75);
-
-			ProgressBar barra = new ProgressBar(personaje.getPuntosDeVida());
-			progressBar.put(personaje.getNombre(),barra);		
-		}*/
+    	Image imagen = new Image("file:src/vista/Imagenes/Amarillo.jpg");
+        BackgroundImage imagenDeFondo = new BackgroundImage(imagen,BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+        contenedorPersonajesVertical.setBackground(new Background(imagenDeFondo));
     	
      	this.setRight(contenedorPersonajesVertical);
     }
@@ -265,7 +262,6 @@ public class ContenedorPrincipal extends BorderPane {
     	this.canvasTablero = new CanvasTablero(juego);
     	canvasTablero.dibujarTablero();
     	this.canvasTablero.addEventHandler(MouseEvent.MOUSE_PRESSED,new SeleccionarPersonajeHandler(this.canvasTablero,this.juego)); 
-
     	  	
     	contenedorCentral = new VBox(this.canvasTablero);
         contenedorCentral.setAlignment(Pos.CENTER);
@@ -310,7 +306,7 @@ public class ContenedorPrincipal extends BorderPane {
     private void setConsola() {
 
         // TODO cambiar por el modelo de Consola...
-        Label etiqueta = new Label();
+        Label etiqueta = new Label(); 
         etiqueta.setText("consola...");
         etiqueta.setFont(Font.font("courier new", FontWeight.SEMI_BOLD, 14));
         etiqueta.setTextFill(Color.WHITE);
