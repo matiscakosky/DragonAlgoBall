@@ -25,7 +25,6 @@ import modelo.turnos.*;
 import modelo.*;
 
 
-import java.util.Collection;
 import java.util.Hashtable;
 
 import Juego.*;
@@ -43,7 +42,7 @@ public class ContenedorPrincipal extends BorderPane {
     Stage stage;
     VBox contenedorVertical;
     boolean botonesDesactivados = true;
-    Hashtable<String,Image> imagenesPersonajes = ValoresGraficos.imagenesPersonajes;
+    Hashtable<String,Image> imagenes = ValoresGraficos.imagenes;
     
     
     public ContenedorPrincipal(Stage stage, DragonAlgoBall juego) {
@@ -152,7 +151,7 @@ public class ContenedorPrincipal extends BorderPane {
         
         Button botonEvolucionar = new Button();
         botonEvolucionar.setText("Evolucionar");
-        BotonEvolucionarHandler evolucionarButtonHandler = new BotonEvolucionarHandler(this.juego);
+        BotonTransformarHandler evolucionarButtonHandler = new BotonTransformarHandler(this.juego);
         botonEvolucionar.setOnAction(evolucionarButtonHandler);
         
         HBox contenedorHorizontal1 = new HBox(botonMoverArribaIzquierda,botonMoverArriba,botonMoverArribaDerecha);
@@ -193,7 +192,7 @@ public class ContenedorPrincipal extends BorderPane {
         
     	
 		for (Personaje personaje : juego.getPersonajes()) {
-			context.drawImage(imagenesPersonajes.get(personaje.getNombre()), posImagenesEnX.get(personaje.getNombre()),posImagenesEnY.get(personaje.getNombre()),75,75);
+			context.drawImage(imagenes.get(personaje.getNombre()), posImagenesEnX.get(personaje.getNombre()),posImagenesEnY.get(personaje.getNombre()),75,75);
 			ProgressBar barra = new ProgressBar(personaje.getPuntosDeVida());
 			progressBar.put(personaje.getNombre(),barra);		
 		}
@@ -202,11 +201,10 @@ public class ContenedorPrincipal extends BorderPane {
     
     private void setCentro(){ 
     	canvasTablero = new Canvas(ValoresGraficos.tamanioTablero,ValoresGraficos.tamanioTablero);
-    
     	setVacio();
-    	ubicarPersonajes();
+    	this.dibujarTablero();
 		  	
-    	canvasTablero.addEventHandler(MouseEvent.MOUSE_PRESSED,new SeleccionarPersonajeHandler(canvasTablero,this.juego, canvasDerecho)); 
+    	canvasTablero.addEventHandler(MouseEvent.MOUSE_PRESSED,new SeleccionarPersonajeHandler(canvasTablero,this.juego, canvasDerecho,this)); 
     	  	
     	contenedorCentral = new VBox(canvasTablero);
         contenedorCentral.setAlignment(Pos.CENTER);
@@ -230,19 +228,19 @@ public class ContenedorPrincipal extends BorderPane {
     	}
     }
     
-    public void ubicarPersonajes(){
+    public void dibujarTablero(){
     	GraphicsContext context = canvasTablero.getGraphicsContext2D();
-    	Hashtable<String,Image> imagenesPersonajes = ValoresGraficos.imagenesPersonajes;
-    	Collection<Personaje> personajes = juego.getPersonajes();
-    	for (Personaje personaje : personajes) {
-    		int coorX = coordenadaTableroX(personaje.getPosicion().getCoordenadaX());
-    		int coorY = coordenadaTableroY(personaje.getPosicion().getCoordenadaY());
-    		context.drawImage(imagenesPersonajes.get(personaje.getNombre()), coorX, coorY, ValoresGraficos.tamanioCasillero, ValoresGraficos.tamanioCasillero);
-		}
-    	
-    	
+    	Hashtable<String,Image> imagenes = ValoresGraficos.imagenes;
+    	Tablero tablero = turno.obtenerTablero();
+    	for(Posicion pos: tablero.obtenerPosiciones()){
+    		ObjetoJuego objeto = tablero.obtenerObjeto(pos);
+    		int coorX = coordenadaTableroX(pos.getCoordenadaX());
+    		int coorY = coordenadaTableroY(pos.getCoordenadaY());
+    		context.drawImage(imagenes.get(objeto.getNombre()), coorX, coorY, ValoresGraficos.tamanioCasillero, ValoresGraficos.tamanioCasillero);
+    	}
     }
-
+    
+   
     
     private int coordenadaTableroX(int posX){
     	return ((posX -1)*ValoresGraficos.tamanioCasillero);
@@ -256,8 +254,8 @@ public class ContenedorPrincipal extends BorderPane {
         return menuBar;
     }
     
-    public void cambioDeTurno() {
-       this.turno = juego.cambiarTurno();
+    public void cambioDeTurno() {               //Atrapar excepcion casillero ocupado en el controlador
+       this.turno = juego.cambiarTurno();       // ya que si queres colocar consumibel puede caer en casillero ocupado
     }
     
     public Canvas getTablero(){

@@ -2,6 +2,7 @@ package modelo.turnos;
 
 import modelo.Equipo;
 import modelo.Tablero;
+import modelo.excepciones.GanadorEquipoEnemigos;
 
 
 public class TurnoEquipoEnemigos extends Turno {
@@ -11,6 +12,18 @@ public class TurnoEquipoEnemigos extends Turno {
 		this.tablero = tablero;
 		this.AumentarKiInicioDeTurno();
 		actualizarTurnoNubeVoladora();
+	}
+	
+	public void controlarCantidadEsferasDelDragon(){
+		if (this.equipo.getCantidadDeEsferasCapturadas() == 7){
+			throw new GanadorEquipoEnemigos();
+		}
+	}
+	
+	public  void controlarJuegadoresEquipoContrario(){
+		if (!this.tablero.quedanJugadoresDelOtroEquipo(this.equipo.getMiembros())){
+			throw new GanadorEquipoEnemigos();
+		}
 	}
 	
 }

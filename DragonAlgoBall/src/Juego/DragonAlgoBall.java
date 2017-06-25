@@ -4,6 +4,9 @@ import modelo.Equipo;
 import modelo.Personaje;
 import modelo.StatsJuego;
 import modelo.Tablero;
+import modelo.consumibles.EsferaDelDragon;
+import modelo.consumibles.NubeVoladora;
+import modelo.consumibles.SemillaDelErmitanio;
 import modelo.personajes.*;
 import modelo.turnos.*;
 
@@ -68,13 +71,16 @@ public class DragonAlgoBall {
 	
 	public Turno cambiarTurno(){
 		if(Actual == turnoZ){
+			Actual.terminoTurno();
 			turnoEnemigos = new TurnoEquipoEnemigos(tablero, equipoEnemigos);
 			Actual = turnoEnemigos;
 		}
 		else{
+			Actual.terminoTurno();
 			turnoZ = new TurnoEquipoZ(tablero, equipoGuerrerosZ);
 			Actual = turnoZ;
 		}
+		this.generarConsumiblesAleatorios();
 		return Actual;
 	}
 	
@@ -94,5 +100,21 @@ public class DragonAlgoBall {
 	public Turno getTurnoActual() {
 		return this.Actual;
 	}
-
+	
+	private void generarConsumiblesAleatorios(){
+		Random randomGenerator = new Random();
+		int randomInt = randomGenerator.nextInt(50);
+		if(randomInt>=0 && randomInt <4){
+			new EsferaDelDragon(tablero);
+			return;
+		}
+		if(randomInt>=11 && randomInt <17){
+			new SemillaDelErmitanio(tablero);
+			return;
+		}
+		if(randomInt>=33 && randomInt <40){
+			new NubeVoladora(tablero);
+			return;
+		}
+	}
 }

@@ -10,28 +10,34 @@ public class ValoresGraficos {
 	public static final int ladoCasillero = 10;
 	public static final int tamanioCasillero = (int) tamanioTablero/ladoCasillero;
 
-	public static final Hashtable<String,Image> imagenesPersonajes = obtenerImagenes();
+	public static final Hashtable<String,Image> imagenes = obtenerImagenes();
 	public static final Hashtable<String, Integer> posImagenesPersonajesEnX = obtenerPosicionesImagenesEnX();
 	public static final Hashtable<String, Integer> posImagenesPersonajesEnY = obtenerPosicionesImagenesEnY();
 	
 	
 	
 	private static Hashtable<String,Image> obtenerImagenes(){
-		Hashtable<String,Image> imagenesPersonajes = new Hashtable<String,Image>();
+		Hashtable<String,Image> imagenes = new Hashtable<String,Image>();
 		Image imagenGoku = new Image("file:src/vista/Imagenes/goku.png");
 		Image imagenGohan = new Image("file:src/vista/Imagenes/Gohan.png");
 		Image imagenPicolo = new Image("file:src/vista/Imagenes/Picolo.png");
 		Image imagenFreezer = new Image("file:src/vista/Imagenes/Freezer.png");
 		Image imagenCell = new Image("file:src/vista/Imagenes/Cell.png");
 		Image imagenMajinBoo = new Image("file:src/vista/Imagenes/Boo.png");
+		Image imagenEsferaDelDragon = new Image("file:src/vista/Imagenes/EsferaDelDragon.png");
+		Image imagenSemillaDelErmitanio = new Image("file:src/vista/Imagenes/SemillaDelErmitanio.png");
+		Image imagenNubeVoladora = new Image("file:src/vista/Imagenes/NubeVoladora.png");
 		
-		imagenesPersonajes.put("Goku", imagenGoku);
-		imagenesPersonajes.put("Gohan", imagenGohan);
-		imagenesPersonajes.put("Picolo", imagenPicolo);
-		imagenesPersonajes.put("Freezer", imagenFreezer);
-		imagenesPersonajes.put("MajinBoo", imagenMajinBoo);
-		imagenesPersonajes.put("Cell", imagenCell);
-		return imagenesPersonajes;
+		imagenes.put("Semilla del ermitanio", imagenSemillaDelErmitanio);
+		imagenes.put("Esfera del dragon", imagenEsferaDelDragon);
+		imagenes.put("Nube voladora", imagenNubeVoladora);
+		imagenes.put("Goku", imagenGoku);
+		imagenes.put("Gohan", imagenGohan);
+		imagenes.put("Picolo", imagenPicolo);
+		imagenes.put("Freezer", imagenFreezer);
+		imagenes.put("MajinBoo", imagenMajinBoo);
+		imagenes.put("Cell", imagenCell);
+		return imagenes;
 	}
 	
 	private static Hashtable<String, Integer> obtenerPosicionesImagenesEnY(){

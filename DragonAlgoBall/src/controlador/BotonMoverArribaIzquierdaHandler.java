@@ -38,7 +38,8 @@ public class BotonMoverArribaIzquierdaHandler implements EventHandler<ActionEven
         	//Tenes que seleccionar "MOVER"        	
         }
         contenedor.setVacio();
-        contenedor.ubicarPersonajes();
+        //contenedor.ubicarPersonajes();
+        contenedor.dibujarTablero();
     }
 
 }

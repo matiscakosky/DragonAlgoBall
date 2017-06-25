@@ -5,7 +5,6 @@ import modelo.Personaje;
 import modelo.Posicion;
 import modelo.StatsJuego;
 import modelo.Tablero;
-import modelo.excepciones.JuegoTerminado;
 import modelo.excepciones.PosicionInvalida;
 
 public abstract class Turno {
@@ -17,6 +16,10 @@ public abstract class Turno {
 	protected Personaje personajeQueSeAtaca;
 	protected Personaje personajeEvoluciona;
 	protected Equipo equipo;
+	
+	public abstract void controlarCantidadEsferasDelDragon();
+	
+	public abstract void controlarJuegadoresEquipoContrario();
 	
 		
 	public Personaje seleccionarPersonaje(Posicion posicion){
@@ -32,6 +35,10 @@ public abstract class Turno {
 		controlarCantidadEsferasDelDragon();
 		controlarJuegadoresEquipoContrario();
 	}	
+	
+	public Tablero obtenerTablero(){
+		return this.tablero;
+	}
 
 	public void elegirPersonajeEvolucionar(){
 		this.personajeEvoluciona = this.personajeSeleccionado;
@@ -62,19 +69,6 @@ public abstract class Turno {
 	public Personaje getPersonajeSeleccionado(){
 		return this.personajeSeleccionado;
 	}
-	
-	public void controlarCantidadEsferasDelDragon(){
-		if (this.equipo.getCantidadDeEsferasCapturadas() == 7){
-			throw new JuegoTerminado();
-		}
-	}
-	
-	public void controlarJuegadoresEquipoContrario(){
-		if (!this.tablero.quedanJugadoresDelOtroEquipo(this.equipo.getMiembros())){
-			throw new JuegoTerminado();
-		}
-	}
-
 	
 	public void AumentarKiInicioDeTurno(){
 		for(Personaje personaje : equipo.getMiembros()){

@@ -124,7 +124,7 @@ public abstract class Personaje extends ObjetoJuego{
 	}
 	
 	public void consumirEsferaDelDragon(){
-		ataquesRestantesEsferaDelDragon = 2;
+		ataquesRestantesEsferaDelDragon += 2;
 		cantidadEsferasConsumidas ++;
 		this.estado.aumentarAtaquePorEsferaDelDragon();
 	}

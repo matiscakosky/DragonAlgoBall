@@ -1,8 +1,6 @@
 package controlador;
 
-import java.util.Collection;
 import java.util.Hashtable;
-
 import Juego.DragonAlgoBall;
 import javafx.event.EventHandler;
 import javafx.scene.canvas.Canvas;
@@ -23,12 +21,14 @@ public class SeleccionarPersonajeHandler implements EventHandler<MouseEvent> {
 	private Canvas canvas;
 	private DragonAlgoBall juego;
 	private Canvas canvasDerecho;
+	private ContenedorPrincipal contenedor;
 
 
-    public SeleccionarPersonajeHandler(Canvas canvas, DragonAlgoBall juego, Canvas canvasDerecho) {
+    public SeleccionarPersonajeHandler(Canvas canvas, DragonAlgoBall juego, Canvas canvasDerecho,ContenedorPrincipal contenedor) {
     	this.canvas = canvas;
     	this.juego = juego;
     	this.canvasDerecho = canvasDerecho;	
+    	this.contenedor = contenedor;
     }
     
     
@@ -36,7 +36,7 @@ public class SeleccionarPersonajeHandler implements EventHandler<MouseEvent> {
     public void handle(MouseEvent t) {
 		GraphicsContext context = canvas.getGraphicsContext2D();
 		limpiar(context);
-		ubicarPersonajes(context);
+		contenedor.dibujarTablero();
     	this.turno = juego.getTurnoActual();
 		context.setLineWidth(5);;
 		context.setStroke(Color.RED);
@@ -54,7 +54,7 @@ public class SeleccionarPersonajeHandler implements EventHandler<MouseEvent> {
 	}
 	
 	private void modificarImagenCanvasDerecho(){
-		Hashtable<String,Image> imagenesPersonajes = ValoresGraficos.imagenesPersonajes;
+		Hashtable<String,Image> imagenesPersonajes = ValoresGraficos.imagenes;
 		GraphicsContext context = canvasDerecho.getGraphicsContext2D();
 		context.clearRect(50, 100, 150, 150);
     	Personaje personaje = turno.getPersonajeSeleccionado();
@@ -62,27 +62,6 @@ public class SeleccionarPersonajeHandler implements EventHandler<MouseEvent> {
 	}
 	
 	
-	/* TODO ESTO ES CODIGO REPETIDO QUE NO SE COMO SACAR!*/
-    private void ubicarPersonajes(GraphicsContext context){
-    	Hashtable<String,Image> imagenesPersonajes = ValoresGraficos.imagenesPersonajes;
-    	Collection<Personaje> personajes = juego.getPersonajes();
-    	for (Personaje personaje : personajes) {
-    		int coorX = coordenadaTableroX(personaje.getPosicion().getCoordenadaX());
-    		int coorY = coordenadaTableroY(personaje.getPosicion().getCoordenadaY());
-    		context.drawImage(imagenesPersonajes.get(personaje.getNombre()), coorX, coorY, ValoresGraficos.tamanioCasillero, ValoresGraficos.tamanioCasillero);
-		}
-    	
-    	
-    }
-    
-    private int coordenadaTableroX(int posX){
-    	return ((posX -1)*ValoresGraficos.tamanioCasillero);
-    }
-    private int coordenadaTableroY(int posY){
-    	return Math.abs((posY -10)*ValoresGraficos.tamanioCasillero);
-    }
-    
-    
     private void limpiar(GraphicsContext context){
     	Image casillero = new Image("file:src/vista/Imagenes/casilleroVacio.jpg");  
     	for(int i=0 ; i< ValoresGraficos.ladoCasillero ;i++){
@@ -92,7 +71,7 @@ public class SeleccionarPersonajeHandler implements EventHandler<MouseEvent> {
     	}
     }
     
-    /*Hasta aca*/
+
 	
 
 	
