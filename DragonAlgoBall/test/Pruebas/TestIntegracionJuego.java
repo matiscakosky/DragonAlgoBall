@@ -2,12 +2,10 @@ package Pruebas;
 
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
-
 import modelo.*;
 import modelo.consumibles.EsferaDelDragon;
 import modelo.excepciones.GanadorEquipoEnemigos;
 import modelo.excepciones.GanadorEquipoZ;
-import modelo.excepciones.JuegoTerminado;
 import modelo.excepciones.PersonajeInmovilizado;
 import modelo.personajes.EnemigoDeLaTierra;
 import modelo.personajes.*;
