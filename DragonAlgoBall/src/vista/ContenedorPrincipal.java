@@ -4,8 +4,10 @@ package vista;
 import controlador.*;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -17,9 +19,13 @@ import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import modelo.excepciones.CasilleroOcupado;
-
+import modelo.excepciones.GanadorEquipoEnemigos;
+import modelo.excepciones.GanadorEquipoZ;
 import modelo.Personaje;
 
 import modelo.turnos.*;
@@ -57,20 +63,21 @@ public class ContenedorPrincipal extends BorderPane {
         this.setContenedorIzquierda(true);
         this.setContenedorDerecho();
         this.setCentro();
+        this.setAbajo();
        
      
    }
     public void setBotoneraMovimiento(boolean desactivado){
 
-    	Image flechaAbajo  = new Image("file:src/vista/Imagenes/FlechaAbajo.png");
-    	Image flechaAbajoDerecha  = new Image("file:src/vista/Imagenes/FlechaAbajoDerecha.png");
-    	Image flechaAbajoIzquierda  = new Image("file:src/vista/Imagenes/FlechaAbajoIzquierda.png");
-    	Image flechaArriba  = new Image("file:src/vista/Imagenes/FlechaArriba.png");
-    	Image flechaArribaDerecha  = new Image("file:src/vista/Imagenes/FlechaArribaDerecha.png");
-    	Image flechaArribaIzquierda  = new Image("file:src/vista/Imagenes/FlechaArribaIzquierda.png");
-    	Image flechaDerecha  = new Image("file:src/vista/Imagenes/FlechaDerecha.png");
-    	Image flechaIzquierda  = new Image("file:src/vista/Imagenes/FlechaIzquierda.png");
-    	Image flechaMover  = new Image("file:src/vista/Imagenes/FlechaMover.png");
+    	Image flechaAbajo  = new Image("file:src/vista/Imagenes/FlechaAbajo.png",ValoresGraficos.tamanioFlecha,ValoresGraficos.tamanioFlecha,false,false);
+    	Image flechaAbajoDerecha  = new Image("file:src/vista/Imagenes/FlechaAbajoDerecha.png",ValoresGraficos.tamanioFlecha,ValoresGraficos.tamanioFlecha,false,false);
+    	Image flechaAbajoIzquierda  = new Image("file:src/vista/Imagenes/FlechaAbajoIzquierda.png",ValoresGraficos.tamanioFlecha,ValoresGraficos.tamanioFlecha,false,false);
+    	Image flechaArriba  = new Image("file:src/vista/Imagenes/FlechaArriba.png",ValoresGraficos.tamanioFlecha,ValoresGraficos.tamanioFlecha,false,false);
+    	Image flechaArribaDerecha  = new Image("file:src/vista/Imagenes/FlechaArribaDerecha.png",ValoresGraficos.tamanioFlecha,ValoresGraficos.tamanioFlecha,false,false);
+    	Image flechaArribaIzquierda  = new Image("file:src/vista/Imagenes/FlechaArribaIzquierda.png",ValoresGraficos.tamanioFlecha,ValoresGraficos.tamanioFlecha,false,false);
+    	Image flechaDerecha  = new Image("file:src/vista/Imagenes/FlechaDerecha.png",ValoresGraficos.tamanioFlecha,ValoresGraficos.tamanioFlecha,false,false);
+    	Image flechaIzquierda  = new Image("file:src/vista/Imagenes/FlechaIzquierda.png",ValoresGraficos.tamanioFlecha,ValoresGraficos.tamanioFlecha,false,false);
+    	Image flechaMover  = new Image("file:src/vista/Imagenes/FlechaMover.png",ValoresGraficos.tamanioFlecha,ValoresGraficos.tamanioFlecha,false,false);
     	
     	Button botonMoverDerecha = new Button();
         botonMoverDerecha.setGraphic(new ImageView(flechaDerecha));
@@ -203,6 +210,12 @@ public class ContenedorPrincipal extends BorderPane {
         botonTransformar.setOnAction(transformarButtonHandler);
         this.botones.put("botonTransformar", botonTransformar);
         
+        Image imagen = new Image("file:src/vista/Imagenes/images.png");
+        Label etiqueta = new Label(); 
+        etiqueta.setFont(Font.font("courier new", FontWeight.BOLD, 20));
+        etiqueta.setTextFill(Color.BLACK);
+        etiqueta.setText("Presione ENTER\npara finalizar\naccion de movimiento");
+        
         
         contenedorVertical = new VBox();
         contenedorVertical.setAlignment(Pos.CENTER);
@@ -211,13 +224,11 @@ public class ContenedorPrincipal extends BorderPane {
         contenedorVertical.setMaxWidth(300);
         
         contenedorVertical.getChildren().addAll(botonTerminarTurno,botonTransformar, botonAtacar, botonAtacarBasico,botonAtaqueEspecial);
-        contenedorVertical.getChildren().addAll(this.botoneraMovimiento);
+        contenedorVertical.getChildren().addAll(this.botoneraMovimiento,etiqueta);
         
-        Image imagen = new Image("file:src/vista/Imagenes/EsferaDelDragon.png");
         BackgroundImage imagenDeFondo = new BackgroundImage(imagen,BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,BackgroundPosition.CENTER,new BackgroundSize(60,60,false,false,false,false));
         contenedorVertical.setBackground(new Background(imagenDeFondo));
-        //contenedorVertical.setStyle("-fx-background-color: aquamarine");
-        //contenedorVertical.setStyle("-fx-background-color: black");
+
         
         
         this.setLeft(contenedorVertical);
@@ -243,6 +254,7 @@ public class ContenedorPrincipal extends BorderPane {
     	for (Personaje personaje : juego.getPersonajes()) {
 			ProgressBar barra = new ProgressBar(personaje.getPuntosDeVida());
 			barras.put(personaje.getNombre(),barra);
+
 			
 			Button boton = new Button();
     		boton.setGraphic(new ImageView(imagenesPersonajes.get(personaje.getNombre())));
@@ -313,15 +325,49 @@ public class ContenedorPrincipal extends BorderPane {
     		this.obtenerBotones().get("botonTransformar").setDisable(turno.verificarTransformacionTurno());
     	}
     	
-		public void cambioDeTurno(DragonAlgoBall juego) {
+		public void cambioDeTurno() {
 			try{
 				juego.cambiarTurno();
 				this.dibujarTablero();
 				this.setBotoneraMovimiento(true);
 				this.setContenedorIzquierda(true);
 				this.getTablero().setOnMousePressed(new SeleccionarPersonajeHandler(this.juego,this));
+				this.setAbajo();
 			}
 			catch (CasilleroOcupado p) {}
+			
+	    	catch(GanadorEquipoZ  e) {
+	    		ContenedorGanadorEquipoZ contenedorGanadorEquipoZ = new ContenedorGanadorEquipoZ(this.stage);
+	    		Scene escenaJuegoGanador = new Scene(contenedorGanadorEquipoZ);  
+	    		stage.setScene(escenaJuegoGanador);
+	    		
+	    	}
+			catch(GanadorEquipoEnemigos e){
+	    		ContenedorGanadorEnemigosDeLaTierra contenedorGanadorEnemigos = new ContenedorGanadorEnemigosDeLaTierra(this.stage);
+	    		Scene escenaJuegoGanador = new Scene(contenedorGanadorEnemigos);  
+	    		stage.setScene(escenaJuegoGanador);
+	    		
+				
+			}
+		}
+		
+		private void setAbajo(){
+			Label etiqueta = new Label(); 
+	        etiqueta.setFont(Font.font("courier new", FontWeight.SEMI_BOLD, 14));
+	        etiqueta.setTextFill(Color.WHITE);
+
+	        VBox contenedorConsola = new VBox(etiqueta);
+	        contenedorConsola.setSpacing(10);
+	        contenedorConsola.setPadding(new Insets(15));
+	        contenedorConsola.setStyle("-fx-background-color: black;");
+
+			if(juego.getTurnoActual() instanceof TurnoEquipoZ){
+				etiqueta.setText("Turno Equipo Z");
+			}
+			else{
+				etiqueta.setText("Turno Equipo Enemigos de la tierra");
+			}
+			this.setBottom(contenedorConsola);
 		}
     
 

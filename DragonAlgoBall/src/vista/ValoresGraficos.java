@@ -6,13 +6,14 @@ import javafx.scene.image.Image;
 
 public class ValoresGraficos {
 	
-	public static final int tamanioTablero = 350;
+	public static final int tamanioTablero = 550;
 	public static final int ladoCasillero = 10;
 	public static final int tamanioCasillero = (int) tamanioTablero/ladoCasillero;
 
 
 	public static final Hashtable<String,Image> imagenes = obtenerImagenes();
 	public static final Hashtable<String,Image> imagenesPersonajesChibi = obtenerImagenesChibi();
+	public static final int tamanioFlecha = 50;
 
 	
 	private static final int tamanioChibiAncho=50;

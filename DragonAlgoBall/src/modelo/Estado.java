@@ -84,7 +84,7 @@ public class Estado {
 	
 	public void volverVelocidadANormalidad(Fase fase){
 		HashMap<String,Integer> stats = fase.obtenerStats(); 
-		this.poderDePelea = stats.get("velocidad");
+		this.velocidad = stats.get("velocidad");
 	}
 	
 	

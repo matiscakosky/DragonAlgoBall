@@ -34,7 +34,7 @@ public class TerminarMovimientoHandler implements EventHandler<KeyEvent> {
     		this.contenedor.setOnKeyPressed(null);
 			if(turno.verificarAccionesTurno()){
 				System.out.println("entro al cambio de turno por verificar");
-        		contenedor.cambioDeTurno(juego);
+        		contenedor.cambioDeTurno();
         	}
         }
     }

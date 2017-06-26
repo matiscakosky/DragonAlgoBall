@@ -20,11 +20,9 @@ public class BotonTerminarTurnoHandler implements EventHandler<ActionEvent> {
 	}
     @Override
     public void handle(ActionEvent actionEvent) {
-    	try{
-    		contenedor.cambioDeTurno(this.juego);
-    	}
-    	catch(GanadorEquipoZ  e) {}
-		catch(GanadorEquipoEnemigos e){}
+    	contenedor.cambioDeTurno();
+
+
     	
     }
 

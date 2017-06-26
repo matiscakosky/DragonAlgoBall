@@ -37,7 +37,7 @@ public class BotonAtaqueEspecialHandler implements EventHandler<ActionEvent> {
     		this.atacante.ataqueEspecial(enemigo);
     		this.contenedor.dibujarTablero();
         	if(turno.verificarAccionesTurno()){
-        		this.contenedor.cambioDeTurno(juego);
+        		this.contenedor.cambioDeTurno();
         		return;
         	}
         	this.canvasTablero.setOnMousePressed(new SeleccionarPersonajeHandler(this.juego,this.contenedor));
@@ -47,7 +47,7 @@ public class BotonAtaqueEspecialHandler implements EventHandler<ActionEvent> {
         }
     	catch(AtaqueInvalido p){
     		if(turno.verificarAccionesTurno()){
-        		this.contenedor.cambioDeTurno(juego);
+        		this.contenedor.cambioDeTurno();
         		
         	}
     		System.out.println("ataque invalido");
@@ -56,7 +56,7 @@ public class BotonAtaqueEspecialHandler implements EventHandler<ActionEvent> {
     	catch(KiInsuficiente p){
     		
 			if(turno.verificarAccionesTurno()){
-        		this.contenedor.cambioDeTurno(juego);
+        		this.contenedor.cambioDeTurno();
         		
 			}
 			System.out.println("Ki insuficiente");

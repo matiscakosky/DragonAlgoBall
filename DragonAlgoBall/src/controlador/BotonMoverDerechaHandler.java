@@ -37,7 +37,7 @@ public class BotonMoverDerechaHandler implements EventHandler<ActionEvent> {
     		System.out.println("pasos insuficiente actualizo botones?");
 			if(turno.verificarAccionesTurno()){
 				System.out.println("entro al cambio de turno por verificar");
-        		contenedor.cambioDeTurno(juego);
+        		contenedor.cambioDeTurno();
         	}
     	}
     	catch (MovimientoInvalido p) {
