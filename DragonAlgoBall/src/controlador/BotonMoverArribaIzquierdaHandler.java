@@ -31,6 +31,12 @@ public class BotonMoverArribaIzquierdaHandler implements EventHandler<ActionEven
         Personaje aMover = turno.getPersonajeMovil();
         try {
             aMover.MoverPersonajeHaciaArribaIzquierda();
+       		Label etiqueta = new Label();
+    		etiqueta.setText("Quedan " + turno.getCantidadDePasosRestantesEsteTurno() +" pasos a moverse ");
+            etiqueta.setFont(Font.font("courier new", FontWeight.SEMI_BOLD, 14));
+            etiqueta.setTextFill(Color.WHITE); 
+            this.contenedor.actualizarConsola(etiqueta);
+ 
         }			
         catch (PasosInsuficientes p) {
     		contenedor.setBotoneraMovimiento(true);

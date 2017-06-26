@@ -19,6 +19,7 @@ public class BotonTerminarTurnoHandler implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent actionEvent) {
     	contenedor.cambioDeTurno();
+    	
 
 
     	

@@ -1,6 +1,10 @@
 package controlador;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.Label;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import modelo.turnos.Turno;
 import vista.CanvasTablero;
 import vista.ContenedorPrincipal;
@@ -28,6 +32,12 @@ public class BotonAtacarHandler implements EventHandler<ActionEvent> {
     	contenedor.setContenedorIzquierda(true);
     	contenedor.obtenerBotones().get("botonMover").setDisable(true);
     	this.canvasTablero.setOnMousePressed(new SeleccionarEnemigoHandler(this.juego,this.contenedor));
+
+		Label etiqueta = new Label();
+		etiqueta.setText("Se selecciono la opcion de atacar");
+        etiqueta.setFont(Font.font("courier new", FontWeight.SEMI_BOLD, 14));
+        etiqueta.setTextFill(Color.WHITE); 
+        this.contenedor.actualizarConsola(etiqueta);
     }
 
 

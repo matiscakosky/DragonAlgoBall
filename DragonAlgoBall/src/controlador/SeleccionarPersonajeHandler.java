@@ -43,6 +43,12 @@ public class SeleccionarPersonajeHandler implements EventHandler<MouseEvent> {
 		    canvas.dibujarTablero();
 			context.strokeRect(((int)(t.getX()/ValoresGraficos.tamanioCasillero))*ValoresGraficos.tamanioCasillero, ((int)(t.getY()/ValoresGraficos.tamanioCasillero))*ValoresGraficos.tamanioCasillero, ValoresGraficos.tamanioCasillero, ValoresGraficos.tamanioCasillero);
 			this.contenedor.actualizarBotones(turno);
+	   		Label etiqueta = new Label();
+    		etiqueta.setText(turno.getPersonajeSeleccionado().getNombre() + " seleccinado");
+            etiqueta.setFont(Font.font("courier new", FontWeight.SEMI_BOLD, 14));
+            etiqueta.setTextFill(Color.WHITE); 
+            this.contenedor.actualizarConsola(etiqueta);
+ 
 		}
 		catch (PosicionInvalida  e) {
 			Label etiqueta = new Label();

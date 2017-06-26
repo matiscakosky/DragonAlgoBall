@@ -48,6 +48,12 @@ public class BotonAtaqueEspecialHandler implements EventHandler<ActionEvent> {
         	this.contenedor.setBotoneraMovimiento(true);
         	this.contenedor.setContenedorIzquierda(true);
         	this.contenedor.actualizarBotones(turno);
+
+    		Label etiqueta = new Label();
+    		etiqueta.setText("Ataque realizado con exito");
+            etiqueta.setFont(Font.font("courier new", FontWeight.SEMI_BOLD, 14));
+            etiqueta.setTextFill(Color.WHITE); 
+            this.contenedor.actualizarConsola(etiqueta);
         }
     	catch(AtaqueInvalido p){
     		if(turno.verificarAccionesTurno()){

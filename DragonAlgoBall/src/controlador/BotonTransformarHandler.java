@@ -32,7 +32,7 @@ public class BotonTransformarHandler implements EventHandler<ActionEvent>  {
 	    	    personajeEvolucionar.transformar();
 	    	    contenedor.actualizarBotones(turno);
 	    	    Label etiqueta = new Label();
-	    		etiqueta.setText(personajeEvolucionar.getNombre() +" se transformo");
+	    		etiqueta.setText(personajeEvolucionar.getNombre() +" se transformo a su nueva fase checkear stats");
 	    		etiqueta.setFont(Font.font("courier new", FontWeight.SEMI_BOLD, 14));
 	    		etiqueta.setTextFill(Color.WHITE); 
 	    		this.contenedor.actualizarConsola(etiqueta);

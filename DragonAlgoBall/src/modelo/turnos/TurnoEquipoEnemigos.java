@@ -16,7 +16,7 @@ public class TurnoEquipoEnemigos extends Turno {
 	}
 	
 	public void controlarCantidadEsferasDelDragon(){
-		if (this.equipo.getCantidadDeEsferasCapturadas() == 7){
+		if (this.equipo.getCantidadDeEsferasCapturadas() >= 7){
 			throw new GanadorEquipoEnemigos();
 		}
 	}

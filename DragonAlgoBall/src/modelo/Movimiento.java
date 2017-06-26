@@ -88,6 +88,7 @@ public class Movimiento {
 	}
 
 	public int getRestantes() {
+		if (this.cantidadPasosMoverse==0) throw new PasosInsuficientes();
 		return this.cantidadPasosMoverse;
 	}
 	

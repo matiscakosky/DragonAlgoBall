@@ -11,7 +11,7 @@ public class ValoresGraficos {
 	public static final int tamanioCasillero = (int) tamanioTablero/ladoCasillero;
 
 
-	public static final Hashtable<String,Image> imagenes = obtenerImagenes();
+	public static Hashtable<String,Image> imagenes = obtenerImagenes();
 	public static final Hashtable<String,Image> imagenesPersonajesChibi = obtenerImagenesChibi();
 	public static final int tamanioFlecha = 50;
 
@@ -27,7 +27,7 @@ public class ValoresGraficos {
 		Image imagenPicolo = new Image("file:src/vista/Imagenes/Picolo.png");
 		Image imagenFreezer = new Image("file:src/vista/Imagenes/Freezer.png");
 		Image imagenCell = new Image("file:src/vista/Imagenes/Cell.png");
-		Image imagenMajinBoo = new Image("file:src/vista/Imagenes/Boo.png");
+		Image imagenMajinBoo = new Image("file:src/vista/Imagenes/MajinBooNormal.png");
 		Image imagenEsferaDelDragon = new Image("file:src/vista/Imagenes/EsferaDelDragon.png");
 		Image imagenSemillaDelErmitanio = new Image("file:src/vista/Imagenes/SemillaDelErmitanio.png");
 		Image imagenNubeVoladora = new Image("file:src/vista/Imagenes/NubeVoladora.png");

@@ -108,6 +108,8 @@ public class Estado {
 		this.velocidad = 0;
 		this.distanciaDeAtaque = 0;
 		this.ki = 0;
+		this.puntosDeVida = 0;
+		
 	}
 
 	public void actualizar(String nombre, Fase fase) {
