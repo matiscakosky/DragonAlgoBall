@@ -4,12 +4,15 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import vista.ContenedorPrincipal;
 import Juego.DragonAlgoBall;
+import modelo.excepciones.GanadorEquipoZ;
+import modelo.excepciones.GanadorEquipoEnemigos;
+
+
 public class BotonTerminarTurnoHandler implements EventHandler<ActionEvent> {
 
 
 	ContenedorPrincipal contenedor;
 	DragonAlgoBall juego;
-	Boolean desactivarBotones = true;
 	
 	public BotonTerminarTurnoHandler(DragonAlgoBall juego, ContenedorPrincipal contenedor) {
 		this.contenedor = contenedor;
@@ -17,8 +20,11 @@ public class BotonTerminarTurnoHandler implements EventHandler<ActionEvent> {
 	}
     @Override
     public void handle(ActionEvent actionEvent) {
-    	contenedor.setBotonera(juego.getTurnoActual(), desactivarBotones);
-    	contenedor.cambioDeTurno();
+    	try{
+    		contenedor.cambioDeTurno(this.juego);
+    	}
+    	catch(GanadorEquipoZ  e) {}
+		catch(GanadorEquipoEnemigos e){}
     	
     }
 

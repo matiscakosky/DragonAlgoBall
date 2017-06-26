@@ -5,7 +5,6 @@ import modelo.Personaje;
 import modelo.Posicion;
 import modelo.StatsJuego;
 import modelo.Tablero;
-import modelo.excepciones.JuegoTerminado;
 import modelo.excepciones.PosicionInvalida;
 
 public abstract class Turno {
@@ -14,10 +13,17 @@ public abstract class Turno {
 	protected Personaje personajeSeleccionado;
 	protected Personaje personajeQueSeMueve;
 	protected Personaje personajeQueAtaca;
-	protected Personaje personajeQueSeAtaca;
+	protected Personaje personajeAtacado;
 	protected Personaje personajeEvoluciona;
 	protected Equipo equipo;
+	protected boolean ataqueRealizado;
+	protected boolean movimientoRealizado;
+	protected boolean transformacionRealizada;
 	
+	public abstract void controlarCantidadEsferasDelDragon();
+	
+	public abstract void controlarJuegadoresEquipoContrario();
+
 		
 	public Personaje seleccionarPersonaje(Posicion posicion){
 		Personaje personaje = this.tablero.obtenerPersonaje(posicion);
@@ -31,16 +37,24 @@ public abstract class Turno {
 	public void terminoTurno(){
 		controlarCantidadEsferasDelDragon();
 		controlarJuegadoresEquipoContrario();
-	}	
+	}
+	
+	
+	public Tablero obtenerTablero(){
+		return this.tablero;
+	}
 
 	public void elegirPersonajeEvolucionar(){
 		this.personajeEvoluciona = this.personajeSeleccionado;
+		this.transformacionRealizada = true;
 	}
 	
 	public void Mover(){
-		this.personajeQueSeMueve = this.personajeSeleccionado;
-		this.personajeQueSeMueve.actualizarCantidadPasos();
-	}
+			this.personajeQueSeMueve = this.personajeSeleccionado;
+			this.personajeQueSeMueve.actualizarCantidadPasos();
+			this.movimientoRealizado = true;
+		}
+		
 	
 	public Personaje getPersonajeMovil(){
 		return this.personajeQueSeMueve;
@@ -55,26 +69,13 @@ public abstract class Turno {
 		return this.personajeEvoluciona;
 	}
 	
-	public Personaje getPersonajeQueSeAtaca(){
-		return this.personajeQueSeAtaca;
+	public Personaje getPersonajeAtacado(){
+		return this.personajeAtacado;
 	}
 	
 	public Personaje getPersonajeSeleccionado(){
 		return this.personajeSeleccionado;
 	}
-	
-	public void controlarCantidadEsferasDelDragon(){
-		if (this.equipo.getCantidadDeEsferasCapturadas() == 7){
-			throw new JuegoTerminado();
-		}
-	}
-	
-	public void controlarJuegadoresEquipoContrario(){
-		if (!this.tablero.quedanJugadoresDelOtroEquipo(this.equipo.getMiembros())){
-			throw new JuegoTerminado();
-		}
-	}
-
 	
 	public void AumentarKiInicioDeTurno(){
 		for(Personaje personaje : equipo.getMiembros()){
@@ -90,14 +91,50 @@ public abstract class Turno {
 	
 	public void atacar(){
 		this.personajeQueAtaca = this.personajeSeleccionado;
-		personajeQueAtaca.actualizarEstadoPersonajeAumentadoPorEsferas();
+		this.personajeQueAtaca.actualizarEstadoPersonajeAumentadoPorEsferas();
+		this.ataqueRealizado = true;
+		
+		
 	}
+	
 	
 	public void elegirPersonajeQueSeAtaca(Posicion posicion){
-		this.personajeQueSeAtaca = this.seleccionarPersonaje(posicion);
+		Personaje personaje = this.tablero.obtenerPersonaje(posicion);
+		if(this.equipo.contiene(personaje)){
+			throw new PosicionInvalida();
+		}
+		this.personajeAtacado = personaje;
+
 	}
 
+	public int getCantidadDePasosRestantesEsteTurno() {
+		return personajeQueSeMueve.getRestantes();
+	}
+	
+	public boolean verificarAccionesTurno(){
+		return (this.ataqueRealizado && this.movimientoRealizado);
+	}
+
+	public boolean verificarMovimientoTurno(){
+		return (this.movimientoRealizado);
+	}
+	
+	public boolean verificarAtaqueTurno(){
+		return (this.ataqueRealizado);
+	}
+	
+	public boolean verificarTransformacionTurno(){
+		return (this.transformacionRealizada);
+	}
+	
+	public void actualizarAcciones(){
+		this.movimientoRealizado = false;
+		this.ataqueRealizado = false;
+		this.transformacionRealizada = false;
+	}
+}
+
 
 	
 	
-}
+

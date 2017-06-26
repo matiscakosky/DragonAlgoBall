@@ -42,7 +42,7 @@ public class ContenedorBienvenidos extends BorderPane{
         Image salirSinPulsar  = new Image("file:src/vista/Imagenes/salir-encima.png");
         Image salirPulsado  = new Image("file:src/vista/Imagenes/salir-normal.png");
         Image conSonido  = new Image("file:src/vista/Imagenes/ConSonido.png");
-        Image sinSonido  = new Image("file:src/vista/Imagenes/SinSoido.png");
+        Image sinSonido  = new Image("file:src/vista/Imagenes/SinSonido.png");
         Button botonIniciarJuego = new Button();
         Button botonSalirJuego = new Button();
         ToggleButton botonSonido = new ToggleButton();

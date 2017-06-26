@@ -1,23 +1,68 @@
 package controlador;
+
+import Juego.DragonAlgoBall;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import modelo.Personaje;
+import modelo.excepciones.AtaqueInvalido;
+import modelo.excepciones.KiInsuficiente;
 import modelo.turnos.Turno;
+import vista.CanvasTablero;
+import vista.ContenedorPrincipal;
 
 public class BotonAtaqueEspecialHandler implements EventHandler<ActionEvent> {
 
-	   // private final VistaRobot vista
-    private final Turno turno;
+	private Turno turno;
+	private ContenedorPrincipal contenedor;
+	private final DragonAlgoBall juego;
+	private CanvasTablero canvasTablero;
+	private Personaje atacante;
+	private Personaje enemigo;
+	
 
-    public BotonAtaqueEspecialHandler(Turno turno) {
-      //  this.vista = vista;
-    	this.turno = turno;
+    public BotonAtaqueEspecialHandler(DragonAlgoBall juego, ContenedorPrincipal contenedor) {
+    	this.juego = juego;
+    	this.contenedor =contenedor;
+    	this.canvasTablero = contenedor.getTablero();
+    	this.turno = juego.getTurnoActual();
+    	
     }
 
     @Override
     public void handle(ActionEvent actionEvent) {
-    	//Idem atacar basico.
-    	//Algo de la vista del boton.
+    	
+    	this.atacante = this.turno.getPersonajeatacante();
+    	this.enemigo = this.turno.getPersonajeAtacado();
+    	try{
+    		this.atacante.ataqueEspecial(enemigo);
+    		this.contenedor.dibujarTablero();
+        	if(turno.verificarAccionesTurno()){
+        		this.contenedor.cambioDeTurno(juego);
+        		return;
+        	}
+        	this.canvasTablero.setOnMousePressed(new SeleccionarPersonajeHandler(this.juego,this.contenedor));
+        	this.contenedor.setBotoneraMovimiento(true);
+        	this.contenedor.setContenedorIzquierda(true);
+        	this.contenedor.actualizarBotones(turno);
+        }
+    	catch(AtaqueInvalido p){
+    		if(turno.verificarAccionesTurno()){
+        		this.contenedor.cambioDeTurno(juego);
+        		
+        	}
+    		System.out.println("ataque invalido");
+			
+    	}
+    	catch(KiInsuficiente p){
+    		
+			if(turno.verificarAccionesTurno()){
+        		this.contenedor.cambioDeTurno(juego);
+        		
+			}
+			System.out.println("Ki insuficiente");
+    		
+    	}
+    	System.out.println("La vida de" + enemigo.getNombre() + "es " + enemigo.getPuntosDeVida());
     }
-
-
+    
 }

@@ -5,32 +5,32 @@ import Juego.DragonAlgoBall;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import modelo.Personaje;
-import modelo.excepciones.EvolucionInvalida;
 import modelo.excepciones.TransformacionInvalida;
 import modelo.turnos.Turno;
+import vista.ContenedorPrincipal;
 
-public class BotonEvolucionarHandler implements EventHandler<ActionEvent>  {
+public class BotonTransformarHandler implements EventHandler<ActionEvent>  {
 
 	    private Turno turno;
-	    private final DragonAlgoBall juego;
+	    private ContenedorPrincipal contenedor;
 
-	    public BotonEvolucionarHandler(DragonAlgoBall juego) {
-	    	this.juego = juego;
+	    public BotonTransformarHandler(DragonAlgoBall juego,ContenedorPrincipal contenedor) {
+	    	this.contenedor = contenedor;
+	    	this.turno = juego.getTurnoActual();
 	    }
 
 	    @Override
 	    public void handle(ActionEvent actionEvent) {
-	    	this.turno = juego.getTurnoActual();
+	    	
 	    	try{
 	   	    	turno.elegirPersonajeEvolucionar();
 	    	    Personaje personajeEvolucionar =  turno.getPersonajeAEvolucionar();
 	    	    personajeEvolucionar.transformar();
-	    	    
+	    	    contenedor.actualizarBotones(turno);
 	    	    System.out.println("Se evoluciono");
-	    	    
-	       } catch (EvolucionInvalida p){
-	    	   System.out.println("NO se puede evolucionar");
+	    	   
 	       } catch (TransformacionInvalida p){
+	    	   contenedor.actualizarBotones(turno);
 	    	   System.out.println("NO se puede evolucionar");
 	       }
 	    	

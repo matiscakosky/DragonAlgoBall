@@ -1,14 +1,13 @@
 package Juego;
 
 import modelo.Equipo;
-import modelo.Personaje;
 import modelo.StatsJuego;
 import modelo.Tablero;
+import modelo.consumibles.EsferaDelDragon;
+import modelo.consumibles.NubeVoladora;
+import modelo.consumibles.SemillaDelErmitanio;
 import modelo.personajes.*;
 import modelo.turnos.*;
-
-import java.util.ArrayList;
-import java.util.Collection;
 
 import java.util.Random;
 
@@ -66,33 +65,41 @@ public class DragonAlgoBall {
 		return Actual;
 	}
 	
-	public Turno cambiarTurno(){
+	public void cambiarTurno(){
 		if(Actual == turnoZ){
+			Actual.terminoTurno();
 			turnoEnemigos = new TurnoEquipoEnemigos(tablero, equipoEnemigos);
 			Actual = turnoEnemigos;
 		}
 		else{
+			Actual.terminoTurno();
 			turnoZ = new TurnoEquipoZ(tablero, equipoGuerrerosZ);
 			Actual = turnoZ;
 		}
-		return Actual;
+		this.generarConsumiblesAleatorios();
 	}
 	
-	public ArrayList<Personaje> getPersonajes(){
-		ArrayList<Personaje> lista = new ArrayList<Personaje>();
-		Collection<Personaje> personajesEnemigos = equipoEnemigos.getMiembros();
-		Collection<Personaje> personajesZ = equipoGuerrerosZ.getMiembros();
-		for (Personaje personaje : personajesEnemigos) {
-			lista.add(personaje); 
-		}
-		for (Personaje personaje : personajesZ) {
-			lista.add(personaje);
-		}
-		return lista;
-	}
 
 	public Turno getTurnoActual() {
 		return this.Actual;
 	}
-
+	
+	private void generarConsumiblesAleatorios(){
+		Random randomGenerator = new Random();
+		int randomInt = randomGenerator.nextInt(50);
+		if(randomInt>=0 && randomInt <4){
+			new EsferaDelDragon(tablero);
+			return;
+		}
+		if(randomInt>=11 && randomInt <16){
+			new SemillaDelErmitanio(tablero);
+			return;
+		}
+		if(randomInt>=33 && randomInt <38){
+			new NubeVoladora(tablero);
+			return;
+		}
+	}
 }
+
+

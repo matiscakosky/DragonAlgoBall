@@ -65,23 +65,32 @@ public class Tablero {
 	public boolean compararPosicion(Posicion posicionObtenida, Posicion posicionEsperada){
 		return (posicionObtenida.getCoordenadaX() == posicionEsperada.getCoordenadaX() && posicionObtenida.getCoordenadaY() == posicionEsperada.getCoordenadaY());
 	}
-	
+
 	public void colocarObjeto(ObjetoJuego objeto,Posicion posicion){
-		if(casilleros.get(posicion)!=null)throw new CasilleroOcupado();
+		this.validarPosicionLimitesTablero(posicion);
+		for (Posicion pos : this.casilleros.keySet()) {
+			if (compararPosicion(pos, posicion)){
+				throw new CasilleroOcupado();
+			}
+		}
 		Casillero casillero = new Casillero();
 		casillero.agregarObjeto(objeto);
 		this.casilleros.put(posicion,casillero);
 	}
 	
-	public boolean posicionValidaParaMoverse(Posicion posicion){   //q sea void y tire excepcion si no puede sino q se encargue el mover
+
+	public Casillero obtenerCasilleroAOcupar(Posicion posicion){
+		this.validarPosicionLimitesTablero(posicion);
 		for (Posicion pos : this.casilleros.keySet()) {
 			if (compararPosicion(pos, posicion)){
-				return (this.casilleros.get(pos).obtenerObjeto() instanceof Consumible);
+				if(this.casilleros.get(pos).obtenerObjeto().esPersonaje())throw new MovimientoInvalido();
+				return this.casilleros.get(pos);
 			}
 		}
-		return true;
+		return new Casillero();
 	}
 	
+		
 	public void borrarCasillero(Posicion posicion){
 		Posicion posicionBorrar = null;
 		Set<Posicion> casilleros = this.casilleros.keySet();
@@ -95,13 +104,17 @@ public class Tablero {
 	}
 	
 	public void moverPersonaje(Posicion posicionVieja, Posicion posicionNueva){
-		this.validarPosicionLimitesTablero(posicionNueva);
-		if(!this.posicionValidaParaMoverse(posicionNueva))throw new MovimientoInvalido();
-		Personaje personaje = this.obtenerPersonaje(posicionVieja); 
+		Casillero casilleroAOcupar = this.obtenerCasilleroAOcupar(posicionNueva);
+		Personaje personaje = this.obtenerPersonaje(posicionVieja);
 		this.borrarCasillero(posicionVieja);
-		Casillero casillero = new Casillero();
-		casillero.agregarObjeto(personaje);
-		this.casilleros.put(posicionNueva, casillero);
+		if(!casilleroAOcupar.estaVacio()){
+			Consumible consumible = (Consumible) casilleroAOcupar.eliminarObjeto();
+			consumible.consumir(personaje);
+			casilleroAOcupar.agregarObjeto(personaje);
+			return;
+			}
+		casilleroAOcupar.agregarObjeto(personaje);
+		this.casilleros.put(posicionNueva, casilleroAOcupar);
 		return;
 	}
 	
@@ -114,13 +127,22 @@ public class Tablero {
 		}
 		return false;
 	}
+	
+	
+	public ArrayList<Personaje> getPersonajes(){
+		ArrayList<Personaje> lista = new ArrayList<Personaje>();
+		for (Casillero casillero : this.casilleros.values()) {
+			if(casillero.obtenerObjeto() instanceof Personaje){
+				lista.add((Personaje)casillero.obtenerObjeto());
+			}
+		}
+		return lista;
+	}
 
-		
-		
-		
-		
-		
-		
+	public Set<Posicion> obtenerPosiciones() {
+		return this.casilleros.keySet();
+	}
+
 		
 		
 		

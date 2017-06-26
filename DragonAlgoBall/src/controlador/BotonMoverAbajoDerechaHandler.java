@@ -11,35 +11,37 @@ import vista.ContenedorPrincipal;
 
 public class BotonMoverAbajoDerechaHandler implements EventHandler<ActionEvent> {
 
-
 	DragonAlgoBall juego;
 	ContenedorPrincipal contenedor;
 	Turno turno;
-	private boolean desactivarBotones = true;
 	
 	public BotonMoverAbajoDerechaHandler(DragonAlgoBall juego, ContenedorPrincipal contenedor){
 		this.juego = juego;
 		this.contenedor = contenedor;
+		this.turno = juego.getTurnoActual();
 	}
     @Override
     public void handle(ActionEvent actionEvent) {
-        turno = juego.getTurnoActual();
+        
         Personaje aMover = turno.getPersonajeMovil();
         try {
             aMover.MoverPersonajeHaciaAbajoDerecha();
         			
-		} catch (PasosInsuficientes p) {
-			//El cambio de turno esta nada mas porque queria probar algo, no va asi aca puesto
-			contenedor.setBotonera(turno, desactivarBotones);
-			contenedor.cambioDeTurno();
-		}
-        catch (MovimientoInvalido p) {
-		}
-        catch(NullPointerException e){
-        	//Ojo! esta excpecion es posible, hay que tenerla en cuenta por mas que no sea del modelo
-        	//Tenes que seleccionar "MOVER"        	
+		} 
+        catch (PasosInsuficientes p) {
+    		contenedor.setBotoneraMovimiento(true);
+    		contenedor.setContenedorIzquierda(true);
+    		contenedor.actualizarBotones(turno);
+    		System.out.println("pasos insuficiente actualizo botones?");
+			if(turno.verificarAccionesTurno()){
+				System.out.println("entro al cambio de turno por verificar");
+        		contenedor.cambioDeTurno(juego);
+        		
+        	}
         }
-        contenedor.setVacio();
-        contenedor.ubicarPersonajes();
+    	
+    	catch (MovimientoInvalido p) {}
+        System.out.println("dibujo trablero al final del mover");
+    	contenedor.dibujarTablero();
     }
 }

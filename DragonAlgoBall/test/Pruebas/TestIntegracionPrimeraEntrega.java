@@ -115,7 +115,7 @@ public class TestIntegracionPrimeraEntrega {
 		assertEquals(goku.getPuntosDeVida(), puntosVidaGokuInicial - ataqueNormalCell);
 	}
 	
-	@Test (expected = JuegoTerminado.class)
+	@Test (expected = GanadorEquipoZ.class)
 	public void test08CrearJuegoConDosJugadores(){
 		
 		Tablero tablero = new Tablero(StatsJuego.tamanioTablero);
