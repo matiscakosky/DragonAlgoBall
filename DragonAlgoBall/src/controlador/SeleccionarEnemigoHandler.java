@@ -4,6 +4,8 @@ package controlador;
 import Juego.DragonAlgoBall;
 import javafx.event.EventHandler;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import modelo.Posicion;
@@ -42,8 +44,23 @@ public class SeleccionarEnemigoHandler implements EventHandler<MouseEvent> {
 		    actualizarBotones();
 			context.strokeRect(((int)(t.getX()/ValoresGraficos.tamanioCasillero))*ValoresGraficos.tamanioCasillero, ((int)(t.getY()/ValoresGraficos.tamanioCasillero))*ValoresGraficos.tamanioCasillero, ValoresGraficos.tamanioCasillero, ValoresGraficos.tamanioCasillero);
 		}
-		catch (PosicionInvalida  e) {}
-		catch(CasilleroVacio e){}
+		catch (PosicionInvalida  e) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("No es enemigo");
+			alert.setHeaderText("Seleccione una posicion enemiga para el ataque");
+			alert.setContentText("Elija una posicion enemiga valida para el ataque");
+
+			alert.showAndWait();
+		}
+		catch(CasilleroVacio e){
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("No es enemigo");
+			alert.setHeaderText("No se puede atacar a un casillero vacio");
+			alert.setContentText("Elija una posicion enemiga valida para el ataque");
+			
+			alert.showAndWait();
+
+		}
 		
 
 	}

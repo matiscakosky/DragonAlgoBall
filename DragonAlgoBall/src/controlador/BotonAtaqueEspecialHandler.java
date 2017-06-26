@@ -3,6 +3,8 @@ package controlador;
 import Juego.DragonAlgoBall;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import modelo.Personaje;
 import modelo.excepciones.AtaqueInvalido;
 import modelo.excepciones.KiInsuficiente;
@@ -50,7 +52,13 @@ public class BotonAtaqueEspecialHandler implements EventHandler<ActionEvent> {
         		this.contenedor.cambioDeTurno();
         		
         	}
-    		System.out.println("ataque invalido");
+    		
+    		Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("Ataque invalido");
+			alert.setHeaderText("No se pudo alcanzar al enemigo");
+			alert.setContentText("El enemigo se encuentra fuera de nuestro alcance");
+
+			alert.showAndWait();
 			
     	}
     	catch(KiInsuficiente p){
@@ -59,10 +67,15 @@ public class BotonAtaqueEspecialHandler implements EventHandler<ActionEvent> {
         		this.contenedor.cambioDeTurno();
         		
 			}
-			System.out.println("Ki insuficiente");
+			
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("Ataque invalido");
+			alert.setHeaderText("Ki insuficiente");
+			alert.setContentText("No alcanza el ki para realizar el ataque especial");
+
+			alert.showAndWait();
     		
     	}
-    	System.out.println("La vida de" + enemigo.getNombre() + "es " + enemigo.getPuntosDeVida());
     }
     
 }

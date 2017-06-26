@@ -3,6 +3,8 @@ package controlador;
 import Juego.DragonAlgoBall;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import modelo.Personaje;
 import modelo.excepciones.AtaqueInvalido;
 import modelo.turnos.Turno;
@@ -48,8 +50,13 @@ public class BotonAtacarBasicoHandler implements EventHandler<ActionEvent> {
         		this.contenedor.cambioDeTurno();
         		
         	}
-    		System.out.println("ataque invalido");
+    		
+    		Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("Ataque invalido");
+			alert.setHeaderText("No se pudo alcanzar al enemigo");
+			alert.setContentText("El enemigo se encuentra fuera de nuestro alcance");
+
+			alert.showAndWait();
     	}
-    	System.out.println("La vida de" + enemigo.getNombre() + "es " + enemigo.getPuntosDeVida());
     }
 }
