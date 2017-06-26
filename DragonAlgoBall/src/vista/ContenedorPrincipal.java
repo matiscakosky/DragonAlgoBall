@@ -50,6 +50,7 @@ public class ContenedorPrincipal extends BorderPane {
     VBox contenedorVertical;
     Hashtable<String,ProgressBar> barras;
     Hashtable<String,Button> botones;
+	VBox consola;
    
     
     
@@ -86,10 +87,8 @@ public class ContenedorPrincipal extends BorderPane {
         botonMoverDerecha.setGraphic(new ImageView(flechaDerecha));
         botonMoverDerecha.setStyle("-fx-border-color: transparent; -fx-background-color: transparent; ");
         BotonMoverDerechaHandler moverDerechaButtonHandler = new BotonMoverDerechaHandler(this.juego,this);
-       // TerminarMovimientoHandler terminarMovimientoHandler = new TerminarMovimientoHandler(this.juego,this); 
         botonMoverDerecha.setDisable(desactivado);
         botonMoverDerecha.setOnAction(moverDerechaButtonHandler);
-       // botonMoverDerecha.setOnKeyPressed(terminarMovimientoHandler);
         this.botones.put("botonMoverDerecha", botonMoverDerecha);
         
         Button botonMoverIzquierda = new Button();
@@ -403,13 +402,19 @@ public class ContenedorPrincipal extends BorderPane {
         etiqueta.setTextFill(Color.WHITE);
 
         VBox contenedorConsola = new VBox(etiqueta);
-        contenedorConsola.setSpacing(10);
-        contenedorConsola.setPadding(new Insets(15));
+        contenedorConsola.setSpacing(5);
+        contenedorConsola.setPadding(new Insets(10));
         contenedorConsola.setStyle("-fx-background-color: black;");
-
+        this.consola = contenedorConsola;
         this.contenedorCentral.getChildren().add(contenedorConsola);
        
     }
+    
+    public void actualizarConsola(Label unaEtiqueta){
+		Label etiqueta = unaEtiqueta;
+		this.consola.getChildren().remove(0);
+		this.consola.getChildren().add(etiqueta);
+	}
     
 }
 

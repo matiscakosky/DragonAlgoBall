@@ -28,6 +28,6 @@ public class BotonMoverHandler implements EventHandler<ActionEvent> {
         	this.contenedor.setContenedorIzquierda(true);
         	this.contenedor.setOnKeyPressed(new TerminarMovimientoHandler(this.juego,this.contenedor));
         	this.contenedor.obtenerBotones().get("botonMover").setDisable(true);
-        	System.out.println("boton mover llego a lo suyo");
+        	
     }
 }

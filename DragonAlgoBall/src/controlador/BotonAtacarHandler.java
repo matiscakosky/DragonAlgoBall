@@ -28,7 +28,6 @@ public class BotonAtacarHandler implements EventHandler<ActionEvent> {
     	contenedor.setContenedorIzquierda(true);
     	contenedor.obtenerBotones().get("botonMover").setDisable(true);
     	this.canvasTablero.setOnMousePressed(new SeleccionarEnemigoHandler(this.juego,this.contenedor));
-    	System.out.println("boton atacar entro y llego al final");
     }
 
 

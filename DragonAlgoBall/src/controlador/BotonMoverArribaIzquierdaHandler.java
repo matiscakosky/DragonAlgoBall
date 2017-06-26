@@ -3,6 +3,10 @@ package controlador;
 import Juego.DragonAlgoBall;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.Label;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import modelo.Personaje;
 import modelo.excepciones.MovimientoInvalido;
 import modelo.excepciones.PasosInsuficientes;
@@ -32,15 +36,23 @@ public class BotonMoverArribaIzquierdaHandler implements EventHandler<ActionEven
     		contenedor.setBotoneraMovimiento(true);
     		contenedor.setContenedorIzquierda(true);
     		contenedor.actualizarBotones(turno);
-    		System.out.println("pasos insuficiente actualizo botones?");
+    		Label etiqueta = new Label();
+    		etiqueta.setText("Ya no tienes pasos para moverte");
+            etiqueta.setFont(Font.font("courier new", FontWeight.SEMI_BOLD, 14));
+            etiqueta.setTextFill(Color.WHITE); 
+            this.contenedor.actualizarConsola(etiqueta);
 			if(turno.verificarAccionesTurno()){
-				System.out.println("entro al cambio de turno por verificar");
         		contenedor.cambioDeTurno();
         	}
     	}
     	catch (MovimientoInvalido p) {
+    		Label etiqueta = new Label();
+    		etiqueta.setText("Movimiento invalido");
+    		etiqueta.setFont(Font.font("courier new", FontWeight.SEMI_BOLD, 14));
+    		etiqueta.setTextFill(Color.WHITE); 
+    		this.contenedor.actualizarConsola(etiqueta);
     	}
-        System.out.println("dibujo trablero al final del mover");
+       
     	contenedor.dibujarTablero();
     }
 

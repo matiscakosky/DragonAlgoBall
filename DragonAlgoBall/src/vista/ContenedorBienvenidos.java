@@ -89,9 +89,7 @@ public class ContenedorBienvenidos extends BorderPane{
         contenedorVertical.setSpacing(15);
         contenedorVertical.setAlignment(Pos.CENTER_LEFT);
         contenedorVertical2.setAlignment(Pos.TOP_RIGHT);
-        //contenedorVertical.setPadding(new Insets(15));
         this.setLeft(contenedorVertical);
-        //this.getChildren().addAll(botonIniciarJuego,botonSalirJuego,botonSonidoActivado);
         this.setRight(contenedorVertical2);
 	}
 }

@@ -12,7 +12,7 @@ public class OpcionAcercaDeEventHandler implements EventHandler<ActionEvent> {
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Acerca de...");
         alert.setHeaderText("Ejemplo de mensaje de alerta");
-        String mensaje = "75.07 Algoritmos y  programación III.";
+        String mensaje = "75.07 Algoritmos y  programacion III.";
         alert.setContentText(mensaje);
         alert.show();
     }

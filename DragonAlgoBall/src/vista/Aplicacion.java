@@ -17,12 +17,11 @@ public class Aplicacion extends Application {
     @Override
     public void start(final Stage stage) throws Exception {
     	stage.setTitle("DragonAlgoBall");
-        //stage.initStyle(StageStyle.UTILITY);
         DragonAlgoBall juego = new DragonAlgoBall();
         ContenedorPrincipal contenedorPrincipal = new ContenedorPrincipal(stage, juego);
         Scene escenaJuego = new Scene(contenedorPrincipal);
         AudioClip musicaDeFondo = new AudioClip("file:src/vista/Sonidos/TemaBienvenida.mp3");
-        //musicaDeFondo.play();
+        musicaDeFondo.play();
         ContenedorBienvenidos ventanainicial = new ContenedorBienvenidos(stage,musicaDeFondo, escenaJuego);
         Scene escenaBienvenidos = new Scene(ventanainicial,1000,640);
         stage.setScene(escenaBienvenidos);

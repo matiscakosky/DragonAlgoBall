@@ -4,8 +4,11 @@ package controlador;
 import Juego.DragonAlgoBall;
 import javafx.event.EventHandler;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import modelo.Posicion;
 import vista.*;
 import modelo.excepciones.CasilleroVacio;
@@ -41,8 +44,20 @@ public class SeleccionarPersonajeHandler implements EventHandler<MouseEvent> {
 			context.strokeRect(((int)(t.getX()/ValoresGraficos.tamanioCasillero))*ValoresGraficos.tamanioCasillero, ((int)(t.getY()/ValoresGraficos.tamanioCasillero))*ValoresGraficos.tamanioCasillero, ValoresGraficos.tamanioCasillero, ValoresGraficos.tamanioCasillero);
 			this.contenedor.actualizarBotones(turno);
 		}
-		catch (PosicionInvalida  e) {}
-		catch(CasilleroVacio e){}
+		catch (PosicionInvalida  e) {
+			Label etiqueta = new Label();
+    		etiqueta.setText("Seleccione una posicion de tu equipo");
+            etiqueta.setFont(Font.font("courier new", FontWeight.SEMI_BOLD, 14));
+            etiqueta.setTextFill(Color.WHITE); 
+            this.contenedor.actualizarConsola(etiqueta);
+		}
+		catch(CasilleroVacio e){
+			Label etiqueta = new Label();
+    		etiqueta.setText("Seleccione una posicion de tu equipo");
+            etiqueta.setFont(Font.font("courier new", FontWeight.SEMI_BOLD, 14));
+            etiqueta.setTextFill(Color.WHITE); 
+            this.contenedor.actualizarConsola(etiqueta);
+		}
 		
 
 	}

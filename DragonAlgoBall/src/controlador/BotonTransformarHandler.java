@@ -4,8 +4,10 @@ package controlador;
 import Juego.DragonAlgoBall;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Label;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import modelo.Personaje;
 import modelo.excepciones.TransformacionInvalida;
 import modelo.turnos.Turno;
@@ -29,18 +31,19 @@ public class BotonTransformarHandler implements EventHandler<ActionEvent>  {
 	    	    Personaje personajeEvolucionar =  turno.getPersonajeAEvolucionar();
 	    	    personajeEvolucionar.transformar();
 	    	    contenedor.actualizarBotones(turno);
-	    	    System.out.println("Se evoluciono");
-	    	   
-	       } catch (TransformacionInvalida p){
+	    	    Label etiqueta = new Label();
+	    		etiqueta.setText(personajeEvolucionar.getNombre() +" se transformo");
+	    		etiqueta.setFont(Font.font("courier new", FontWeight.SEMI_BOLD, 14));
+	    		etiqueta.setTextFill(Color.WHITE); 
+	    		this.contenedor.actualizarConsola(etiqueta);
+	    	}
+	    	catch (TransformacionInvalida p){
 	    	   contenedor.actualizarBotones(turno);
-	    	   
-	    	   Alert alert = new Alert(AlertType.WARNING);
-	    	   alert.setTitle("Transformacion invalida");
-	    	   alert.setHeaderText("No se pudo relizar la transformacion");
-	    	   alert.setContentText("El personaje no cumple los requisitos para realizar la transformacion.");
-	
-	    	   alert.showAndWait();
+	    	   Label etiqueta = new Label();
+	    	   etiqueta.setText("Transformacion invalida");
+	    	   etiqueta.setFont(Font.font("courier new", FontWeight.SEMI_BOLD, 14));
+	    	   etiqueta.setTextFill(Color.WHITE); 
+	    	   this.contenedor.actualizarConsola(etiqueta);
 	       }
-	    	
-	    }
+	  }
 }
