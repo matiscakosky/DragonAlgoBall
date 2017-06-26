@@ -48,6 +48,7 @@ public class ContenedorPrincipal extends BorderPane {
     Turno turno;
     Stage stage;
     VBox contenedorVertical;
+    Hashtable<String,ProgressBar> barras;
     Hashtable<String,Button> botones;
     
     
@@ -247,7 +248,7 @@ public class ContenedorPrincipal extends BorderPane {
     private void setContenedorDerecho(){
         Hashtable<String,Image> imagenesPersonajes = ValoresGraficos.imagenesPersonajesChibi;
     	Canvas canvas = new Canvas(220,300);
-        Hashtable<String,ProgressBar> barras = new Hashtable<String,ProgressBar>();
+        barras = new Hashtable<String,ProgressBar>();
         Hashtable<String,Button> botonesPersonajes = new Hashtable<String,Button>();
         
     	
@@ -265,6 +266,7 @@ public class ContenedorPrincipal extends BorderPane {
     
     	}
     	
+    	actualizarBarraEstado();
     	HBox contenedorHorizontal1 = new HBox(botonesPersonajes.get("Goku"), botonesPersonajes.get("Gohan"));
     	HBox contenedorHorizontal1B = new HBox(barras.get("Goku"),barras.get("Gohan"));
     	HBox contenedorHorizontal2 = new HBox(botonesPersonajes.get("Freezer"), botonesPersonajes.get("Picolo"));
@@ -306,13 +308,13 @@ public class ContenedorPrincipal extends BorderPane {
 
     	public void dibujarTablero(){
     		canvasTablero.dibujarTablero();
+    		setContenedorDerecho();
     	}
     	
     
     	public BarraDeMenu getBarraDeMenu() {
         return menuBar;
     	}
-    
   
     	public CanvasTablero getTablero(){
     		return canvasTablero;
@@ -323,6 +325,14 @@ public class ContenedorPrincipal extends BorderPane {
     		this.obtenerBotones().get("botonAtacar").setDisable(turno.verificarAtaqueTurno());
     		this.obtenerBotones().get("botonMover").setDisable(turno.verificarMovimientoTurno());
     		this.obtenerBotones().get("botonTransformar").setDisable(turno.verificarTransformacionTurno());
+    	}
+    	
+    	public void actualizarBarraEstado(){
+    		for (Personaje personaje : juego.getPersonajes()){
+    			ProgressBar barra = barras.get(personaje.getNombre());
+    			double progreso = (double)personaje.getPuntosDeVida()/(double)personaje.getPuntosDeVidaInicales();
+    			barra.setProgress(progreso);
+    		}
     	}
     	
 		public void cambioDeTurno() {

@@ -10,6 +10,7 @@ public class Estado {
 	private int distanciaDeAtaque;
 	private int velocidad;
 	private int kiEvolucion;
+	private int puntosDeVidaIniciales;
 	private int puntosDeVida;
 	private int ki;
 	
@@ -17,12 +18,17 @@ public class Estado {
 	public Estado(String nombre,Fase fase){
 		this.setearEstado(nombre,fase);
 		this.puntosDeVida = fase.obtenerStats().get("puntosDeVida");
+		this.puntosDeVidaIniciales = fase.obtenerStats().get("puntosDeVida");
 		this.ki = 0;
 		this.vivo = true;
 	}
 	
 	public int getVelocidad(){
 		return this.velocidad;
+	}
+	
+	public int getPuntosDeVidaIniciales(){
+		return puntosDeVidaIniciales;
 	}
 	
 	public int getDistanciaDeAtaque(){

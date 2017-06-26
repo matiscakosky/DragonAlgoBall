@@ -53,7 +53,10 @@ public abstract class Personaje extends ObjetoJuego{
 	
 	public void aumentarKi(int ki) {
 		this.estado.aumentarKi(ki);
-		
+	}
+	
+	public int getPuntosDeVidaInicales(){
+		return estado.getPuntosDeVidaIniciales();
 	}
 	
 	public Posicion getPosicion(){
