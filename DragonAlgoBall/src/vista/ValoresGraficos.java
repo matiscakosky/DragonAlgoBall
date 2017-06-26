@@ -16,7 +16,7 @@ public class ValoresGraficos {
 
 	
 	private static final int tamanioChibiAncho=50;
-	private static final int tamanioChibiAlto=100;
+	private static final int tamanioChibiAlto=65;
 	
 	
 	private static Hashtable<String,Image> obtenerImagenes(){

@@ -1,6 +1,7 @@
 package Juego;
 
 import modelo.Equipo;
+import modelo.Personaje;
 import modelo.StatsJuego;
 import modelo.Tablero;
 import modelo.consumibles.EsferaDelDragon;
@@ -9,6 +10,8 @@ import modelo.consumibles.SemillaDelErmitanio;
 import modelo.personajes.*;
 import modelo.turnos.*;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Random;
 
 public class DragonAlgoBall {
@@ -100,6 +103,20 @@ public class DragonAlgoBall {
 			return;
 		}
 	}
+
+	public ArrayList<Personaje> getPersonajes() {
+		ArrayList<Personaje> lista = new ArrayList<Personaje>();
+		Collection<Personaje> personajesEnemigos = this.equipoEnemigos.getMiembros();
+		Collection<Personaje> personajesZ = this.equipoGuerrerosZ.getMiembros();
+		for(Personaje personaje:personajesEnemigos){
+			lista.add(personaje);
+		}
+		for(Personaje personaje :personajesZ){
+				lista.add(personaje);
+		}
+		return lista;
+	}
+	
 }
 
 
