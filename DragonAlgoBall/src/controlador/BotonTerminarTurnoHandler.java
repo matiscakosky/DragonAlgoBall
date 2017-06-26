@@ -4,8 +4,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import vista.ContenedorPrincipal;
 import Juego.DragonAlgoBall;
-import modelo.excepciones.GanadorEquipoZ;
-import modelo.excepciones.GanadorEquipoEnemigos;
 
 
 public class BotonTerminarTurnoHandler implements EventHandler<ActionEvent> {

@@ -50,6 +50,7 @@ public class ContenedorPrincipal extends BorderPane {
     VBox contenedorVertical;
     Hashtable<String,ProgressBar> barras;
     Hashtable<String,Button> botones;
+   
     
     
     public ContenedorPrincipal(Stage stage, DragonAlgoBall juego) {
@@ -64,7 +65,8 @@ public class ContenedorPrincipal extends BorderPane {
         this.setContenedorIzquierda(true);
         this.setContenedorDerecho();
         this.setCentro();
-        this.setAbajo();
+        this.setConsola();
+        
        
      
    }
@@ -297,7 +299,10 @@ public class ContenedorPrincipal extends BorderPane {
     	canvasTablero.dibujarTablero();
     	this.canvasTablero.setOnMousePressed(new SeleccionarPersonajeHandler(this.juego,this)); 
     	contenedorCentral = new VBox(this.canvasTablero);
+    	this.colocarTurno();
+    	contenedorCentral.getChildren().add(this.canvasTablero);
         contenedorCentral.setAlignment(Pos.CENTER);
+        this.contenedorCentral.setSpacing(20);
         
         Image imagen = new Image("file:src/vista/Imagenes/Tablero.jpg");
         BackgroundImage imagenDeFondo = new BackgroundImage(imagen,BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
@@ -342,7 +347,7 @@ public class ContenedorPrincipal extends BorderPane {
 				this.setBotoneraMovimiento(true);
 				this.setContenedorIzquierda(true);
 				this.getTablero().setOnMousePressed(new SeleccionarPersonajeHandler(this.juego,this));
-				this.setAbajo();
+				this.colocarTurno();
 			}
 			catch (CasilleroOcupado p) {}
 			
@@ -361,15 +366,18 @@ public class ContenedorPrincipal extends BorderPane {
 			}
 		}
 		
-		private void setAbajo(){
-			Label etiqueta = new Label(); 
+		private void colocarTurno(){
+			Label etiqueta = new Label();
+			
 	        etiqueta.setFont(Font.font("courier new", FontWeight.SEMI_BOLD, 14));
 	        etiqueta.setTextFill(Color.WHITE);
-
-	        VBox contenedorConsola = new VBox(etiqueta);
-	        contenedorConsola.setSpacing(10);
-	        contenedorConsola.setPadding(new Insets(15));
-	        contenedorConsola.setStyle("-fx-background-color: black;");
+	        
+	        etiqueta.setStyle("-fx-background-color: linear-gradient(#ffd65b, #e68400),linear-gradient(#ffef84, #f2ba44),"
+	        + "linear-gradient(#ffea6a, #efaa22),linear-gradient(#ffe657 0%, #f8c202 50%, #eea10b 100%),"
+	        + "linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));"
+	        +"-fx-background-radius: 30; -fx-background-insets: 0,1,2,3,0; -fx-text-fill: #654b00; -fx-font-weight: bold;"
+	        +"-fx-font-size: 14px; -fx-padding: 10 20 10 20");
+	        
 
 			if(juego.getTurnoActual() instanceof TurnoEquipoZ){
 				etiqueta.setText("Turno Equipo Z");
@@ -377,17 +385,18 @@ public class ContenedorPrincipal extends BorderPane {
 			else{
 				etiqueta.setText("Turno Equipo Enemigos de la tierra");
 			}
-			this.setBottom(contenedorConsola);
+			this.contenedorCentral.getChildren().add(0, etiqueta);
+			this.contenedorCentral.getChildren().remove(1);
 		}
     
 
 
 
 
-    /*
+    
     private void setConsola() {
 
-        // TODO cambiar por el modelo de Consola...
+        
         Label etiqueta = new Label(); 
         etiqueta.setText("consola...");
         etiqueta.setFont(Font.font("courier new", FontWeight.SEMI_BOLD, 14));
@@ -398,9 +407,9 @@ public class ContenedorPrincipal extends BorderPane {
         contenedorConsola.setPadding(new Insets(15));
         contenedorConsola.setStyle("-fx-background-color: black;");
 
-        this.setBottom(contenedorConsola);
+        this.contenedorCentral.getChildren().add(contenedorConsola);
        
     }
-    */
+    
 }
 
