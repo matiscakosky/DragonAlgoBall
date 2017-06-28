@@ -21,7 +21,7 @@ public class TestAtacar {
 		tablero.colocarObjeto(cell,cell.getPosicion());
 		goku.atacarConBasico(cell);
 
-		//Corroboro las nuevas vidas
+		
 		assertEquals(cell.getPuntosDeVida(),480);
 	}
 	

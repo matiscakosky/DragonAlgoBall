@@ -18,7 +18,7 @@ public class BarraDeMenu extends MenuBar {
         Menu menuAyuda = new Menu("Ayuda");
         Menu menuSalir = new Menu("Salir");
         
-        MenuItem opcionComoJuego = new MenuItem("¿Como juego?");
+        MenuItem opcionComoJuego = new MenuItem("Como juego");
         MenuItem opcionSalir = new MenuItem("Salir del juego");
         
         

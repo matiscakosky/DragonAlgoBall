@@ -32,7 +32,7 @@ public class ContenedorGanadorEquipoZ extends BorderPane {
         Scene escenaJuego = new Scene(contenedorPrincipal);
         BotonIniciarJuegoHandler botoniniciarjuegohandler = new BotonIniciarJuegoHandler(stage,escenaJuego,musicaDeFondo);
         Button botonReIniciarJuego = new Button();
-        botonReIniciarJuego.setText("¡¡GANADOR EQUIPO GUERREROS Z!! \n Reiniciar Juego");
+        botonReIniciarJuego.setText("GANADOR EQUIPO GUERREROS Z \n Reiniciar Juego");
         botonReIniciarJuego.setOnAction(botoniniciarjuegohandler);
         this.setCenter(botonReIniciarJuego);
 		
